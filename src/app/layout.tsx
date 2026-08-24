@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
+import { defaultDescription, defaultKeywords, siteName, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -10,12 +11,44 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "ФРЕЯ — профессиональный уход Davines",
-    template: "%s · ФРЕЯ",
+    default: `${siteName} — салон красоты и Davines в Перми`,
+    template: `%s · ${siteName}`,
   },
-  description:
-    "Студия ФРЕЯ и Кристина, амбассадор Davines: подбор домашнего ухода, продажа продукции Davines и запись на приём.",
+  description: defaultDescription,
+  keywords: defaultKeywords,
+  authors: [{ name: "Кристина" }],
+  creator: siteName,
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: siteUrl,
+    siteName,
+    title: `${siteName} — профессиональный уход Davines в Перми`,
+    description: defaultDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} — Davines в Перми`,
+    description: defaultDescription,
+  },
+  alternates: {
+    canonical: "/",
+  },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#faf6f0",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

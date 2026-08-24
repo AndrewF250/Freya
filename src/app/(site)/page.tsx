@@ -25,19 +25,19 @@ export default function HomePage() {
         <div className="shell grid gap-10 py-14 md:grid-cols-2 md:items-center md:gap-16 md:py-24">
           <div>
             <p className="eyebrow mb-5">Студия {settings.salonName} · Партнёр Davines</p>
-            <h1 className="display text-[42px] md:text-[62px]">{settings.heroTitle}</h1>
-            <p className="mt-6 max-w-[46ch] text-[16px] leading-relaxed text-ink-soft">{settings.heroText}</p>
+            <h1 className="display text-[30px] sm:text-[42px] md:text-[62px]">{settings.heroTitle}</h1>
+            <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-[16px]">{settings.heroText}</p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/quiz" className="btn btn-primary">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
+              <Link href="/quiz" className="btn btn-primary w-full sm:w-auto">
                 Подобрать уход за 1 минуту
               </Link>
-              <Link href="/shop" className="btn btn-outline">
+              <Link href="/shop" className="btn btn-outline w-full sm:w-auto">
                 Каталог Davines
               </Link>
             </div>
 
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-line pt-7">
+            <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-6 sm:mt-12 sm:gap-6 sm:pt-7">
               <Stat value={String(total)} label={plural(total, ["продукт", "продукта", "продуктов"])} />
               <Stat value={String(lines.length)} label={plural(lines.length, ["линейка", "линейки", "линеек"])} />
               <Stat value="10+" label="лет практики" />

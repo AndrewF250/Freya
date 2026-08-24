@@ -4,8 +4,10 @@ import { PageHead } from "@/components/ui";
 import { getVisibleProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Подбор ухода",
-  description: "Пять вопросов о ваших волосах — и Кристина соберёт ритуал из продуктов Davines под вашу задачу.",
+  title: "Подбор ухода Davines",
+  description:
+    "Онлайн-квиз: подберите шампунь, маску и уход Davines под тип волос. Результат можно купить или взять на консультацию к Кристине в Перми.",
+  alternates: { canonical: "/quiz/" },
 };
 
 export default function QuizPage() {

@@ -8,7 +8,8 @@ import { getSettings } from "@/lib/settings";
 export const metadata: Metadata = {
   title: "О Кристине и студии ФРЕЯ",
   description:
-    "Кристина — парикмахер-стилист и амбассадор Davines. О подходе к диагностике, подбору ухода и работе студии ФРЕЯ.",
+    "Кристина — парикмахер-стилист и амбассадор Davines в Перми. Диагностика волос, подбор ухода и запись в салон ФРЕЯ.",
+  alternates: { canonical: "/about/" },
 };
 
 export default function AboutPage() {

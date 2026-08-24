@@ -33,7 +33,7 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
       <div className="flex flex-1 flex-col p-4">
         <p className="eyebrow">{product.line}</p>
 
-        <h3 className="mt-2 text-[15px] leading-snug font-normal">
+        <h3 className="mt-2 text-[14px] leading-snug font-normal sm:text-[15px]">
           <Link href={`/shop/${product.slug}`} className="transition-colors hover:text-olive-deep">
             <span className="absolute inset-0" aria-hidden />
             {product.nameEn || product.nameRu}

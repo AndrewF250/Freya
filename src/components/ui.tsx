@@ -18,7 +18,7 @@ export function SectionHead({
     <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
       <div className="max-w-[46ch]">
         {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-        <h2 className="display text-[30px] md:text-[40px]">{title}</h2>
+        <h2 className="display text-[24px] sm:text-[30px] md:text-[40px]">{title}</h2>
         {text && <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">{text}</p>}
       </div>
       {href && hrefLabel && (
@@ -44,10 +44,10 @@ export function PageHead({
 }) {
   return (
     <div className="border-b border-line bg-sand">
-      <div className="shell py-14 md:py-20">
+      <div className="shell py-10 sm:py-14 md:py-20">
         {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
-        <h1 className="display max-w-[20ch] text-[36px] md:text-[52px]">{title}</h1>
-        {text && <p className="mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-soft md:text-[16px]">{text}</p>}
+        <h1 className="display max-w-[20ch] text-[28px] sm:text-[36px] md:text-[52px]">{title}</h1>
+        {text && <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-ink-soft sm:mt-5 md:text-[16px]">{text}</p>}
         {children && <div className="mt-8">{children}</div>}
       </div>
     </div>

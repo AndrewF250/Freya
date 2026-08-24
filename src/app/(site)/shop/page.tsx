@@ -8,7 +8,8 @@ import { sortLines } from "@/lib/catalog";
 export const metadata: Metadata = {
   title: "Каталог Davines",
   description:
-    "Профессиональный уход Davines у Кристины: шампуни, маски, масла и стайлинг с подбором под тип волос.",
+    "Купить Davines в Перми у амбассадора бренда: шампуни, маски, масла и стайлинг с подбором под тип волос.",
+  alternates: { canonical: "/shop/" },
 };
 
 export default function ShopPage() {

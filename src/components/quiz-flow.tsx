@@ -94,7 +94,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
             <span className="font-display text-[24px] tabular-nums">{rub(total)}</span>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <AddRitualButton
               products={ritual.map((p) => ({
                 slug: p.slug,
@@ -106,10 +106,10 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
               }))}
               label="Добавить в корзину"
             />
-            <Link href="/booking" className="btn btn-outline">
+            <Link href="/booking" className="btn btn-outline w-full sm:w-auto">
               Записаться с подбором
             </Link>
-            <button type="button" onClick={restart} className="btn btn-soft">
+            <button type="button" onClick={restart} className="btn btn-soft w-full sm:w-auto">
               Пройти заново
             </button>
           </div>

@@ -20,6 +20,7 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
     return {
       title: `${product.nameEn || product.nameRu} — ${product.line}`,
       description: product.description.slice(0, 160),
+      alternates: { canonical: `/shop/${product.slug}/` },
     };
   });
 }

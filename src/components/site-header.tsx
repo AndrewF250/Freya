@@ -23,18 +23,18 @@ export function SiteHeader({ salonName }: { salonName: string }) {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream/92 backdrop-blur-sm">
-      <div className="shell flex h-[68px] items-center gap-6">
-        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="На главную">
+    <header className="sticky top-0 z-50 border-b border-line bg-cream/92 backdrop-blur-sm pt-[env(safe-area-inset-top)]">
+      <div className="shell flex h-[60px] items-center gap-3 sm:h-[68px] sm:gap-6">
+        <Link href="/" className="flex min-w-0 shrink items-center gap-2 sm:gap-3" aria-label="На главную">
           <Image
             src={withBasePath("/logo.png")}
             alt={salonName}
             width={120}
             height={32}
-            className="h-7 w-auto object-contain"
+            className="h-6 w-auto object-contain sm:h-7"
             priority
           />
-          <span className="hidden whitespace-nowrap rounded-pill border border-line bg-paper px-2.5 py-1 text-[10px] tracking-[0.12em] text-muted uppercase sm:inline">
+          <span className="hidden whitespace-nowrap rounded-pill border border-line bg-paper px-2.5 py-1 text-[10px] tracking-[0.12em] text-muted uppercase md:inline">
             Партнёр Davines
           </span>
         </Link>
@@ -54,8 +54,8 @@ export function SiteHeader({ salonName }: { salonName: string }) {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 lg:ml-0">
-          <Link href="/cart" className="btn btn-soft btn-sm gap-2" aria-label="Корзина">
+        <div className="ml-auto flex items-center gap-1.5 sm:gap-2 lg:ml-0">
+          <Link href="/cart" className="btn btn-soft btn-sm gap-1.5 !px-3 sm:gap-2 sm:!px-4" aria-label="Корзина">
             <CartIcon />
             <span className="hidden sm:inline">Корзина</span>
             {ready && count > 0 && (

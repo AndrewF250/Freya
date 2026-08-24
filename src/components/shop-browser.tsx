@@ -25,6 +25,7 @@ export function ShopBrowser({
   const [concern, setConcern] = useState("");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("default");
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   useEffect(() => {
     const initialLine = searchParams.get("line") ?? "";
@@ -65,10 +66,19 @@ export function ShopBrowser({
   };
 
   return (
-    <div className="shell section">
-      <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:gap-12">
+    <div className="shell section-tight md:section">
+      <button
+        type="button"
+        className="btn btn-soft btn-sm mb-4 w-full lg:hidden"
+        onClick={() => setFiltersOpen((v) => !v)}
+        aria-expanded={filtersOpen}
+      >
+        {filtersOpen ? "Скрыть фильтры" : `Фильтры${active ? " · активны" : ""}`}
+      </button>
+
+      <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:gap-12">
         {/* ── Фильтры ────────────────────────────────── */}
-        <aside className="lg:sticky lg:top-[92px] lg:self-start">
+        <aside className={`lg:sticky lg:top-[92px] lg:self-start ${filtersOpen ? "block" : "hidden lg:block"}`}>
           <label className="block">
             <span className="field-label">Поиск</span>
             <input
@@ -162,7 +172,7 @@ export function ShopBrowser({
               </button>
             </Empty>
           ) : (
-            <div className="grid grid-cols-2 gap-4 xl:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3">
               {filtered.map((p, i) => (
                 <ProductCard key={p.id} product={p} priority={i < 3} />
               ))}

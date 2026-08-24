@@ -7,7 +7,8 @@ import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Контакты",
-  description: "Адрес студии ФРЕЯ, телефон Кристины, часы работы и способы связи.",
+  description: "Салон ФРЕЯ, Перм: Комсомольский проспект 51А. Телефон, Telegram @bochkariova_cris, часы работы и карта.",
+  alternates: { canonical: "/contacts/" },
 };
 
 export default function ContactsPage() {
@@ -24,7 +25,7 @@ export default function ContactsPage() {
       <PageHead
         eyebrow="Контакты"
         title="Как нас найти"
-        text="Записаться удобнее через форму — заявка приходит напрямую в Telegram. Но можно и позвонить."
+        text="Студия на Комсомольском, 51А. Напишите в Telegram @bochkariova_cris, позвоните или оставьте заявку на сайте."
       />
 
       <section className="shell section grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
@@ -65,13 +66,18 @@ export default function ContactsPage() {
             <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">{settings.deliveryText}</p>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/booking" className="btn btn-primary">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link href="/booking" className="btn btn-primary w-full sm:w-auto">
               Записаться
             </Link>
-            <Link href="/quiz" className="btn btn-outline">
-              Подобрать уход
-            </Link>
+            <a
+              href={settings.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline w-full sm:w-auto"
+            >
+              Написать в Telegram
+            </a>
           </div>
         </div>
 

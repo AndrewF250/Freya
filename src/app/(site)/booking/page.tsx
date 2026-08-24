@@ -7,7 +7,8 @@ import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Запись на приём",
-  description: "Запишитесь к Кристине: диагностика, стрижка, цвет, реконструкция и подбор домашнего ухода Davines.",
+  description: "Запишитесь к Кристине в салон ФРЕЯ, Перм: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines.",
+  alternates: { canonical: "/booking/" },
 };
 
 export default function BookingPage() {
