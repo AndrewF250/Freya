@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Jost, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { defaultDescription, defaultKeywords, siteName, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
@@ -7,13 +7,6 @@ const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-montserrat",
-  display: "swap",
-});
-
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["500"],
-  variable: "--font-logo",
   display: "swap",
 });
 
@@ -60,7 +53,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${montserrat.variable} ${jost.variable}`}>
+    <html lang="ru" className={montserrat.variable}>
       <body>{children}</body>
     </html>
   );
