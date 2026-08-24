@@ -18,7 +18,7 @@ const SETTING_DEFAULTS = {
   salonName: "ФРЕЯ",
   phone: "+7 (999) 123-45-67",
   email: "hello@freya-salon.ru",
-  address: "Москва, ул. Петровка, 15",
+  address: "Пермь, Комсомольский проспект, 51А",
   hours: "Пн–Сб 10:00 — 20:00",
   telegram: "https://t.me/",
   instagram: "https://instagram.com/",
@@ -26,7 +26,7 @@ const SETTING_DEFAULTS = {
   heroTitle: "Красота начинается у корней",
   heroText: "Профессиональный уход за волосами и кожей головы.",
   aboutText: "",
-  deliveryText: "",
+  deliveryText: "Доставка по Перми — 500 ₽. СДЭК по России — по тарифам перевозчика. Оплата при получении или переводом.",
 };
 
 const db = new PrismaClient();

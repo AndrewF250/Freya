@@ -93,7 +93,7 @@ export async function submitOrder(formData: FormData): Promise<FormState> {
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const comment = String(formData.get("comment") ?? "").trim();
-  const delivery = String(formData.get("delivery") ?? "Самовывоз").trim();
+  const delivery = String(formData.get("delivery") ?? "Доставка по Перми").trim();
   const rawItems = parseJson<{ slug: string; qty: number }[]>(String(formData.get("items") ?? "[]"), []);
 
   const error = validateContact(name, phone);

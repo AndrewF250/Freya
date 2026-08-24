@@ -34,7 +34,7 @@ export function collectOrderPayload(formData: FormData, cartItems: CartLine[]): 
     phone: String(formData.get("phone") ?? "").trim(),
     email: String(formData.get("email") ?? "").trim(),
     comment: String(formData.get("comment") ?? "").trim(),
-    delivery: String(formData.get("delivery") ?? "Самовывоз").trim(),
+    delivery: String(formData.get("delivery") ?? "Доставка по Перми").trim(),
     items,
     total,
   };

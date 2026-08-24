@@ -12,11 +12,7 @@ import { getSettings } from "@/lib/settings";
 import { buildTelegramUrl } from "@/lib/telegram";
 import { rub, plural } from "@/lib/format";
 
-const DELIVERY = [
-  "Самовывоз из студии",
-  "Доставка по Перми",
-  "СДЭК по России",
-] as const;
+const DELIVERY = ["Доставка по Перми", "СДЭК по России"] as const;
 
 export function CartView({ deliveryText }: { deliveryText: string }) {
   const { items, count, total, ready, setQty, remove, clear } = useCart();
