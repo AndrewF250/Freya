@@ -104,9 +104,10 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
                 price: p.price,
                 image: p.image,
               }))}
+              label="Добавить в корзину"
             />
             <Link href="/booking" className="btn btn-outline">
-              Записаться с этим протоколом
+              Записаться с подбором
             </Link>
             <button type="button" onClick={restart} className="btn btn-soft">
               Пройти заново

@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "./cart";
+import { withBasePath } from "@/lib/paths";
 
 const NAV = [
   { href: "/about", label: "О Кристине" },
@@ -23,8 +25,15 @@ export function SiteHeader({ salonName }: { salonName: string }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream/92 backdrop-blur-sm">
       <div className="shell flex h-[68px] items-center gap-6">
-        <Link href="/" className="flex shrink-0 items-baseline gap-3" aria-label="На главную">
-          <span className="wordmark text-[22px] leading-none">{salonName}</span>
+        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="На главную">
+          <Image
+            src={withBasePath("/logo.png")}
+            alt={salonName}
+            width={120}
+            height={32}
+            className="h-7 w-auto object-contain"
+            priority
+          />
           <span className="hidden whitespace-nowrap rounded-pill border border-line bg-paper px-2.5 py-1 text-[10px] tracking-[0.12em] text-muted uppercase sm:inline">
             Партнёр Davines
           </span>

@@ -1,8 +1,8 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/paths";
 
 /**
- * Фото продукта. Если файла нет — рисуем заглушку с названием,
- * чтобы Кристина позже загрузила своё изображение через кабинет.
+ * Фото продукта. Если файла нет — рисуем заглушку с названием.
  */
 export function ProductImage({
   src,
@@ -21,7 +21,14 @@ export function ProductImage({
 
   return (
     <div className={`relative overflow-hidden bg-sand ${className}`}>
-      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-contain p-5 mix-blend-multiply" />
+      <Image
+        src={withBasePath(src)}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className="object-contain p-5 mix-blend-multiply"
+      />
     </div>
   );
 }

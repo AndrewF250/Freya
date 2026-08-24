@@ -18,7 +18,7 @@ export default function BookingPage() {
       <PageHead
         eyebrow="Запись"
         title="Записаться к Кристине"
-        text="Оставьте заявку — она придёт напрямую в Telegram. Кристина перезвонит, чтобы подтвердить дату и время."
+        text="Оставьте заявку на сайте или сразу напишите Кристине в Telegram с заполненными данными."
       />
 
       <div className="shell section grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-14">

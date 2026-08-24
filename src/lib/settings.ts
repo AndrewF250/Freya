@@ -19,7 +19,10 @@ export const SETTING_DEFAULTS = {
 };
 
 export type SettingKey = keyof typeof SETTING_DEFAULTS;
-export type Settings = Record<SettingKey, string>;
+export type Settings = Record<SettingKey, string> & {
+  yandexMapUrl?: string;
+  yandexMapEmbed?: string;
+};
 
 export const SETTING_LABELS: Record<SettingKey, string> = {
   masterName: "Имя мастера",

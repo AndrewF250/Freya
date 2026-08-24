@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Placeholder } from "@/components/product-image";
 import { PageHead } from "@/components/ui";
+import { YandexMap } from "@/components/yandex-map";
 import { telHref } from "@/lib/settings";
 import { getSettings } from "@/lib/settings";
 
@@ -75,11 +75,7 @@ export default function ContactsPage() {
           </div>
         </div>
 
-        <Placeholder
-          label="Карта или фото входа в студию"
-          hint="Вставьте виджет Яндекс.Карт или public/map.jpg"
-          className="aspect-[4/3] rounded-card lg:aspect-auto lg:min-h-[520px]"
-        />
+        <YandexMap settings={settings} />
       </section>
     </>
   );

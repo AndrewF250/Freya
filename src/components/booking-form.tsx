@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { collectBookingPayload, formatBookingMessage, buildTelegramBookingUrl } from "@/lib/booking";
 import { submitBooking, type FormState } from "@/lib/forms";
+import { getSettings } from "@/lib/settings";
 import { QUIZ_STORAGE_KEY } from "./quiz-flow";
 
 const SLOTS = ["10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
@@ -15,6 +17,8 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   const [time, setTime] = useState("");
   const [quiz, setQuiz] = useState<SavedQuiz | null>(null);
   const [attach, setAttach] = useState(true);
+  const formRef = useRef<HTMLFormElement>(null);
+  const settings = getSettings();
 
   useEffect(() => {
     try {
@@ -24,7 +28,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
         if (parsed?.summary?.length) setQuiz(parsed);
       }
     } catch {
-      // нет доступа к sessionStorage — просто не показываем блок
+      // нет доступа к sessionStorage
     }
   }, []);
 
@@ -33,10 +37,36 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPending(true);
-    const formData = new FormData(e.currentTarget);
-    const result = await submitBooking(formData);
+    const result = await submitBooking(new FormData(e.currentTarget));
     setState(result);
     setPending(false);
+  }
+
+  function openTelegram(form: HTMLFormElement) {
+    const payload = collectBookingPayload(form);
+    if (!payload.name || payload.name.length < 2) {
+      setState({ ok: false, message: "Укажите, как к вам обращаться." });
+      return;
+    }
+    if (!payload.phone || payload.phone.replace(/\D/g, "").length < 10) {
+      setState({ ok: false, message: "Проверьте номер телефона." });
+      return;
+    }
+    if (!payload.service) {
+      setState({ ok: false, message: "Выберите услугу." });
+      return;
+    }
+    if (!payload.date) {
+      setState({ ok: false, message: "Выберите дату визита." });
+      return;
+    }
+
+    const url = buildTelegramBookingUrl(settings.telegram, formatBookingMessage(payload));
+    if (!url) {
+      setState({ ok: false, message: "Telegram пока не настроен. Оставьте заявку через форму ниже." });
+      return;
+    }
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   if (state?.ok) {
@@ -62,7 +92,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 md:p-8">
+    <form onSubmit={handleSubmit} ref={formRef} className="card p-6 md:p-8" id="booking-form">
       <input type="hidden" name="time" value={time} />
       {quiz && attach && <input type="hidden" name="quiz" value={JSON.stringify(quiz)} />}
 
@@ -147,7 +177,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
           <span>
             <span className="block text-[14px]">Приложить результат подбора</span>
             <span className="mt-1 block text-[13px] leading-relaxed text-muted">
-              Кристина увидит ваши ответы и подобранный ритуал: {quiz.products.slice(0, 2).join(", ")}
+              Кристина увидит ваши ответы и подобранный уход: {quiz.products.slice(0, 2).join(", ")}
               {quiz.products.length > 2 ? " и другие" : ""}.
             </span>
           </span>
@@ -160,13 +190,25 @@ export function BookingForm({ services }: { services: readonly string[] }) {
         </p>
       )}
 
-      <button type="submit" disabled={pending} className="btn btn-primary btn-block mt-6">
-        {pending ? "Отправляю…" : "Записаться"}
-      </button>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        <button type="submit" disabled={pending} className="btn btn-muted btn-block">
+          {pending ? "Отправляю…" : "Оставить заявку"}
+        </button>
+        <button
+          type="button"
+          disabled={pending}
+          className="btn btn-primary btn-block"
+          onClick={() => {
+            if (formRef.current) openTelegram(formRef.current);
+          }}
+        >
+          Записаться в Telegram
+        </button>
+      </div>
 
       <p className="mt-4 text-center text-[12px] leading-relaxed text-muted">
-        Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Заявка уходит Кристине на e-mail — она
-        свяжется, чтобы подтвердить время.
+        Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Можно оставить заявку на сайте или сразу
+        написать Кристине в Telegram с заполненными данными.
       </p>
     </form>
   );

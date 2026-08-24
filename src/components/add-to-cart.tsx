@@ -81,7 +81,7 @@ export function AddToCartBlock({ product }: { product: Input }) {
 }
 
 /** Кладёт в корзину сразу несколько продуктов — используется в результате квиза. */
-export function AddRitualButton({ products, label = "Купить ритуал" }: { products: Input[]; label?: string }) {
+export function AddRitualButton({ products, label = "Добавить в корзину" }: { products: Input[]; label?: string }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
 

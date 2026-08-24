@@ -22,8 +22,8 @@
   --color-olive-soft: #e6ebdd;
   --color-gold: #c6a15b;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 14px;
   --radius-pill: 999px;
@@ -39,7 +39,7 @@
     -webkit-font-smoothing: antialiased;
   }
   ::selection { background: var(--color-olive-soft); color: var(--color-ink); }
-  h1, h2, h3 { font-weight: 300; letter-spacing: -0.01em; }
+  h1, h2, h3 { font-weight: 300; letter-spacing: 0.03em; }
   input, select, textarea, button { font: inherit; color: inherit; }
   :focus-visible { outline: 2px solid var(--color-olive); outline-offset: 2px; border-radius: 4px; }
 }
@@ -49,14 +49,15 @@
   .wordmark {
     font-family: var(--font-display);
     font-weight: 400;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
   }
   .display {
     font-family: var(--font-display);
     font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.015em;
+    line-height: 1.08;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
   .eyebrow {
     font-size: 11px;
@@ -82,6 +83,8 @@
   .btn-outline:hover:not(:disabled) { background: var(--color-ink); color: var(--color-cream); }
   .btn-soft { background: var(--color-sand); color: var(--color-ink); border-color: var(--color-line); }
   .btn-soft:hover:not(:disabled) { background: var(--color-sand-deep); }
+  .btn-muted { background: var(--color-sand); color: var(--color-ink-soft); border-color: var(--color-line); }
+  .btn-muted:hover:not(:disabled) { background: var(--color-sand-deep); color: var(--color-ink); }
   .btn-ghost-light { background: transparent; color: var(--color-cream); border-color: rgba(250,246,240,.45); }
   .btn-ghost-light:hover:not(:disabled) { background: rgba(250,246,240,.1); }
   .btn-sm { padding: 9px 18px; font-size: 13px; }
