@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Товар каталога. Кристина заводит и редактирует их в кабинете мастера.
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  nameRu      String
+  nameEn      String   @default("")
+  line        String   @default("Davines")
+  category    String   @default("other")
+  volume      String   @default("")
+  price       Int
+  oldPrice    Int?
+  description String   @default("")
+  usage       String   @default("")
+  image       String   @default("")
+  /// JSON-массив тегов задач для квиза: dryness, damage, volume, color, curls, frizz, scalp, shine
+  concerns    String   @default("[]")
+  /// JSON-массив типов волос: normal, dry, oily, colored, curly, thin, damaged
+  hairTypes   String   @default("[]")
+  visible     Boolean  @default(true)
+  featured    Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([line])
+  @@index([visible, sortOrder])
+}
+
+/// Заявка: запись на приём или заказ продуктов. Дублируется в Telegram.
+model Lead {
+  id        String   @id @default(cuid())
+  kind      String   // "booking" | "order"
+  name      String
+  phone     String
+  email     String   @default("")
+  service   String   @default("")
+  date      String   @default("")
+  time      String   @default("")
+  comment   String   @default("")
+  /// JSON: позиции заказа [{slug,name,price,qty}]
+  items     String   @default("[]")
+  total     Int      @default(0)
+  /// JSON: ответы квиза и подобранные продукты
+  quiz      String   @default("")
+  status    String   @default("new") // new | done | cancelled
+  telegram  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([kind, status])
+  @@index([createdAt])
+}
+
+/// Пары ключ-значение: телефон, адрес, часы работы, тексты о мастере.
+model Setting {
+  key   String @id
+  value String
+}

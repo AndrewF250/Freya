@@ -1,0 +1,2481 @@
+[
+  {
+    "id": "cmt7b3wks00009s04eq9v0a8p",
+    "slug": "alchemic-shampoo-golden",
+    "nameRu": "Шампунь Алхимик для натуральных и окрашенных волос (Золотой)",
+    "nameEn": "Alchemic Shampoo Golden",
+    "line": "Alchemic",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/alchemic-shampoo-golden.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 0
+  },
+  {
+    "id": "cmt7b3wky00019s04hzlowk7d",
+    "slug": "alchemic-conditioner-golden",
+    "nameRu": "Кондиционер Алхимик для натуральных и окрашенных волос (Золотой)",
+    "nameEn": "Alchemic Conditioner Golden",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-conditioner-golden.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 1
+  },
+  {
+    "id": "cmt7b3wl400029s04nanpong6",
+    "slug": "alchemic-shampoo-tobacco",
+    "nameRu": "Шампунь Алхимик для натуральных и окрашенных волос (Табак)",
+    "nameEn": "Alchemic Shampoo Tobacco",
+    "line": "Alchemic",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/alchemic-shampoo-tobacco.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 2
+  },
+  {
+    "id": "cmt7b3wl900039s040umag67s",
+    "slug": "alchemic-conditioner-tobacco",
+    "nameRu": "Кондиционер Алхимик для натуральных и окрашенных волос (Табак)",
+    "nameEn": "Alchemic Conditioner Tobacco",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-conditioner-tobacco.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 3
+  },
+  {
+    "id": "cmt7b3wlf00049s04571evb8t",
+    "slug": "alchemic-shampoo-red",
+    "nameRu": "Шампунь Алхимик для натуральных и окрашенных волос (Красный)",
+    "nameEn": "Alchemic Shampoo Red",
+    "line": "Alchemic",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/alchemic-shampoo-red.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 4
+  },
+  {
+    "id": "cmt7b3wll00059s04vr5cenpw",
+    "slug": "alchemic-conditioner-red",
+    "nameRu": "Кондиционер Алхимик для натуральных и окрашенных волос (Красный)",
+    "nameEn": "Alchemic Conditioner Red",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-conditioner-red.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 5
+  },
+  {
+    "id": "cmt7b3wlq00069s04b6jbksee",
+    "slug": "alchemic-shampoo-copper",
+    "nameRu": "Шампунь Алхимик для натуральных и окрашенных волос (Медный)",
+    "nameEn": "Alchemic Shampoo Copper",
+    "line": "Alchemic",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/alchemic-shampoo-copper.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 6
+  },
+  {
+    "id": "cmt7b3wlw00079s04kqovoftk",
+    "slug": "alchemic-conditioner-copper",
+    "nameRu": "Кондиционер Алхимик для натуральных и окрашенных волос (Медный)",
+    "nameEn": "Alchemic Conditioner Copper",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-conditioner-copper.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 7
+  },
+  {
+    "id": "cmt7b3wm200089s04v1k2y5p5",
+    "slug": "alchemic-conditioner-chocolate",
+    "nameRu": "Кондиционер Алхимик для натуральных и окрашенных волос (Шоколад)",
+    "nameEn": "Alchemic Conditioner Chocolate",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-conditioner-chocolate.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 8
+  },
+  {
+    "id": "cmt7b3wm800099s04bufb87ck",
+    "slug": "alchemic-shampoo-silver",
+    "nameRu": "Шампунь Алхимик для натуральных и окрашенных волос (Серебряный)",
+    "nameEn": "Alchemic Shampoo Silver",
+    "line": "Alchemic",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/alchemic-shampoo-silver.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 9
+  },
+  {
+    "id": "cmt7b3wmd000a9s04lj46v68x",
+    "slug": "alchemic-conditioner-silver",
+    "nameRu": "Кондиционер Алхимик для натуральных и окрашенных волос (Серебряный)",
+    "nameEn": "Alchemic Conditioner Silver",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-conditioner-silver.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 10
+  },
+  {
+    "id": "cmt7b3wmi000b9s04wx5corpg",
+    "slug": "alchemic-creative-conditioner-coral",
+    "nameRu": "Кондиционер Алхимик для осветленных и натуральных блондов  (Коралл)",
+    "nameEn": "Alchemic Creative Conditioner Coral",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-creative-conditioner-coral.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 11
+  },
+  {
+    "id": "cmt7b3wmn000c9s04s4m78fsr",
+    "slug": "alchemic-creative-conditioner-marine-blue",
+    "nameRu": "Кондиционер Алхимик для осветленных и натуральных блондов (Приглушенный синий)",
+    "nameEn": "Alchemic Creative Conditioner Marine Blue",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-creative-conditioner-marine-blue.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 12
+  },
+  {
+    "id": "cmt7b3wmt000d9s04f6vvulx0",
+    "slug": "alchemic-creative-conditioner-pink",
+    "nameRu": "Кондиционер Алхимик для осветленных и натуральных блонд (Розовый)",
+    "nameEn": "Alchemic Creative Conditioner Pink",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-creative-conditioner-pink.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 13
+  },
+  {
+    "id": "cmt7b3wmz000e9s04ngp709xr",
+    "slug": "alchemic-creative-conditioner-teal",
+    "nameRu": "Кондиционер Алхимик для осветленных и натуральных блондов (Морская волна)",
+    "nameEn": "Alchemic Creative Conditioner Teal",
+    "line": "Alchemic",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Alchemic. Система прямого тонирования: поддерживает и усиливает натуральный или косметический оттенок между окрашиваниями.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/alchemic-creative-conditioner-teal.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 14
+  },
+  {
+    "id": "cmt7b3wn4000f9s04iuov68pc",
+    "slug": "dede-shampoo",
+    "nameRu": "Шампунь для деликатного очищения волос",
+    "nameEn": "Essential Haircare Dede Shampoo",
+    "line": "Dede",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Dede. Деликатная база на каждый день. Лёгкие формулы для частого мытья, которые не утяжеляют и подходят любому типу волос.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/dede-shampoo.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 15
+  },
+  {
+    "id": "cmt7b3wna000g9s04ryqlu2ml",
+    "slug": "nounou-conditioner",
+    "nameRu": "Питательный кондиционер",
+    "nameEn": "NouNou Conditioner",
+    "line": "NouNou",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Питательный линейки NouNou. Интенсивное питание для повреждённых и обесцвеченных волос. В основе — экстракт помидора сорта Фьяскетто из Торре-Каноне: уплотняет структуру и возвращает плотность.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/nounou-conditioner.jpg",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "damaged",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 16
+  },
+  {
+    "id": "cmt7b3wnf000h9s04xvyhmyl0",
+    "slug": "dede-conditioner",
+    "nameRu": "Деликатный кондиционер",
+    "nameEn": "Essential Haircare Dede Conditioner",
+    "line": "Dede",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Деликатный линейки Dede. Деликатная база на каждый день. Лёгкие формулы для частого мытья, которые не утяжеляют и подходят любому типу волос.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/dede-conditioner.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 17
+  },
+  {
+    "id": "cmt7b3wnk000i9s04ab64qzbf",
+    "slug": "dede-hair-mist",
+    "nameRu": "Деликатный несмываемый кондиционер-спрей",
+    "nameEn": "Essential Haircare Dede Hair Mist",
+    "line": "Dede",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Деликатный линейки Dede. Деликатная база на каждый день. Лёгкие формулы для частого мытья, которые не утяжеляют и подходят любому типу волос.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/dede-hair-mist.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 18
+  },
+  {
+    "id": "cmt7b3wnq000j9s04cj3gje4n",
+    "slug": "love-curl-mask",
+    "nameRu": "Маска для усиления завитка",
+    "nameEn": "Essential Haircare Love Curl Mask",
+    "line": "Love",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Маска линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/love-curl-mask.jpg",
+    "concerns": [
+      "curls"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 19
+  },
+  {
+    "id": "cmt7b3wnv000k9s048j7yr62t",
+    "slug": "love-curl-controller",
+    "nameRu": "Контроллер завитка",
+    "nameEn": "Essential Haircare Love Curl Controller",
+    "line": "Love",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Контроллер линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/love-curl-controller.jpg",
+    "concerns": [
+      "curls"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 20
+  },
+  {
+    "id": "cmt7b3wo1000l9s04suv5xcn4",
+    "slug": "love-curl-cream",
+    "nameRu": "Крем для усиления завитка",
+    "nameEn": "Essential Haircare Love Curl Cream",
+    "line": "Love",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Крем линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/love-curl-cream.jpg",
+    "concerns": [
+      "curls"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 21
+  },
+  {
+    "id": "cmt7b3wo6000m9s04gw9xlq8r",
+    "slug": "love-curl-revitalizer",
+    "nameRu": "Ревиталайзер для усиления завитка",
+    "nameEn": "Essential Haircare Love Curl Revitalizer",
+    "line": "Love",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Ревиталайзер линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "",
+    "concerns": [
+      "curls"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 22
+  },
+  {
+    "id": "cmt7b3woe000n9s04i9ewrff2",
+    "slug": "melu-shampoo",
+    "nameRu": "Шампунь для предотвращения ломкости волос",
+    "nameEn": "Essential Haircare Melu Shampoo",
+    "line": "Melu",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Melu. Для длинных и склонных к ломкости волос. Экстракт риса из Бараджи укрепляет по всей длине и снижает риск сечения.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/melu-shampoo.jpg",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "damaged",
+      "normal"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 23
+  },
+  {
+    "id": "cmt7b3woj000o9s04b4heykd9",
+    "slug": "melu-conditioner",
+    "nameRu": "Кондиционер для предотвращения ломкости волос",
+    "nameEn": "Essential Haircare Melu Conditioner",
+    "line": "Melu",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Кондиционер линейки Melu. Для длинных и склонных к ломкости волос. Экстракт риса из Бараджи укрепляет по всей длине и снижает риск сечения.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/melu-conditioner.jpg",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "damaged",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 24
+  },
+  {
+    "id": "cmt7b3wop000p9s04rnhx07f2",
+    "slug": "melu-hair-shield",
+    "nameRu": "Термозащитный несмываемый спрей против повреждения волос",
+    "nameEn": "Essential Haircare Melu Hair Shield",
+    "line": "Melu",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Термозащитный линейки Melu. Для длинных и склонных к ломкости волос. Экстракт риса из Бараджи укрепляет по всей длине и снижает риск сечения.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/melu-hair-shield.jpg",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "damaged",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 25
+  },
+  {
+    "id": "cmt7b3wow000q9s04jgv8boxi",
+    "slug": "minu-hair-mask",
+    "nameRu": "Восстанавливающая маска для окрашенных волос",
+    "nameEn": "Essential Haircare Minu Hair Mask",
+    "line": "Minu",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Восстанавливающая линейки Minu. Защита косметического цвета. Экстракт каперсов с Салина сохраняет насыщенность пигмента и продлевает жизнь окрашиванию.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/minu-hair-mask.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 26
+  },
+  {
+    "id": "cmt7b3wp1000r9s04zdtbjxu8",
+    "slug": "minu-conditioner",
+    "nameRu": "Защитный кондиционер для сохранения косметического цвета волос",
+    "nameEn": "Essential Haircare Minu Conditioner",
+    "line": "Minu",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Защитный линейки Minu. Защита косметического цвета. Экстракт каперсов с Салина сохраняет насыщенность пигмента и продлевает жизнь окрашиванию.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/minu-conditioner.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 27
+  },
+  {
+    "id": "cmt7b3wp7000s9s04vmvhsrs1",
+    "slug": "minu-hair-serum",
+    "nameRu": "Несмываемая сыворотка для окрашенных волос",
+    "nameEn": "Essential Haircare Minu Hair Serum",
+    "line": "Minu",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Несмываемая линейки Minu. Защита косметического цвета. Экстракт каперсов с Салина сохраняет насыщенность пигмента и продлевает жизнь окрашиванию.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/minu-hair-serum.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 28
+  },
+  {
+    "id": "cmt7b3wpc000t9s047lzxsl24",
+    "slug": "momo-conditioner",
+    "nameRu": "Увлажняющий кондиционер, облегчающий расчесывание волос",
+    "nameEn": "Essential Haircare MoMo Conditioner",
+    "line": "MoMo",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Увлажняющий линейки MoMo. Линейка глубокого увлажнения на экстракте жёлтой дыни сорта Картуччару из Пачеко, выращенной по программе Slow Food. Возвращает сухим волосам мягкость и эластичность.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/momo-conditioner.jpg",
+    "concerns": [
+      "dryness"
+    ],
+    "hairTypes": [
+      "dry",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 29
+  },
+  {
+    "id": "cmt7b3wph000u9s04b16r5saj",
+    "slug": "momo-hair-potion",
+    "nameRu": "Универсальный несмываемый увлажняющий эликсир",
+    "nameEn": "Essential Haircare MoMo Hair Potion",
+    "line": "MoMo",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Универсальный линейки MoMo. Линейка глубокого увлажнения на экстракте жёлтой дыни сорта Картуччару из Пачеко, выращенной по программе Slow Food. Возвращает сухим волосам мягкость и эластичность.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/momo-hair-potion.jpg",
+    "concerns": [
+      "dryness"
+    ],
+    "hairTypes": [
+      "dry",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 30
+  },
+  {
+    "id": "cmt7b3wpm000v9s04pn7jvam6",
+    "slug": "nounou-hair-mask",
+    "nameRu": "Интенсивная восстанавливающая маска для глубокого питания волос",
+    "nameEn": "Essential Haircare NouNou Hair Mask",
+    "line": "NouNou",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Интенсивная линейки NouNou. Интенсивное питание для повреждённых и обесцвеченных волос. В основе — экстракт помидора сорта Фьяскетто из Торре-Каноне: уплотняет структуру и возвращает плотность.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/nounou-hair-mask.jpg",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "damaged",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 31
+  },
+  {
+    "id": "cmt7b3wps000w9s043uk3j8ct",
+    "slug": "volu-shampoo",
+    "nameRu": "Шампунь для придания объема волосам",
+    "nameEn": "Essential Haircare Volu Shampoo",
+    "line": "Volu",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Volu. Лёгкий объём для тонких волос. Экстракт оливы Ночеллара-дель-Беличе придаёт плотность, не склеивая и не утяжеляя.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/volu-shampoo.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "thin",
+      "normal"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 32
+  },
+  {
+    "id": "cmt7b3wpy000x9s04v00s0a6o",
+    "slug": "volu-hair-mist",
+    "nameRu": "Несмываемый спрей для придания объема волосам",
+    "nameEn": "Essential Haircare Volu Hair mist",
+    "line": "Volu",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Несмываемый линейки Volu. Лёгкий объём для тонких волос. Экстракт оливы Ночеллара-дель-Беличе придаёт плотность, не склеивая и не утяжеляя.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/volu-hair-mist.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "thin",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 33
+  },
+  {
+    "id": "cmt7b3wq3000y9s04on45rb2v",
+    "slug": "love-smoothing-perfector",
+    "nameRu": "Дисциплинирующая несмываемая сыворотка",
+    "nameEn": "Love Smoothing Perfector",
+    "line": "Love",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Дисциплинирующая линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/love-smoothing-perfector.jpg",
+    "concerns": [
+      "frizz"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 34
+  },
+  {
+    "id": "cmt7b3wq9000z9s04k8u1k7yw",
+    "slug": "volu-shampoo-bar",
+    "nameRu": "Твёрдый шампунь для деликатного очищения волос",
+    "nameEn": "Volu Shampoo bar",
+    "line": "Volu",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Твёрдый линейки Volu. Лёгкий объём для тонких волос. Экстракт оливы Ночеллара-дель-Беличе придаёт плотность, не склеивая и не утяжеляя.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/volu-shampoo-bar.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "thin",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 35
+  },
+  {
+    "id": "cmt7b3wqf00109s04vqtsvj9p",
+    "slug": "momo-shampoo-bar",
+    "nameRu": "Твёрдый шампунь для деликатного очищения волос",
+    "nameEn": "Momo Shampoo bar",
+    "line": "MoMo",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Твёрдый линейки MoMo. Линейка глубокого увлажнения на экстракте жёлтой дыни сорта Картуччару из Пачеко, выращенной по программе Slow Food. Возвращает сухим волосам мягкость и эластичность.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/momo-shampoo-bar.jpg",
+    "concerns": [
+      "dryness"
+    ],
+    "hairTypes": [
+      "dry",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 36
+  },
+  {
+    "id": "cmt7b3wqk00119s04wq70uu25",
+    "slug": "su-conscious-sunscreen-spf30",
+    "nameRu": "Солнцезащитный крем для лица и тела",
+    "nameEn": "SU Conscious Sunscreen SPF30",
+    "line": "Essential Haircare",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Солнцезащитный линейки Essential Haircare. Базовая линия ежедневного ухода Davines: простые формулы под конкретный тип волос.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/su-conscious-sunscreen-spf30.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 37
+  },
+  {
+    "id": "cmt7b3wqp00129s048pksz9zf",
+    "slug": "more-inside-strong-dry-wax",
+    "nameRu": "Сухой воск для текстурных матовых акцентов",
+    "nameEn": "More Inside Strong Dry Wax",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Сухой линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-strong-dry-wax.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 38
+  },
+  {
+    "id": "cmt7b3wqv00139s04eeegissh",
+    "slug": "more-inside-medium-hold-modelling-gel",
+    "nameRu": "Моделирующий гель для создания эффекта мокрых волос",
+    "nameEn": "More Inside Medium Hold Modelling Gel",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Моделирующий линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-medium-hold-modelling-gel.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 39
+  },
+  {
+    "id": "cmt7b3wr000149s04our7y8xc",
+    "slug": "more-inside-medium-hold-finishing-gum",
+    "nameRu": "Эластик-гель для матовых подвижных текстур",
+    "nameEn": "More Inside Medium Hold Finishing Gum",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Эластик-гель линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-medium-hold-finishing-gum.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 40
+  },
+  {
+    "id": "cmt7b3wr500159s049eiao83n",
+    "slug": "more-inside-strong-hold-cream-gel",
+    "nameRu": "Крем-гель для стойких глянцевых образов",
+    "nameEn": "More Inside Strong Hold Cream Gel",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Крем-гель линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-strong-hold-cream-gel.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 41
+  },
+  {
+    "id": "cmt7b3wrb00169s04oss0avbu",
+    "slug": "more-inside-curl-moisturizing-mousse",
+    "nameRu": "Увлажняющий мусс для упругих четко очерченных локонов",
+    "nameEn": "More Inside Curl Moisturizing Mousse",
+    "line": "OI",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Увлажняющий линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-curl-moisturizing-mousse.jpg",
+    "concerns": [
+      "dryness",
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 42
+  },
+  {
+    "id": "cmt7b3wrg00179s042hbnjguk",
+    "slug": "more-inside-volume-boosting-mousse",
+    "nameRu": "Мусс-объем для стойкой воздушной текстуры",
+    "nameEn": "More Inside Volume Boosting Mousse",
+    "line": "Volu",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Мусс-объем линейки Volu. Лёгкий объём для тонких волос. Экстракт оливы Ночеллара-дель-Беличе придаёт плотность, не склеивая и не утяжеляя.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-volume-boosting-mousse.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "thin",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 43
+  },
+  {
+    "id": "cmt7b3wrl00189s04zv2e1po9",
+    "slug": "more-inside-invisible-no-gas-spray",
+    "nameRu": "Невидимый лак без аэрозоля  для формирования и моделирования образов",
+    "nameEn": "More Inside Invisible No Gas Spray",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Невидимый линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 44
+  },
+  {
+    "id": "cmt7b3wrr00199s04sfpytv9h",
+    "slug": "more-inside-medium-hold-hairspray-shany-looks",
+    "nameRu": "Лак средней фиксации для эластичного глянцевого стайлинга",
+    "nameEn": "More Inside Medium Hold Hairspray Shany Looks",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Лак линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-medium-hold-hairspray-shany-looks.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 45
+  },
+  {
+    "id": "cmt7b3wrw001a9s04n2hgxqgb",
+    "slug": "more-inside-extra-strong-hairspray",
+    "nameRu": "Лак экстра-сильной фиксации для экстремальной стойкости укладки",
+    "nameEn": "More Inside Extra Strong Hairspray",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Лак линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-extra-strong-hairspray.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 46
+  },
+  {
+    "id": "cmt7b3ws1001b9s04hi0oamtd",
+    "slug": "more-inside-strong-hold-hairspray",
+    "nameRu": "Лак сильной фиксации для длительной стойкой укладки",
+    "nameEn": "More Inside Strong Hold Hairspray",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Лак линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-strong-hold-hairspray.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 47
+  },
+  {
+    "id": "cmt7b3ws6001c9s04khjcgigk",
+    "slug": "more-inside-shimmering-mist",
+    "nameRu": "Мерцающий спрей для исключительного блеска волос",
+    "nameEn": "More Inside Shimmering Mist",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Мерцающий линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-shimmering-mist.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 48
+  },
+  {
+    "id": "cmt7b3wsb001d9s040xlwo26g",
+    "slug": "more-inside-invisible-serum",
+    "nameRu": "Невидимая сыворотка для небрежного стайлинга с сатиновым блеском",
+    "nameEn": "More Inside Invisible Serum",
+    "line": "More Inside",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Невидимая линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/more-inside-invisible-serum.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 49
+  },
+  {
+    "id": "cmt7b3wsh001e9s047u5j4wa6",
+    "slug": "more-inside-forming-pomade",
+    "nameRu": "Моделирующая помада  для текстурных и пластичных образов",
+    "nameEn": "More Inside Forming Pomade",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Моделирующая линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-forming-pomade.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 50
+  },
+  {
+    "id": "cmt7b3wsm001f9s04zrms3lz9",
+    "slug": "more-inside-texturizing-dust",
+    "nameRu": "Пудра-текстуризатор для мгновенного объема волос",
+    "nameEn": "More Inside Texturizing Dust",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Пудра-текстуризатор линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-texturizing-dust.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 51
+  },
+  {
+    "id": "cmt7b3wss001g9s04uoxe24hj",
+    "slug": "more-inside-dry-texturizer",
+    "nameRu": "Сухой текстуризатор для моментального объема волос",
+    "nameEn": "More Inside Dry Texturizer",
+    "line": "More Inside",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Сухой линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/more-inside-dry-texturizer.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 52
+  },
+  {
+    "id": "cmt7b3wsx001h9s0448fjvgkh",
+    "slug": "more-inside-dry-wax",
+    "nameRu": "Сухой Cпрей-Воск",
+    "nameEn": "More Inside Dry Wax",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Сухой линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-dry-wax.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 53
+  },
+  {
+    "id": "cmt7b3wt2001i9s04z0xs1ut5",
+    "slug": "more-inside-dry-shampoo",
+    "nameRu": "Сухой шампунь",
+    "nameEn": "More Inside Dry Shampoo",
+    "line": "More Inside",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Сухой линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/more-inside-dry-shampoo.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 54
+  },
+  {
+    "id": "cmt7b3wt7001j9s042rumroef",
+    "slug": "more-inside-sea-salt-spray",
+    "nameRu": "Спрей с морской солью для объемных свободных укладок",
+    "nameEn": "More Inside Sea Salt Spray",
+    "line": "More Inside",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Спрей линейки More Inside. Стайлинг Davines: текстуры, фиксация и форма с той же этичной философией, что и уход.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/more-inside-sea-salt-spray.jpg",
+    "concerns": [
+      "volume"
+    ],
+    "hairTypes": [
+      "normal",
+      "thin",
+      "curly"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 55
+  },
+  {
+    "id": "cmt7b3wtd001k9s04t0n9hvgj",
+    "slug": "more-inside-oil-non-oil",
+    "nameRu": "Масло без масла для естественных послушных укладок",
+    "nameEn": "More Inside Oil Non Oil",
+    "line": "OI",
+    "category": "oil",
+    "volume": "",
+    "price": 4100,
+    "oldPrice": null,
+    "description": "Масло линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Распределите несколько капель по влажным или сухим волосам, уделяя внимание кончикам. Не смывать.",
+    "image": "/products/more-inside-oil-non-oil.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 56
+  },
+  {
+    "id": "cmt7b3wti001l9s0486l1syoj",
+    "slug": "calming-superactive",
+    "nameRu": "Успокаивающая суперактивная сыворотка",
+    "nameEn": "Naturaltech Calming Superactive",
+    "line": "Naturaltech",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Успокаивающая линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/calming-superactive.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 57
+  },
+  {
+    "id": "cmt7b3wtn001m9s048z84i3ai",
+    "slug": "energizing-shampoo",
+    "nameRu": "Энергетический шампунь",
+    "nameEn": "Naturaltech Energizing Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Энергетический линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/energizing-shampoo.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 58
+  },
+  {
+    "id": "cmt7b3wtt001n9s04c7gm384z",
+    "slug": "energizing-gel",
+    "nameRu": "Энергетический гель",
+    "nameEn": "Naturaltech Energizing Gel",
+    "line": "Naturaltech",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Энергетический линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "/products/energizing-gel.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 59
+  },
+  {
+    "id": "cmt7b3wty001o9s04k2o0p3rz",
+    "slug": "energizing-seasonal-superactive-lotion",
+    "nameRu": "Энергетический сезонный суперактивный лосьон",
+    "nameEn": "Naturaltech Energizing Seasonal Superactive Lotion",
+    "line": "Naturaltech",
+    "category": "scalp",
+    "volume": "",
+    "price": 4300,
+    "oldPrice": null,
+    "description": "Энергетический линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на кожу головы, распределите массирующими движениями. Следуйте инструкции на упаковке.",
+    "image": "/products/energizing-seasonal-superactive-lotion.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 60
+  },
+  {
+    "id": "cmt7b3wu3001p9s04o5e0b4od",
+    "slug": "energizing-superactive-serum",
+    "nameRu": "Энергетическая суперактивная сыворотка",
+    "nameEn": "Naturaltech Energizing Superactive Serum",
+    "line": "Naturaltech",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Энергетическая линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/energizing-superactive-serum.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 61
+  },
+  {
+    "id": "cmt7b3wu9001q9s04xaemmx7d",
+    "slug": "energizing-thickening-tonic",
+    "nameRu": "Энергетический утолщающий тоник",
+    "nameEn": "Naturaltech Energizing Thickening Tonic",
+    "line": "Naturaltech",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Энергетический линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/energizing-thickening-tonic.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 62
+  },
+  {
+    "id": "cmt7b3wuf001r9s041jbbte4y",
+    "slug": "nourishing-shampoo",
+    "nameRu": "Питательный шампунь",
+    "nameEn": "Naturaltech Nourishing Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Питательный линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/nourishing-shampoo.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 63
+  },
+  {
+    "id": "cmt7b3wuk001s9s0457csqdir",
+    "slug": "nourishing-vegetarian-miracle-mask",
+    "nameRu": "Интенсивно питающая маска Вегетарианское чудо",
+    "nameEn": "Naturaltech Nourishing Vegetarian Miracle Mask",
+    "line": "Naturaltech",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Интенсивно линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/nourishing-vegetarian-miracle-mask.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 64
+  },
+  {
+    "id": "cmt7b3wup001t9s04eab6ovyk",
+    "slug": "nourishing-vegetarian-miracle-conditioner",
+    "nameRu": "Питательный кондиционер Вегетарианское чудо",
+    "nameEn": "Naturaltech Nourishing Vegetarian Miracle Conditioner",
+    "line": "Naturaltech",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Питательный линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/nourishing-vegetarian-miracle-conditioner.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 65
+  },
+  {
+    "id": "cmt7b3wuu001u9s04ohsvba30",
+    "slug": "nourishing-keratin-booster",
+    "nameRu": "Питательный кератиновый бустер для восстановления сильно поврежденных волос",
+    "nameEn": "Naturaltech Nourishing Keratin Booster",
+    "line": "Naturaltech",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Питательный линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/nourishing-keratin-booster.jpg",
+    "concerns": [
+      "damage",
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 66
+  },
+  {
+    "id": "cmt7b3wv0001v9s04f8r7o9go",
+    "slug": "purifying-shampoo",
+    "nameRu": "Очищающий шампунь против перхоти",
+    "nameEn": "Naturaltech Purifying Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Очищающий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/purifying-shampoo.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 67
+  },
+  {
+    "id": "cmt7b3wv5001w9s04s5uc6bhx",
+    "slug": "purifying-gel",
+    "nameRu": "Очищающий гель против перхоти",
+    "nameEn": "Naturaltech Purifying Gel",
+    "line": "Naturaltech",
+    "category": "scalp",
+    "volume": "",
+    "price": 4300,
+    "oldPrice": null,
+    "description": "Очищающий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на кожу головы, распределите массирующими движениями. Следуйте инструкции на упаковке.",
+    "image": "/products/purifying-gel.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 68
+  },
+  {
+    "id": "cmt7b3wvb001x9s04i8rff1n3",
+    "slug": "rebalancing-shampoo",
+    "nameRu": "Балансирующий шампунь",
+    "nameEn": "Naturaltech Rebalancing Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Балансирующий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/rebalancing-shampoo.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 69
+  },
+  {
+    "id": "cmt7b3wvg001y9s04us6vnhwn",
+    "slug": "renewing-shampoo",
+    "nameRu": "Обновляющий шампунь",
+    "nameEn": "Naturaltech Renewing Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Обновляющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/renewing-shampoo.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 70
+  },
+  {
+    "id": "cmt7b3wvl001z9s04jyd5axko",
+    "slug": "renewing-conditioning-treatment",
+    "nameRu": "Обновляющий кондиционирующий уход",
+    "nameEn": "Naturaltech Renewing Conditioning Treatment",
+    "line": "Naturaltech",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Обновляющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/renewing-conditioning-treatment.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 71
+  },
+  {
+    "id": "cmt7b3wvq00209s04n7dgtfji",
+    "slug": "replumping-shampoo",
+    "nameRu": "Уплотняющий шампунь",
+    "nameEn": "Naturaltech Replumping Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Уплотняющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/replumping-shampoo.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 72
+  },
+  {
+    "id": "cmt7b3wvv00219s04azia75ua",
+    "slug": "replumping-conditioner",
+    "nameRu": "Уплотняющий кондиционер",
+    "nameEn": "Naturaltech Replumping Conditioner",
+    "line": "Naturaltech",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Уплотняющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/replumping-conditioner.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 73
+  },
+  {
+    "id": "cmt7b3ww100229s04gjxbywde",
+    "slug": "repumping-hair-filler-superactive",
+    "nameRu": "Уплотняющий суперактивный филлер",
+    "nameEn": "Naturaltech Repumping Hair-Filler Superactive",
+    "line": "Naturaltech",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Уплотняющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/repumping-hair-filler-superactive.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 74
+  },
+  {
+    "id": "cmt7b3ww600239s04no90utuc",
+    "slug": "well-being-shampoo",
+    "nameRu": "Увлажняющий шампунь для всех типов волос",
+    "nameEn": "Naturaltech Well Being Shampoo",
+    "line": "Naturaltech",
+    "category": "shampoo",
+    "volume": "",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Увлажняющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "/products/well-being-shampoo.jpg",
+    "concerns": [
+      "dryness",
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 75
+  },
+  {
+    "id": "cmt7b3wwb00249s04k78ow921",
+    "slug": "well-being-conditioner",
+    "nameRu": "Увлажняющий кондиционер для здоровья волос",
+    "nameEn": "Naturaltech Well Being Conditioner",
+    "line": "Naturaltech",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Увлажняющий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/well-being-conditioner.jpg",
+    "concerns": [
+      "dryness",
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 76
+  },
+  {
+    "id": "cmt7b3wwh00259s04y9pqp2iy",
+    "slug": "rebalancing-treatment",
+    "nameRu": "Очищающий уход для баланса кожи головы",
+    "nameEn": "Naturaltech Rebalancing Treatment",
+    "line": "Naturaltech",
+    "category": "scalp",
+    "volume": "",
+    "price": 4300,
+    "oldPrice": null,
+    "description": "Очищающий линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на кожу головы, распределите массирующими движениями. Следуйте инструкции на упаковке.",
+    "image": "/products/rebalancing-treatment.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 77
+  },
+  {
+    "id": "cmt7b3wwm00269s047r0co0iz",
+    "slug": "nourishing-hair-building-pak",
+    "nameRu": "Питательная восстанавливающая маска для волос",
+    "nameEn": "Naturaltech Nourishing Hair Building Pak",
+    "line": "Naturaltech",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Питательная линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/nourishing-hair-building-pak.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 78
+  },
+  {
+    "id": "cmt7b3wws00279s04eaqxt0zc",
+    "slug": "nourishing-keratin",
+    "nameRu": "Питательное Кератиновое чудо для восстановления поврежденных волос",
+    "nameEn": "Naturaltech Nourishing Keratin",
+    "line": "Naturaltech",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Питательное линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/nourishing-keratin.jpg",
+    "concerns": [
+      "damage",
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 79
+  },
+  {
+    "id": "cmt7b3wwx00289s044xrfkcrh",
+    "slug": "nourishing-keratin-sealer",
+    "nameRu": "Питательный флюид, запечатывающий кератин",
+    "nameEn": "Naturaltech Nourishing Keratin Sealer",
+    "line": "Naturaltech",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Питательный линейки Naturaltech. Профессиональная линия для кожи головы: работает с причиной, а не с симптомом. Подбирается после трихологической диагностики.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/nourishing-keratin-sealer.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal",
+      "thin"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 80
+  },
+  {
+    "id": "cmt7b3wx200299s04jghtw0sg",
+    "slug": "oi-absolute-beautifying-body-wash",
+    "nameRu": "Гель для душа для абсолютной красоты тела",
+    "nameEn": "OI Absolute Beautifying Body Wash",
+    "line": "Solu",
+    "category": "styling",
+    "volume": "",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Гель линейки Solu. Глубокое очищение для волос и кожи головы. Морская соль из Черво мягко снимает загрязнения и излишки себума.",
+    "usage": "Нанесите на влажные или сухие волосы в зависимости от желаемой текстуры и уложите привычным способом.",
+    "image": "",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 81
+  },
+  {
+    "id": "cmt7b3wx8002a9s04jao9dju6",
+    "slug": "oi-oil",
+    "nameRu": "Масло для абсолютной красоты волос",
+    "nameEn": "OI Oil",
+    "line": "OI",
+    "category": "oil",
+    "volume": "",
+    "price": 4100,
+    "oldPrice": null,
+    "description": "Масло линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Распределите несколько капель по влажным или сухим волосам, уделяя внимание кончикам. Не смывать.",
+    "image": "/products/oi-oil.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 82
+  },
+  {
+    "id": "cmt7b3wxd002b9s04dfcon7rw",
+    "slug": "oi-hand-balm",
+    "nameRu": "Бальзам для рук OI",
+    "nameEn": "OI Hand Balm",
+    "line": "OI",
+    "category": "conditioner",
+    "volume": "",
+    "price": 3400,
+    "oldPrice": null,
+    "description": "Бальзам линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Нанесите на подсушенные полотенцем волосы по длине, отступив от корней. Оставьте на 2–3 минуты и смойте.",
+    "image": "/products/oi-hand-balm.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 83
+  },
+  {
+    "id": "cmt7b3wxi002c9s04f1fi8xhz",
+    "slug": "oi-all-in-one-milk",
+    "nameRu": "Многофункциональное молочко",
+    "nameEn": "OI All In One Milk",
+    "line": "OI",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Многофункциональное линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/oi-all-in-one-milk.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 84
+  },
+  {
+    "id": "cmt7b3wxp002d9s041a13npmh",
+    "slug": "oi-liquid-luster",
+    "nameRu": "Жидкий эликсир для абсолютного блеска волос",
+    "nameEn": "OI Liquid Luster",
+    "line": "OI",
+    "category": "other",
+    "volume": "",
+    "price": 3500,
+    "oldPrice": null,
+    "description": "Жидкий линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Следуйте инструкции на упаковке или уточните способ применения у Кристины.",
+    "image": "/products/oi-liquid-luster.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 85
+  },
+  {
+    "id": "cmt7b3wxv002e9s042le5mz9y",
+    "slug": "the-circle-chronicles-the-renaissance-circle",
+    "nameRu": "Маска «экстрим-восстановление» для безнадежных волос",
+    "nameEn": "The Circle Chronicles The Renaissance Circle",
+    "line": "The Circle Chronicles",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Маска линейки The Circle Chronicles. Сезонные ритуалы Davines — ограниченные серии для конкретной задачи и настроения.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/the-circle-chronicles-the-renaissance-circle.jpg",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 86
+  },
+  {
+    "id": "cmt7b3wy0002f9s0458e3ycjz",
+    "slug": "the-circle-chronicles-the-quick-fix-circle",
+    "nameRu": "Супербыстрая многофункциональная маска для волос",
+    "nameEn": "The Circle Chronicles The Quick Fix Circle",
+    "line": "The Circle Chronicles",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Супербыстрая линейки The Circle Chronicles. Сезонные ритуалы Davines — ограниченные серии для конкретной задачи и настроения.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/the-circle-chronicles-the-quick-fix-circle.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 87
+  },
+  {
+    "id": "cmt7b3wy6002g9s041s01sgd6",
+    "slug": "the-circle-chronicles-the-wake-up-circle",
+    "nameRu": "Маска-анти-стресс для волос и кожи головы",
+    "nameEn": "The Circle Chronicles The Wake-Up Circle",
+    "line": "The Circle Chronicles",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Маска-анти-стресс линейки The Circle Chronicles. Сезонные ритуалы Davines — ограниченные серии для конкретной задачи и настроения.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/the-circle-chronicles-the-wake-up-circle.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 88
+  },
+  {
+    "id": "cmt7b3wyc002h9s047ckcftjr",
+    "slug": "the-circle-chronicles-the-purity-circle",
+    "nameRu": "Маска-детокс для волос и кожи  головы",
+    "nameEn": "The Circle Chronicles The Purity Circle",
+    "line": "The Circle Chronicles",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Маска-детокс линейки The Circle Chronicles. Сезонные ритуалы Davines — ограниченные серии для конкретной задачи и настроения.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/the-circle-chronicles-the-purity-circle.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 89
+  },
+  {
+    "id": "cmt7b3wyh002i9s04j73u4h24",
+    "slug": "the-circle-chronicles-the-spotlight-circle",
+    "nameRu": "Маска-суперблеск для волос",
+    "nameEn": "The Circle Chronicles The Spotlight Circle",
+    "line": "The Circle Chronicles",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Маска-суперблеск линейки The Circle Chronicles. Сезонные ритуалы Davines — ограниченные серии для конкретной задачи и настроения.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/the-circle-chronicles-the-spotlight-circle.jpg",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 90
+  },
+  {
+    "id": "cmt7b3wyn002j9s04zhh91oh4",
+    "slug": "the-circle-chronicles-the-let-it-go-circle",
+    "nameRu": "Маска-релакс для волос и кожи головы",
+    "nameEn": "The Circle Chronicles The Let It Go Circle",
+    "line": "The Circle Chronicles",
+    "category": "mask",
+    "volume": "",
+    "price": 3800,
+    "oldPrice": null,
+    "description": "Маска-релакс линейки The Circle Chronicles. Сезонные ритуалы Davines — ограниченные серии для конкретной задачи и настроения.",
+    "usage": "Нанесите на вымытые влажные волосы по длине. Оставьте на 5–10 минут, затем тщательно смойте.",
+    "image": "/products/the-circle-chronicles-the-let-it-go-circle.jpg",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 91
+  },
+  {
+    "id": "cmt7b3wys002k9s04er7lfco9",
+    "slug": "heart-of-glass-instant-bonding-glow",
+    "nameRu": "Мгновенная сыворотка-бондинг для светлых волос",
+    "nameEn": "Heart Of Glass Instant Bonding Glow",
+    "line": "Heart of Glass",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Мгновенная линейки Heart of Glass. Уход для любых светлых волос. Экстракт синего василька нейтрализует желтизну, укрепляет и возвращает блонду прозрачность.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/heart-of-glass-instant-bonding-glow.jpg",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored",
+      "damaged"
+    ],
+    "visible": true,
+    "featured": true,
+    "sortOrder": 92
+  },
+  {
+    "id": "cmt7b3wyx002l9s04lv792ng0",
+    "slug": "heart-of-glass-sheer-glaze",
+    "nameRu": "Флюид для абсолютного сияния",
+    "nameEn": "Heart Of Glass Sheer Glaze",
+    "line": "Heart of Glass",
+    "category": "serum",
+    "volume": "",
+    "price": 4600,
+    "oldPrice": null,
+    "description": "Флюид линейки Heart of Glass. Уход для любых светлых волос. Экстракт синего василька нейтрализует желтизну, укрепляет и возвращает блонду прозрачность.",
+    "usage": "Нанесите на влажные или сухие волосы по длине. Не смывать.",
+    "image": "/products/heart-of-glass-sheer-glaze.jpg",
+    "concerns": [
+      "shine",
+      "color"
+    ],
+    "hairTypes": [
+      "colored",
+      "damaged"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 93
+  },
+  {
+    "id": "cmt7bzhe400009slwbt8h6rdm",
+    "slug": "momo-shampoo",
+    "nameRu": "Шампунь для глубокого увлажнения волос",
+    "nameEn": "MoMo Shampoo",
+    "line": "MoMo",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки MoMo. Линейка глубокого увлажнения на экстракте жёлтой дыни сорта Картуччару из Пачеко, выращенной по программе Slow Food. Возвращает сухим волосам мягкость и эластичность.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "dryness"
+    ],
+    "hairTypes": [
+      "dry",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 94
+  },
+  {
+    "id": "cmt7bzhea00019slw9ug7pwyt",
+    "slug": "nounou-shampoo",
+    "nameRu": "Питательный шампунь для повреждённых волос",
+    "nameEn": "NouNou Shampoo",
+    "line": "NouNou",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Питательный линейки NouNou. Интенсивное питание для повреждённых и обесцвеченных волос. В основе — экстракт помидора сорта Фьяскетто из Торре-Каноне: уплотняет структуру и возвращает плотность.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "damage"
+    ],
+    "hairTypes": [
+      "damaged",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 95
+  },
+  {
+    "id": "cmt7bzhef00029slwxy2njgc6",
+    "slug": "love-smoothing-shampoo",
+    "nameRu": "Шампунь для разглаживания завитка",
+    "nameEn": "Love Smoothing Shampoo",
+    "line": "Love",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "frizz",
+      "curls"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 96
+  },
+  {
+    "id": "cmt7bzhel00039slwr296tbfc",
+    "slug": "love-curl-shampoo",
+    "nameRu": "Шампунь для усиления завитка",
+    "nameEn": "Love Curl Shampoo",
+    "line": "Love",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3200,
+    "oldPrice": null,
+    "description": "Шампунь линейки Love. Уход для дисциплины и завитка: экстракт оливы Ночеллара-дель-Беличе разглаживает пушистость, миндаль из Ното подчёркивает форму кудрей.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "curls"
+    ],
+    "hairTypes": [
+      "curly",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 97
+  },
+  {
+    "id": "cmt7bzheq00049slwup5sesoq",
+    "slug": "minu-shampoo",
+    "nameRu": "Защитный шампунь для окрашенных волос",
+    "nameEn": "Minu Shampoo",
+    "line": "Minu",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Защитный линейки Minu. Защита косметического цвета. Экстракт каперсов с Салина сохраняет насыщенность пигмента и продлевает жизнь окрашиванию.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 98
+  },
+  {
+    "id": "cmt7bzhev00059slw6k6xj5pt",
+    "slug": "solu-shampoo",
+    "nameRu": "Шампунь для глубокого очищения",
+    "nameEn": "Solu Shampoo",
+    "line": "Solu",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3300,
+    "oldPrice": null,
+    "description": "Шампунь линейки Solu. Глубокое очищение для волос и кожи головы. Морская соль из Черво мягко снимает загрязнения и излишки себума.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "scalp"
+    ],
+    "hairTypes": [
+      "oily",
+      "normal"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 99
+  },
+  {
+    "id": "cmt7bzhf100069slwm5cqjqp8",
+    "slug": "heart-of-glass-shampoo",
+    "nameRu": "Шампунь для светлых волос",
+    "nameEn": "Heart of Glass Silkening Shampoo",
+    "line": "Heart of Glass",
+    "category": "shampoo",
+    "volume": "250 мл",
+    "price": 3600,
+    "oldPrice": null,
+    "description": "Шампунь линейки Heart of Glass. Уход для любых светлых волос. Экстракт синего василька нейтрализует желтизну, укрепляет и возвращает блонду прозрачность.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "color"
+    ],
+    "hairTypes": [
+      "colored",
+      "damaged"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 100
+  },
+  {
+    "id": "cmt7bzhf600079slw8gwdpb6y",
+    "slug": "oi-shampoo",
+    "nameRu": "Шампунь для абсолютной красоты волос",
+    "nameEn": "OI Shampoo",
+    "line": "OI",
+    "category": "shampoo",
+    "volume": "280 мл",
+    "price": 3900,
+    "oldPrice": null,
+    "description": "Шампунь линейки OI. Абсолютная красота волос на масле роукоу из Амазонии. Питает, разглаживает и даёт тот самый зеркальный блеск без утяжеления.",
+    "usage": "Нанесите на влажные волосы, вспеньте массирующими движениями и тщательно смойте. При необходимости повторите.",
+    "image": "",
+    "concerns": [
+      "shine"
+    ],
+    "hairTypes": [
+      "normal",
+      "dry",
+      "colored"
+    ],
+    "visible": true,
+    "featured": false,
+    "sortOrder": 101
+  }
+]
