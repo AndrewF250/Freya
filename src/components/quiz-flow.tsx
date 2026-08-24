@@ -73,6 +73,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
                   src={p.image}
                   alt={p.nameEn || p.nameRu}
                   sizes="90px"
+                  bgColor={p.imageBg}
                   className="h-[76px] w-[76px] shrink-0 rounded-lg"
                 />
                 <div className="min-w-0 flex-1">

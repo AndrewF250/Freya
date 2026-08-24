@@ -14,6 +14,7 @@ export type CardProduct = {
   price: number;
   oldPrice?: number | null;
   image: string;
+  imageBg?: string;
 };
 
 export function ProductCard({ product, priority = false }: { product: CardProduct; priority?: boolean }) {
@@ -26,6 +27,7 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
           src={product.image}
           alt={product.nameEn || product.nameRu}
           priority={priority}
+          bgColor={product.imageBg}
           className="aspect-square"
         />
       </Link>

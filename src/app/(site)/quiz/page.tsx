@@ -31,6 +31,7 @@ export default function QuizPage() {
           volume: p.volume,
           price: p.price,
           image: p.image,
+          imageBg: p.imageBg,
           concerns: p.concerns,
           hairTypes: p.hairTypes,
         }))}

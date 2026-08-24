@@ -62,6 +62,7 @@ function EditProductContent() {
           description: product.description,
           usage: product.usage,
           image: product.image,
+          imageBg: product.imageBg,
           concerns: product.concerns,
           hairTypes: product.hairTypes,
           visible: product.visible,

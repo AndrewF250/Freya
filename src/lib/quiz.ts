@@ -164,6 +164,7 @@ export type ScorableProduct = {
   volume: string;
   price: number;
   image: string;
+  imageBg?: string;
   concerns: string[];
   hairTypes: string[];
 };

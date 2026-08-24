@@ -56,6 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           alt={product.nameEn || product.nameRu}
           sizes="(max-width: 768px) 100vw, 45vw"
           priority
+          bgColor={product.imageBg}
           className="aspect-square rounded-card border border-line"
         />
 

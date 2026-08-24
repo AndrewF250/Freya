@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { productImageBg } from "@/lib/image-bg";
 import { withBasePath } from "@/lib/paths";
 
 /**
@@ -10,19 +11,24 @@ export function ProductImage({
   sizes = "(max-width: 768px) 50vw, 25vw",
   priority = false,
   className = "",
+  bgColor,
 }: {
   src: string;
   alt: string;
   sizes?: string;
   priority?: boolean;
   className?: string;
+  bgColor?: string | null;
 }) {
   if (!src) return <Placeholder label={alt} className={className} />;
 
+  const bg = productImageBg(bgColor);
+  const imageUrl = src.startsWith("data:") || src.startsWith("blob:") ? src : withBasePath(src);
+
   return (
-    <div className={`relative overflow-hidden bg-paper ${className}`}>
+    <div className={`relative overflow-hidden ${className}`} style={{ backgroundColor: bg }}>
       <Image
-        src={withBasePath(src)}
+        src={imageUrl}
         alt={alt}
         fill
         sizes={sizes}

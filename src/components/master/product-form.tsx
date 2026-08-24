@@ -5,8 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { CATEGORIES, CATEGORY_KEYS, CONCERNS, CONCERN_KEYS, HAIR_TYPES, HAIR_TYPE_KEYS } from "@/lib/catalog";
+import { DEFAULT_IMAGE_BG, normalizeHex, sampleImageBackground } from "@/lib/image-bg";
 import { removeProduct, saveProductFromInput, type SaveProductResult } from "@/lib/master-store";
 import { withBasePath } from "@/lib/paths";
+import { ImageBgPicker } from "./image-bg-picker";
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 
@@ -22,6 +24,7 @@ export type EditableProduct = {
   description: string;
   usage: string;
   image: string;
+  imageBg?: string;
   concerns: string[];
   hairTypes: string[];
   visible: boolean;
@@ -44,6 +47,7 @@ export function ProductForm({
   const [removeImage, setRemoveImage] = useState(false);
   const [visible, setVisible] = useState(product?.visible ?? true);
   const [featured, setFeatured] = useState(product?.featured ?? false);
+  const [imageBg, setImageBg] = useState(product?.imageBg ?? DEFAULT_IMAGE_BG);
 
   useEffect(() => {
     return () => {
@@ -99,6 +103,7 @@ export function ProductForm({
     }
 
     let image = product?.image ?? "";
+    let nextImageBg = normalizeHex(imageBg);
     if (file instanceof File && file.size > 0) {
       if (file.size > MAX_IMAGE_BYTES) {
         setState({ ok: false, message: "Файл слишком большой — максимум 5 МБ." });
@@ -116,6 +121,12 @@ export function ProductForm({
         reader.onerror = () => reject(new Error("Не удалось прочитать файл."));
         reader.readAsDataURL(file);
       });
+      try {
+        nextImageBg = await sampleImageBackground(image);
+        setImageBg(nextImageBg);
+      } catch {
+        /* keep manual color */
+      }
     } else if (removeImage) {
       image = "";
     } else if (imagePath) {
@@ -136,6 +147,7 @@ export function ProductForm({
       description,
       usage,
       image,
+      imageBg: nextImageBg,
       concerns,
       hairTypes,
       visible,
@@ -292,7 +304,10 @@ export function ProductForm({
 
         <Fieldset title="Фотография" columns={1}>
           <div className="flex flex-wrap items-start gap-5">
-            <div className="relative h-[120px] w-[120px] shrink-0 overflow-hidden rounded-card border border-line bg-paper">
+            <div
+              className="relative h-[120px] w-[120px] shrink-0 overflow-hidden rounded-card border border-line"
+              style={{ backgroundColor: imageBg }}
+            >
               {imageSrc ? (
                 <Image src={imageSrc} alt="" fill sizes="120px" className="object-contain p-2" unoptimized />
               ) : (
@@ -317,10 +332,26 @@ export function ProductForm({
                 name="imageFile"
                 type="file"
                 accept="image/jpeg,image/png,image/webp"
-                onChange={(e) => {
+                onChange={async (e) => {
                   const file = e.target.files?.[0];
-                  setPreview(file ? URL.createObjectURL(file) : null);
-                  if (file) setRemoveImage(false);
+                  if (!file) {
+                    setPreview(null);
+                    return;
+                  }
+                  const url = URL.createObjectURL(file);
+                  setPreview(url);
+                  setRemoveImage(false);
+                  try {
+                    const dataUrl = await new Promise<string>((resolve, reject) => {
+                      const reader = new FileReader();
+                      reader.onload = () => resolve(String(reader.result));
+                      reader.onerror = () => reject(new Error("read failed"));
+                      reader.readAsDataURL(file);
+                    });
+                    setImageBg(await sampleImageBackground(dataUrl));
+                  } catch {
+                    /* ignore */
+                  }
                 }}
                 className="field mt-3 !py-2.5 file:mr-3 file:rounded-pill file:border-0 file:bg-sand file:px-3 file:py-1.5 file:text-[13px]"
               />
@@ -338,6 +369,10 @@ export function ProductForm({
                   />
                   Удалить текущее фото
                 </label>
+              )}
+
+              {imageSrc && (
+                <ImageBgPicker imageSrc={imageSrc} value={imageBg} onChange={setImageBg} />
               )}
             </div>
           </div>

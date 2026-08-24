@@ -97,6 +97,7 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
                 src={item.image}
                 alt={item.nameRu}
                 sizes="110px"
+                bgColor={item.imageBg}
                 className="h-[96px] w-[96px] shrink-0 rounded-lg border border-line"
               />
 

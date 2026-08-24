@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CATEGORIES, type CategoryKey } from "@/lib/catalog";
 import { rub, plural } from "@/lib/format";
+import { productImageBg } from "@/lib/image-bg";
 import { withBasePath } from "@/lib/paths";
 import { updateProduct } from "@/lib/master-store";
 
@@ -18,6 +19,7 @@ export type ListProduct = {
   volume: string;
   price: number;
   image: string;
+  imageBg?: string;
   visible: boolean;
   featured: boolean;
 };
@@ -104,7 +106,8 @@ export function MasterProductList({
             <li key={p.id} className={`flex items-center gap-4 p-3 sm:p-4 ${p.visible ? "" : "bg-sand/60"}`}>
               <Link
                 href={`/master/products/edit?id=${p.id}`}
-                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-lg border border-line bg-paper"
+                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-lg border border-line"
+                style={{ backgroundColor: productImageBg(p.imageBg) }}
               >
                 {p.image ? (
                   <Image

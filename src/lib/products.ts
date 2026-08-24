@@ -13,6 +13,7 @@ export type ProductView = {
   description: string;
   usage: string;
   image: string;
+  imageBg?: string;
   concerns: string[];
   hairTypes: string[];
   visible: boolean;
