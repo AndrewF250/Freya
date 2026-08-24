@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CATEGORIES, type CategoryKey } from "@/lib/catalog";
 import { rub, plural } from "@/lib/format";
 import { productImageBg } from "@/lib/image-bg";
@@ -24,6 +24,78 @@ export type ListProduct = {
   featured: boolean;
 };
 
+function ProductActionsMenu({
+  product,
+  open,
+  onOpenChange,
+  onToggle,
+}: {
+  product: ListProduct;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onToggle: (id: string, field: "visible" | "featured") => void;
+}) {
+  useEffect(() => {
+    if (!open) return;
+    const close = () => onOpenChange(false);
+    window.addEventListener("resize", close);
+    return () => window.removeEventListener("resize", close);
+  }, [open, onOpenChange]);
+
+  return (
+    <div className="relative sm:hidden">
+      <button
+        type="button"
+        onClick={() => onOpenChange(!open)}
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-paper text-ink-soft"
+        aria-label={`Управление: ${product.nameEn || product.nameRu}`}
+        aria-expanded={open}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <circle cx="5" cy="12" r="1.75" />
+          <circle cx="12" cy="12" r="1.75" />
+          <circle cx="19" cy="12" r="1.75" />
+        </svg>
+      </button>
+
+      {open && (
+        <>
+          <button type="button" className="fixed inset-0 z-40" aria-label="Закрыть меню" onClick={() => onOpenChange(false)} />
+          <div className="absolute right-0 top-full z-50 mt-1 w-52 overflow-hidden rounded-lg border border-line bg-paper py-1 shadow-[0_12px_32px_rgba(27,36,48,.12)]">
+            <button
+              type="button"
+              className="block w-full px-4 py-2.5 text-left text-[14px] transition-colors hover:bg-sand"
+              onClick={() => {
+                onToggle(product.id, "visible");
+                onOpenChange(false);
+              }}
+            >
+              {product.visible ? "Скрыть из каталога" : "Показать в каталоге"}
+            </button>
+            <button
+              type="button"
+              className="block w-full px-4 py-2.5 text-left text-[14px] transition-colors hover:bg-sand"
+              onClick={() => {
+                onToggle(product.id, "featured");
+                onOpenChange(false);
+              }}
+            >
+              {product.featured ? "Убрать с главной" : "Показать на главной"}
+            </button>
+            <Link
+              href={`/master/products/edit?id=${product.id}`}
+              className="block px-4 py-2.5 text-[14px] transition-colors hover:bg-sand"
+              onClick={() => onOpenChange(false)}
+            >
+              Изменить
+            </Link>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export function MasterProductList({
   products,
   lines,
@@ -36,6 +108,7 @@ export function MasterProductList({
   const [query, setQuery] = useState("");
   const [line, setLine] = useState("");
   const [only, setOnly] = useState<"all" | "hidden" | "featured">("all");
+  const [menuId, setMenuId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -103,10 +176,10 @@ export function MasterProductList({
       ) : (
         <ul className="card divide-y divide-line overflow-hidden">
           {filtered.map((p) => (
-            <li key={p.id} className={`flex items-center gap-4 p-3 sm:p-4 ${p.visible ? "" : "bg-sand/60"}`}>
+            <li key={p.id} className={`flex min-w-0 items-center gap-3 p-3 sm:gap-4 sm:p-4 ${p.visible ? "" : "bg-sand/60"}`}>
               <Link
                 href={`/master/products/edit?id=${p.id}`}
-                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-lg border border-line"
+                className="relative h-[52px] w-[52px] shrink-0 overflow-hidden rounded-lg border border-line sm:h-[56px] sm:w-[56px]"
                 style={{ backgroundColor: productImageBg(p.imageBg) }}
               >
                 {p.image ? (
@@ -123,8 +196,8 @@ export function MasterProductList({
                 )}
               </Link>
 
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-[15px]">
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <p className="truncate text-[15px] leading-snug">
                   <Link href={`/master/products/edit?id=${p.id}`} className="transition-colors hover:text-olive-deep">
                     {p.nameEn || p.nameRu}
                   </Link>
@@ -133,11 +206,19 @@ export function MasterProductList({
                   {p.line} · {CATEGORIES[p.category as CategoryKey] ?? CATEGORIES.other}
                   {p.volume ? ` · ${p.volume}` : ""}
                 </p>
+                <p className="mt-1 text-[14px] tabular-nums sm:hidden">{rub(p.price)}</p>
               </div>
 
               <p className="hidden w-[110px] shrink-0 text-right text-[15px] tabular-nums sm:block">{rub(p.price)}</p>
 
-              <div className="flex shrink-0 items-center gap-1.5">
+              <ProductActionsMenu
+                product={p}
+                open={menuId === p.id}
+                onOpenChange={(open) => setMenuId(open ? p.id : null)}
+                onToggle={toggle}
+              />
+
+              <div className="hidden shrink-0 items-center gap-1.5 sm:flex">
                 <button
                   type="button"
                   onClick={() => toggle(p.id, "visible")}
