@@ -6,11 +6,15 @@ import { useCart } from "./cart";
 import { ProductImage } from "./product-image";
 import { Empty } from "./ui";
 import { submitOrder, type FormState } from "@/lib/forms";
+import { addLead } from "@/lib/leads-store";
+import { collectOrderPayload, formatOrderMessage, type OrderPayload } from "@/lib/orders";
+import { getSettings } from "@/lib/settings";
+import { buildTelegramUrl } from "@/lib/telegram";
 import { rub, plural } from "@/lib/format";
 
 const DELIVERY = [
   "Самовывоз из студии",
-  "Доставка по Москве",
+  "Доставка по Перми",
   "СДЭК по России",
 ] as const;
 
@@ -18,6 +22,8 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
   const { items, count, total, ready, setQty, remove, clear } = useCart();
   const [state, setState] = useState<FormState>(null);
   const [pending, setPending] = useState(false);
+  const [orderPayload, setOrderPayload] = useState<OrderPayload | null>(null);
+  const settings = getSettings();
 
   useEffect(() => {
     if (state?.ok) clear();
@@ -26,13 +32,39 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPending(true);
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = collectOrderPayload(formData, items);
     const result = await submitOrder(formData);
+
+    if (result?.ok) {
+      setOrderPayload(payload);
+      addLead({
+        kind: "order",
+        name: payload.name,
+        phone: payload.phone,
+        email: payload.email || undefined,
+        comment: payload.comment || undefined,
+        delivery: payload.delivery,
+        total: payload.total,
+        items: payload.items,
+      });
+    }
+
     setState(result);
     setPending(false);
   }
 
+  function openTelegram() {
+    if (!orderPayload) return;
+    const url = buildTelegramUrl(settings.telegram, formatOrderMessage(orderPayload));
+    if (!url) return;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   if (state?.ok) {
+  const telegramReady = /t\.me\/[^/?#]+/i.test(settings.telegram ?? "");
+
     return (
       <div className="shell section">
         <div className="card mx-auto max-w-2xl p-8 text-center md:p-12">
@@ -43,11 +75,18 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
           </div>
           <h2 className="display mt-6 text-[26px]">Заказ принят</h2>
           <p className="mx-auto mt-3 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft">{state.message}</p>
+
+          {telegramReady && (
+            <button type="button" onClick={openTelegram} className="btn btn-primary mt-8">
+              Оформить в Telegram
+            </button>
+          )}
+
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/shop" className="btn btn-primary">
+            <Link href="/shop" className="btn btn-soft">
               Вернуться в каталог
             </Link>
-            <Link href="/booking" className="btn btn-soft">
+            <Link href="/booking" className="btn btn-outline">
               Записаться на приём
             </Link>
           </div>

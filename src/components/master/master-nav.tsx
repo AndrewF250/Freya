@@ -6,6 +6,7 @@ import { logoutMaster } from "@/lib/master-auth";
 
 const NAV = [
   { href: "/master/products", label: "Товары" },
+  { href: "/master/leads", label: "Заявки" },
   { href: "/master/settings", label: "Настройки" },
 ];
 

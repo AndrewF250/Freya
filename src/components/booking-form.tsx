@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { parseBookingSlots } from "@/lib/booking-slots";
-import { collectBookingPayload, formatBookingMessage, buildTelegramBookingUrl } from "@/lib/booking";
+import { collectBookingPayload, formatBookingMessage, buildTelegramBookingUrl, type BookingPayload } from "@/lib/booking";
 import { submitBooking, type FormState } from "@/lib/forms";
+import { addLead } from "@/lib/leads-store";
 import { getSettings } from "@/lib/settings";
 import { QUIZ_STORAGE_KEY } from "./quiz-flow";
 
@@ -16,7 +17,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   const [time, setTime] = useState("");
   const [quiz, setQuiz] = useState<SavedQuiz | null>(null);
   const [attach, setAttach] = useState(true);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [bookingPayload, setBookingPayload] = useState<BookingPayload | null>(null);
   const settings = getSettings();
   const slots = parseBookingSlots(settings);
 
@@ -37,39 +38,39 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPending(true);
-    const result = await submitBooking(new FormData(e.currentTarget));
+    const form = e.currentTarget;
+    const payload = collectBookingPayload(form);
+    const result = await submitBooking(new FormData(form));
+
+    if (result?.ok) {
+      setBookingPayload(payload);
+      addLead({
+        kind: "booking",
+        name: payload.name,
+        phone: payload.phone,
+        email: payload.email || undefined,
+        comment: payload.comment || undefined,
+        service: payload.service,
+        date: payload.date,
+        time: payload.time || undefined,
+        quiz: payload.quiz,
+      });
+    }
+
     setState(result);
     setPending(false);
   }
 
-  function openTelegram(form: HTMLFormElement) {
-    const payload = collectBookingPayload(form);
-    if (!payload.name || payload.name.length < 2) {
-      setState({ ok: false, message: "Укажите, как к вам обращаться." });
-      return;
-    }
-    if (!payload.phone || payload.phone.replace(/\D/g, "").length < 10) {
-      setState({ ok: false, message: "Проверьте номер телефона." });
-      return;
-    }
-    if (!payload.service) {
-      setState({ ok: false, message: "Выберите услугу." });
-      return;
-    }
-    if (!payload.date) {
-      setState({ ok: false, message: "Выберите дату визита." });
-      return;
-    }
-
-    const url = buildTelegramBookingUrl(settings.telegram, formatBookingMessage(payload));
-    if (!url) {
-      setState({ ok: false, message: "Telegram пока не настроен. Оставьте заявку через форму ниже." });
-      return;
-    }
+  function openTelegram() {
+    if (!bookingPayload) return;
+    const url = buildTelegramBookingUrl(settings.telegram, formatBookingMessage(bookingPayload));
+    if (!url) return;
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
   if (state?.ok) {
+    const telegramReady = /t\.me\/[^/?#]+/i.test(settings.telegram ?? "");
+
     return (
       <div className="card p-8 text-center md:p-12">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-pill bg-olive-soft text-olive-deep">
@@ -79,11 +80,18 @@ export function BookingForm({ services }: { services: readonly string[] }) {
         </div>
         <h2 className="display mt-6 text-[26px]">Заявка принята</h2>
         <p className="mx-auto mt-3 max-w-[46ch] text-[15px] leading-relaxed text-ink-soft">{state.message}</p>
+
+        {telegramReady && (
+          <button type="button" onClick={openTelegram} className="btn btn-primary mt-8">
+            Записаться в Telegram
+          </button>
+        )}
+
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/shop" className="btn btn-primary">
+          <Link href="/shop" className="btn btn-soft">
             Посмотреть каталог
           </Link>
-          <Link href="/" className="btn btn-soft">
+          <Link href="/" className="btn btn-outline">
             На главную
           </Link>
         </div>
@@ -92,7 +100,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} ref={formRef} className="card p-6 md:p-8" id="booking-form">
+    <form onSubmit={handleSubmit} className="card p-6 md:p-8" id="booking-form">
       <input type="hidden" name="time" value={time} />
       {quiz && attach && <input type="hidden" name="quiz" value={JSON.stringify(quiz)} />}
 
@@ -190,25 +198,13 @@ export function BookingForm({ services }: { services: readonly string[] }) {
         </p>
       )}
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        <button type="submit" disabled={pending} className="btn btn-muted btn-block">
-          {pending ? "Отправляю…" : "Оставить заявку"}
-        </button>
-        <button
-          type="button"
-          disabled={pending}
-          className="btn btn-primary btn-block"
-          onClick={() => {
-            if (formRef.current) openTelegram(formRef.current);
-          }}
-        >
-          Записаться в Telegram
-        </button>
-      </div>
+      <button type="submit" disabled={pending} className="btn btn-primary btn-block mt-6">
+        {pending ? "Отправляю…" : "Оставить заявку"}
+      </button>
 
       <p className="mt-4 text-center text-[12px] leading-relaxed text-muted">
-        Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Можно оставить заявку на сайте или сразу
-        написать Кристине в Telegram с заполненными данными.
+        Нажимая кнопку, вы соглашаетесь на обработку персональных данных. После отправки можно сразу написать
+        Кристине в Telegram с заполненными данными.
       </p>
     </form>
   );

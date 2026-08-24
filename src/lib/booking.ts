@@ -1,5 +1,6 @@
 import { parseJson } from "./format";
 import { getSettings } from "./settings";
+import { buildTelegramUrl } from "./telegram";
 
 export type BookingPayload = {
   name: string;
@@ -56,7 +57,5 @@ export function formatBookingMessage(payload: BookingPayload): string {
 }
 
 export function buildTelegramBookingUrl(telegramLink: string, message: string): string | null {
-  const match = telegramLink.match(/t\.me\/([^/?#]+)/i);
-  if (!match?.[1]) return null;
-  return `https://t.me/${match[1]}?text=${encodeURIComponent(message)}`;
+  return buildTelegramUrl(telegramLink, message);
 }
