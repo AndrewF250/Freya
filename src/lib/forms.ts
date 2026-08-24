@@ -75,7 +75,7 @@ export async function submitBooking(formData: FormData): Promise<FormState> {
       lines.push("", "Ответы подбора:", ...parsed.summary.map((s) => `• ${s}`));
     }
     if (parsed.products?.length) {
-      lines.push("", "Подобранный ритуал:", ...parsed.products.map((s) => `• ${s}`));
+      lines.push("", "Подобранный уход:", ...parsed.products.map((s) => `• ${s}`));
     }
   }
 

@@ -70,7 +70,7 @@ export const QUIZ_STEPS: QuizStep[] = [
   {
     id: "scalp",
     question: "Какое состояние кожи головы вам ближе?",
-    caption: "От этого зависит выбор шампуня — база любого ритуала.",
+    caption: "От этого зависит выбор шампуня — база любого ухода.",
     options: [
       { value: "normal", label: "Нормальная", hint: "Без дискомфорта", lines: { Dede: 2 } },
       {
@@ -101,7 +101,7 @@ export const QUIZ_STEPS: QuizStep[] = [
   {
     id: "goal",
     question: "Что для вас сейчас важнее всего?",
-    caption: "Один главный запрос — на нём и построим ритуал.",
+    caption: "Один главный запрос — на нём и построим подбор.",
     options: [
       { value: "dryness", label: "Увлажнение", concerns: { dryness: 4 }, lines: { MoMo: 3 } },
       { value: "damage", label: "Восстановление", concerns: { damage: 4 }, lines: { NouNou: 3 } },
@@ -142,12 +142,12 @@ export const QUIZ_STEPS: QuizStep[] = [
   },
   {
     id: "depth",
-    question: "Насколько подробный ритуал вам нужен?",
+    question: "Насколько подробный уход вам нужен?",
     caption: "Можно начать с базы и дополнить позже.",
     options: [
       { value: "2", label: "Минимум", hint: "Шампунь и уход" },
       { value: "3", label: "Оптимально", hint: "Плюс средство для длины" },
-      { value: "4", label: "Полный ритуал", hint: "Плюс финиш и защита" },
+      { value: "4", label: "Полный набор", hint: "Плюс финиш и защита" },
     ],
   },
 ];
@@ -168,7 +168,7 @@ export type ScorableProduct = {
   hairTypes: string[];
 };
 
-/** Порядок, в котором собираем ритуал: сначала база, потом длина, потом финиш. */
+/** Порядок, в котором собираем подбор: сначала база, потом длина, потом финиш. */
 const SLOT_ORDER: string[][] = [
   ["shampoo"],
   ["mask", "conditioner"],
@@ -195,7 +195,7 @@ export function scoreProduct(p: ScorableProduct, answers: QuizAnswers): number {
 }
 
 /**
- * Собирает ритуал: по одному продукту на слот, в порядке шампунь → уход → длина → финиш.
+ * Собирает набор ухода: по одному продукту на слот, в порядке шампунь → уход → длина → финиш.
  * Слоты, для которых ничего не нашлось, заполняются лучшими из оставшихся.
  */
 export function buildRitual(products: ScorableProduct[], answers: QuizAnswers): ScorableProduct[] {

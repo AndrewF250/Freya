@@ -95,7 +95,7 @@ export function AddRitualButton({ products, label = "Добавить в кор�
       }}
       className="btn btn-primary"
     >
-      {added ? "Ритуал в корзине" : label}
+      {added ? "Набор в корзине" : label}
     </button>
   );
 }

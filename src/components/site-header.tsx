@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "./cart";
-import { withBasePath } from "@/lib/paths";
+import { SalonLogo } from "./salon-logo";
 
 const NAV = [
   { href: "/about", label: "О Кристине" },
@@ -15,7 +14,7 @@ const NAV = [
   { href: "/contacts", label: "Контакты" },
 ];
 
-export function SiteHeader({ salonName }: { salonName: string }) {
+export function SiteHeader({ salonName: _salonName }: { salonName: string }) {
   const pathname = usePathname();
   const { count, ready } = useCart();
   const [open, setOpen] = useState(false);
@@ -26,14 +25,7 @@ export function SiteHeader({ salonName }: { salonName: string }) {
     <header className="sticky top-0 z-50 border-b border-line bg-cream/92 backdrop-blur-sm pt-[env(safe-area-inset-top)]">
       <div className="shell flex h-[60px] items-center gap-3 sm:h-[68px] sm:gap-6">
         <Link href="/" className="flex min-w-0 shrink items-center gap-2 sm:gap-3" aria-label="На главную">
-          <Image
-            src={withBasePath("/logo.png")}
-            alt={salonName}
-            width={120}
-            height={32}
-            className="h-6 w-auto object-contain sm:h-7"
-            priority
-          />
+          <SalonLogo />
           <span className="hidden whitespace-nowrap rounded-pill border border-line bg-paper px-2.5 py-1 text-[10px] tracking-[0.12em] text-muted uppercase md:inline">
             Партнёр Davines
           </span>

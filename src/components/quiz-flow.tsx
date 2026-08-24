@@ -55,7 +55,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
     return (
       <div className="shell section">
         <div className="mx-auto max-w-3xl">
-          <p className="eyebrow mb-4">Ваш ритуал готов</p>
+          <p className="eyebrow mb-4">Подбор готов</p>
           <h2 className="display text-[30px] md:text-[40px]">
             {ritual.length} {ritual.length === 1 ? "продукт" : ritual.length < 5 ? "продукта" : "продуктов"} под ваш
             запрос
@@ -90,7 +90,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
           </ul>
 
           <div className="card-flat mt-4 flex items-center justify-between p-4">
-            <span className="text-[14px] text-ink-soft">Стоимость ритуала</span>
+            <span className="text-[14px] text-ink-soft">Итого за набор</span>
             <span className="font-display text-[24px] tabular-nums">{rub(total)}</span>
           </div>
 
@@ -177,7 +177,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
               onClick={() => (isLast ? finish(answers) : setStep((s) => s + 1))}
               className="btn btn-primary btn-sm"
             >
-              {isLast ? "Показать ритуал" : "Далее →"}
+              {isLast ? "Показать подбор" : "Далее →"}
             </button>
           )}
         </div>

@@ -47,9 +47,9 @@ export function MasterProductList({
   }, [products, query, line, only]);
 
   const toggle = (id: string, field: "visible" | "featured") => {
-    const product = products.find((p) => p.id === id);
-    if (!product) return;
-    updateProduct(id, { [field]: !product[field] });
+    const item = products.find((p) => p.id === id);
+    if (!item) return;
+    updateProduct(id, { [field]: !item[field] });
     onChange();
   };
 
@@ -96,23 +96,39 @@ export function MasterProductList({
       {filtered.length === 0 ? (
         <div className="card px-6 py-14 text-center">
           <p className="text-[16px]">Ничего не нашлось</p>
+          <p className="mt-2 text-[14px] text-ink-soft">Измените запрос или сбросьте фильтры.</p>
         </div>
       ) : (
         <ul className="card divide-y divide-line overflow-hidden">
           {filtered.map((p) => (
             <li key={p.id} className={`flex items-center gap-4 p-3 sm:p-4 ${p.visible ? "" : "bg-sand/60"}`}>
-              <div className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-lg border border-line bg-sand">
+              <Link
+                href={`/master/products/edit?id=${p.id}`}
+                className="relative h-[56px] w-[56px] shrink-0 overflow-hidden rounded-lg border border-line bg-paper"
+              >
                 {p.image ? (
-                  <Image src={withBasePath(p.image)} alt="" fill sizes="56px" className="object-contain p-1" unoptimized />
+                  <Image
+                    src={p.image.startsWith("data:") ? p.image : withBasePath(p.image)}
+                    alt=""
+                    fill
+                    sizes="56px"
+                    className="object-contain p-1"
+                    unoptimized
+                  />
                 ) : (
                   <span className="flex h-full items-center justify-center text-[10px] text-muted">нет фото</span>
                 )}
-              </div>
+              </Link>
 
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[15px]">{p.nameEn || p.nameRu}</p>
+                <p className="truncate text-[15px]">
+                  <Link href={`/master/products/edit?id=${p.id}`} className="transition-colors hover:text-olive-deep">
+                    {p.nameEn || p.nameRu}
+                  </Link>
+                </p>
                 <p className="mt-0.5 truncate text-[13px] text-muted">
                   {p.line} · {CATEGORIES[p.category as CategoryKey] ?? CATEGORIES.other}
+                  {p.volume ? ` · ${p.volume}` : ""}
                 </p>
               </div>
 
@@ -137,6 +153,9 @@ export function MasterProductList({
                 >
                   Главная
                 </button>
+                <Link href={`/master/products/edit?id=${p.id}`} className="btn btn-soft btn-sm !px-3">
+                  Изменить
+                </Link>
               </div>
             </li>
           ))}

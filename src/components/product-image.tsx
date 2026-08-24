@@ -20,14 +20,14 @@ export function ProductImage({
   if (!src) return <Placeholder label={alt} className={className} />;
 
   return (
-    <div className={`relative overflow-hidden bg-sand ${className}`}>
+    <div className={`relative overflow-hidden bg-paper ${className}`}>
       <Image
         src={withBasePath(src)}
         alt={alt}
         fill
         sizes={sizes}
         priority={priority}
-        className="object-contain p-5 mix-blend-multiply"
+        className="object-contain p-5"
       />
     </div>
   );

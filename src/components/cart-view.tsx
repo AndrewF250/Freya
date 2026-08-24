@@ -65,7 +65,7 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
       <div className="shell section">
         <Empty
           title="В корзине пока пусто"
-          text="Загляните в каталог или пройдите подбор — соберём ритуал под ваши волосы."
+          text="Загляните в каталог или пройдите подбор — подберём уход под ваши волосы."
         >
           <Link href="/shop" className="btn btn-primary btn-sm">
             В каталог
