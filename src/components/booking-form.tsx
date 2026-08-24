@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { parseBookingSlots } from "@/lib/booking-slots";
 import { collectBookingPayload, formatBookingMessage, buildTelegramBookingUrl } from "@/lib/booking";
 import { submitBooking, type FormState } from "@/lib/forms";
 import { getSettings } from "@/lib/settings";
 import { QUIZ_STORAGE_KEY } from "./quiz-flow";
-
-const SLOTS = ["10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
 
 type SavedQuiz = { summary: string[]; products: string[] };
 
@@ -19,6 +18,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   const [attach, setAttach] = useState(true);
   const formRef = useRef<HTMLFormElement>(null);
   const settings = getSettings();
+  const slots = parseBookingSlots(settings);
 
   useEffect(() => {
     try {
@@ -119,7 +119,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
         <div>
           <span className="field-label">Удобное время</span>
           <div className="flex flex-wrap gap-2">
-            {SLOTS.map((s) => (
+            {slots.map((s) => (
               <button
                 key={s}
                 type="button"

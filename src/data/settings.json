@@ -14,5 +14,13 @@
   "aboutText": "Я Кристина — парикмахер-стилист и амбассадор Davines в Перми. Больше десяти лет работаю с волосами и всё это время убеждаюсь в одном: домашний уход решает больше, чем любая процедура в салоне. Поэтому я не продаю банки — я подбираю уход под ваши волосы и объясняю, зачем в нём каждый шаг.",
   "deliveryText": "Самовывоз из студии на Комсомольском — бесплатно. Доставка по Перми — 500 ₽, по России — по тарифам СДЭК. Оплата при получении или переводом.",
   "yandexMapUrl": "https://yandex.ru/maps/-/CTw2n22M",
-  "yandexMapEmbed": "https://yandex.ru/map-widget/v1/?source=constructorLink&url=https%3A%2F%2Fyandex.ru%2Fmaps%2Forg%2Ffreya_studio%2F14233224141%2F"
+  "yandexMapEmbed": "https://yandex.ru/map-widget/v1/?source=constructorLink&url=https%3A%2F%2Fyandex.ru%2Fmaps%2Forg%2Ffreya_studio%2F14233224141%2F",
+  "bookingSlots": ["10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+  "bookingSlotPresets": [
+    { "id": "weekday", "name": "Будни", "slots": ["10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00", "18:00", "19:00"] },
+    { "id": "morning", "name": "Утро", "slots": ["10:00", "11:00", "12:00", "13:00"] },
+    { "id": "evening", "name": "Вечер", "slots": ["15:00", "16:00", "17:00", "18:00", "19:00"] },
+    { "id": "saturday", "name": "Суббота", "slots": ["10:00", "12:00", "14:00", "16:00", "18:00"] }
+  ],
+  "imageBgPresets": ["#ffffff", "#f5f6f1", "#f8f8f8", "#fafafa", "#f2f2f2"]
 }

@@ -19,7 +19,7 @@ export default function MasterSettingsPage() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="display text-[28px]">Настройки</h1>
-          <p className="mt-2 text-[14px] text-muted">Контакты, тексты и ссылки студии.</p>
+          <p className="mt-2 text-[14px] text-muted">Контакты, тексты, слоты записи и пресеты студии.</p>
         </div>
         <button
           type="button"

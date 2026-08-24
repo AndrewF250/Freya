@@ -18,10 +18,15 @@ export const SETTING_DEFAULTS = {
   deliveryText: "",
 };
 
+import type { SlotPreset } from "./booking-slots";
+
 export type SettingKey = keyof typeof SETTING_DEFAULTS;
 export type Settings = Record<SettingKey, string> & {
   yandexMapUrl?: string;
   yandexMapEmbed?: string;
+  bookingSlots?: string[];
+  bookingSlotPresets?: SlotPreset[];
+  imageBgPresets?: string[];
 };
 
 export const SETTING_LABELS: Record<SettingKey, string> = {

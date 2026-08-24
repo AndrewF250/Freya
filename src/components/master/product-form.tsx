@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { CATEGORIES, CATEGORY_KEYS, CONCERNS, CONCERN_KEYS, HAIR_TYPES, HAIR_TYPE_KEYS } from "@/lib/catalog";
 import { DEFAULT_IMAGE_BG, normalizeHex, sampleImageBackground } from "@/lib/image-bg";
-import { removeProduct, saveProductFromInput, type SaveProductResult } from "@/lib/master-store";
+import { removeProduct, saveProductFromInput, getStoredSettings, type SaveProductResult } from "@/lib/master-store";
+import { parseImageBgPresets } from "@/lib/booking-slots";
 import { withBasePath } from "@/lib/paths";
 import { ImageBgPicker } from "./image-bg-picker";
 
@@ -48,6 +49,7 @@ export function ProductForm({
   const [visible, setVisible] = useState(product?.visible ?? true);
   const [featured, setFeatured] = useState(product?.featured ?? false);
   const [imageBg, setImageBg] = useState(product?.imageBg ?? DEFAULT_IMAGE_BG);
+  const imageBgPresets = parseImageBgPresets(getStoredSettings());
 
   useEffect(() => {
     return () => {
@@ -147,7 +149,7 @@ export function ProductForm({
       description,
       usage,
       image,
-      imageBg: nextImageBg,
+      imageBg: normalizeHex(nextImageBg),
       concerns,
       hairTypes,
       visible,
@@ -372,7 +374,7 @@ export function ProductForm({
               )}
 
               {imageSrc && (
-                <ImageBgPicker imageSrc={imageSrc} value={imageBg} onChange={setImageBg} />
+                <ImageBgPicker imageSrc={imageSrc} value={imageBg} onChange={setImageBg} presets={imageBgPresets} />
               )}
             </div>
           </div>

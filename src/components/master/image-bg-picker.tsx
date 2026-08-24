@@ -8,15 +8,18 @@ import {
   pickColorAtPoint,
   sampleImageBackground,
 } from "@/lib/image-bg";
+import { DEFAULT_IMAGE_BG_PRESETS } from "@/lib/booking-slots";
 
 export function ImageBgPicker({
   imageSrc,
   value,
   onChange,
+  presets = DEFAULT_IMAGE_BG_PRESETS,
 }: {
   imageSrc: string;
   value: string;
   onChange: (hex: string) => void;
+  presets?: string[];
 }) {
   const imgRef = useRef<HTMLImageElement>(null);
   const [picking, setPicking] = useState(false);
@@ -60,6 +63,20 @@ export function ImageBgPicker({
         Подберите цвет фона packshot — карточка на сайте совпадёт с фото. Кликните по превью или используйте пипетку.
       </p>
 
+      <div className="mt-3 flex flex-wrap gap-2">
+        {presets.map((preset) => (
+          <button
+            key={preset}
+            type="button"
+            className="h-8 w-8 rounded-full border border-line"
+            style={{ backgroundColor: preset }}
+            title={preset}
+            aria-label={`Пресет ${preset}`}
+            onClick={() => onChange(normalizeHex(preset))}
+          />
+        ))}
+      </div>
+
       <div className="mt-3 flex flex-wrap items-center gap-3">
         <label className="flex items-center gap-2">
           <input
@@ -71,7 +88,7 @@ export function ImageBgPicker({
           <input
             type="text"
             value={value}
-            onChange={(e) => onChange(normalizeHex(e.target.value))}
+            onChange={(e) => onChange(e.target.value)}
             placeholder={DEFAULT_IMAGE_BG}
             className="field !w-[108px] !py-2 font-mono text-[13px]"
             spellCheck={false}

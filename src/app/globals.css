@@ -58,6 +58,17 @@
     letter-spacing: 0.28em;
     text-transform: uppercase;
   }
+  .logo-freya {
+    font-family: var(--font-logo), var(--font-montserrat), ui-sans-serif, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.44em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 640px) {
+    .logo-freya { font-size: 17px; letter-spacing: 0.46em; }
+  }
   .display {
     font-family: var(--font-display);
     font-weight: 300;
