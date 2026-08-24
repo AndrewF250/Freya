@@ -145,8 +145,16 @@
   @media (min-width: 768px) { .section { padding-block: 96px; } }
   .section-tight { padding-block: 32px; }
   @media (min-width: 768px) { .section-tight { padding-block: 64px; } }
-  .mobile-cta-spacer { height: 72px; }
-  @media (min-width: 768px) { .mobile-cta-spacer { height: 0; } }
+  .mobile-cta-spacer {
+    height: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-cta-offset {
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+  @media (min-width: 768px) {
+    .mobile-cta-spacer { height: 0; }
+    .mobile-cta-offset { padding-bottom: 0; }
+  }
 
   /* Заглушка под будущее фото */
   .ph {

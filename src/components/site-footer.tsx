@@ -12,7 +12,7 @@ const NAV = [
 
 export function SiteFooter({ settings }: { settings: Settings }) {
   return (
-    <footer className="mt-auto bg-navy text-cream">
+    <footer className="mobile-cta-offset mt-auto bg-navy text-cream">
       <div className="shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
         <div>
           <p className="display max-w-[16ch] text-[30px] md:text-[36px]">Здоровые корни — подлинная красота</p>
