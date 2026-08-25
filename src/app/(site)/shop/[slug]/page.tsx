@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AddToCartBlock } from "@/components/add-to-cart";
+import { BreadcrumbJsonLd, ProductJsonLd } from "@/components/json-ld";
 import { ProductCard } from "@/components/product-card";
 import { ProductImage } from "@/components/product-image";
 import { getProductBySlug, getRelated, getVisibleProducts } from "@/lib/products";
@@ -19,7 +20,7 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
     if (!product) return { title: "Продукт не найден" };
     return {
       title: `${product.nameEn || product.nameRu} — ${product.line}`,
-      description: product.description.slice(0, 160),
+      description: `${product.description.slice(0, 130)} Купить в салоне ФРЕЯ, Перм.`,
       alternates: { canonical: `/shop/${product.slug}/` },
     };
   });
@@ -36,6 +37,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
+      <ProductJsonLd product={product} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Каталог", path: "/shop/" },
+          { name: product.line, path: `/shop/?line=${encodeURIComponent(product.line)}` },
+          { name: product.nameEn || product.nameRu, path: `/shop/${product.slug}/` },
+        ]}
+      />
       <div className="shell pt-8">
         <nav aria-label="Хлебные крошки" className="flex flex-wrap items-center gap-2 text-[13px] text-muted">
           <Link href="/shop" className="transition-colors hover:text-ink">

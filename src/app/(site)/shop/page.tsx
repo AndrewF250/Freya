@@ -7,9 +7,9 @@ import { getVisibleProducts } from "@/lib/products";
 import { sortLines } from "@/lib/catalog";
 
 export const metadata: Metadata = {
-  title: "Каталог Davines",
+  title: "Купить Davines в Перми",
   description:
-    "Купить Davines в Перми у амбассадора бренда: шампуни, маски, масла и стайлинг с подбором под тип волос.",
+    "Каталог Davines в салоне ФРЕЯ, Перм: шампуни, маски, масла и стайлинг с подбором под тип волос. Оригинальная продукция, доставка по Перми и СДЭК.",
   alternates: { canonical: "/shop/" },
 };
 

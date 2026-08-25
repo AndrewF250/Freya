@@ -6,7 +6,8 @@ import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Корзина",
-  description: "Оформление заказа продукции Davines у Кристины.",
+  description: "Оформление заказа Davines в салоне ФРЕЯ, Перм. Доставка по городу и СДЭК по России.",
+  alternates: { canonical: "/cart/" },
 };
 
 export default function CartPage() {
@@ -17,7 +18,7 @@ export default function CartPage() {
       <PageHead
         eyebrow="Заказ"
         title="Корзина"
-        text="Оставьте контакты — заказ уйдёт Кристине в Telegram. Она подтвердит наличие и согласует получение."
+        text="Оставьте контакты — заявка придёт в салон. Мы подтвердим наличие и согласуем получение в Telegram."
         photo={PHOTOS.catMini}
       />
       <CartView deliveryText={settings.deliveryText} />

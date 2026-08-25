@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
-import { defaultDescription, defaultKeywords, siteName, siteUrl } from "@/lib/seo";
+import { defaultDescription, defaultKeywords, defaultOgImage, ogImageUrl, sharedOpenGraph, siteName, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -22,10 +22,8 @@ export const metadata: Metadata = {
   creator: siteName,
   robots: { index: true, follow: true },
   openGraph: {
-    type: "website",
-    locale: "ru_RU",
+    ...sharedOpenGraph,
     url: siteUrl,
-    siteName,
     title: `${siteName} — профессиональный уход Davines в Перми`,
     description: defaultDescription,
   },
@@ -33,6 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteName} — Davines в Перми`,
     description: defaultDescription,
+    images: [ogImageUrl(defaultOgImage)],
   },
   alternates: {
     canonical: "/",

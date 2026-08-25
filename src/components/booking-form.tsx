@@ -185,7 +185,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
           <span>
             <span className="block text-[14px]">Приложить результат подбора</span>
             <span className="mt-1 block text-[13px] leading-relaxed text-muted">
-              Кристина увидит ваши ответы и подобранный уход: {quiz.products.slice(0, 2).join(", ")}
+              Мы увидим ваши ответы и подобранный уход: {quiz.products.slice(0, 2).join(", ")}
               {quiz.products.length > 2 ? " и другие" : ""}.
             </span>
           </span>
@@ -204,7 +204,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
 
       <p className="mt-4 text-center text-[12px] leading-relaxed text-muted">
         Нажимая кнопку, вы соглашаетесь на обработку персональных данных. После отправки можно сразу написать
-        Кристине в Telegram с заполненными данными.
+        нам в Telegram с заполненными данными.
       </p>
     </form>
   );

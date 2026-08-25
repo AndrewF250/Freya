@@ -141,7 +141,7 @@ export function ShopBrowser({
           <div className="card-flat mt-8 p-4">
             <p className="text-[14px]">Не уверены, что нужно?</p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">
-              Пять вопросов — и Кристина подберёт уход под ваши волосы.
+              Пять вопросов — и мы подберём уход под ваши волосы.
             </p>
             <Link href="/quiz" className="btn btn-primary btn-sm mt-4 w-full">
               Пройти подбор

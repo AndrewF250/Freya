@@ -9,7 +9,7 @@ import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Контакты",
-  description: "Салон ФРЕЯ, Перм: Комсомольский проспект 51А. Телефон, Telegram @bochkariova_cris, часы работы и карта.",
+  description: "Салон ФРЕЯ, Перм: Комсомольский проспект 51А. Телефон, Telegram @bochkariova_cris, часы работы, карта и как добраться.",
   alternates: { canonical: "/contacts/" },
 };
 

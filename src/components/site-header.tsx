@@ -7,7 +7,7 @@ import { useCart } from "./cart";
 import { SalonLogo } from "./salon-logo";
 
 const NAV = [
-  { href: "/about", label: "О Кристине" },
+  { href: "/about", label: "Студия" },
   { href: "/shop", label: "Каталог" },
   { href: "/quiz", label: "Подбор ухода" },
   { href: "/booking", label: "Запись" },

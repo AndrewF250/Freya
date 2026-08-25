@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { PhotoBackdrop } from "@/components/photo-backdrop";
 import { ProductCard } from "@/components/product-card";
 import { SitePhoto } from "@/components/site-photo";
@@ -9,6 +10,13 @@ import { getFeaturedProducts, getLineCounts, getVisibleProducts } from "@/lib/pr
 import { getSettings } from "@/lib/settings";
 import { sortLines } from "@/lib/catalog";
 import { plural } from "@/lib/format";
+
+export const metadata: Metadata = {
+  title: "Салон ФРЕЯ — Davines в Перми",
+  description:
+    "Салон ФРЕЯ в Перми: оригинальный Davines, подбор домашнего ухода за минуту, запись в салон и доставка по Перми и России.",
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   const settings = getSettings();
@@ -31,6 +39,9 @@ export default function HomePage() {
             <h1 className="display text-[30px] sm:text-[42px] md:text-[52px] xl:text-[64px]">{settings.heroTitle}</h1>
             <p className="mt-5 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-[16px] xl:max-w-[52ch]">
               {settings.heroText}
+            </p>
+            <p className="mt-4 text-[13px] tracking-[0.04em] text-muted">
+              Диагностика · оригинал Davines · доставка по Перми
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
@@ -58,7 +69,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Почему у Кристины ────────────────────────────── */}
+      {/* ── Почему к нам ─────────────────────────────────── */}
       <section className="border-b border-line">
         <div className="shell grid gap-y-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-10 xl:py-16">
           {[
@@ -72,11 +83,11 @@ export default function HomePage() {
             },
             {
               t: "Уход, а не набор банок",
-              d: "Каждый продукт в подборке решает свою задачу, и я объясняю, зачем он вам.",
+              d: "Каждый продукт в подборке решает свою задачу — и мы объясняем, зачем он вам.",
             },
             {
-              t: "Поддержка после покупки",
-              d: "Пишите, если что-то идёт не так. Скорректируем схему без новой записи.",
+              t: "Подбор при покупке",
+              d: "Подбор домашнего ухода бесплатно, если берёте продукты в салоне после консультации.",
             },
           ].map((item) => (
             <div key={item.t} className="lg:border-l lg:border-line lg:pl-6 lg:first:border-0 lg:first:pl-0">
@@ -87,7 +98,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── О Кристине ───────────────────────────────────── */}
+      {/* ── Мастер и студия ──────────────────────────────── */}
       <section className="section border-b border-line">
         <div className="shell grid gap-10 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.15fr)] md:items-center lg:gap-16 xl:gap-20">
           <SitePhoto
@@ -105,7 +116,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/about" className="btn btn-outline">
-                Подробнее о Кристине
+                О студии и мастере
               </Link>
               <Link href="/booking" className="btn btn-soft">
                 Записаться на приём
@@ -131,8 +142,8 @@ export default function HomePage() {
               Не знаете, с чего начать домашний уход?
             </h2>
             <p className="mt-5 max-w-[54ch] text-[15px] leading-relaxed text-cream/65">
-              Пять вопросов о ваших волосах и коже головы — и я подберу уход из продуктов Davines под вашу задачу.
-              Результат можно сразу купить или взять с собой на консультацию.
+              Пять вопросов о ваших волосах и коже головы — и мы подберём уход из продуктов Davines под вашу
+              задачу. Результат можно сразу купить или взять с собой на консультацию.
             </p>
           </div>
           <Link href="/quiz" className="btn btn-ghost-light justify-self-start md:justify-self-end">
@@ -147,7 +158,7 @@ export default function HomePage() {
         <div className="shell relative section">
           <SectionHead
             eyebrow="Продукция"
-            title="Выбор Кристины"
+            title="Что чаще уезжает домой"
             text="То, что чаще всего уезжает домой после консультации — и работает у большинства."
             href="/shop"
             hrefLabel="Весь каталог"
@@ -222,8 +233,8 @@ export default function HomePage() {
               />
               <Step
                 n="03"
-                title="Остаюсь на связи"
-                text="Через пару недель уточняю, как идёт. При необходимости меняем шаг или объём."
+                title="Остаёмся на связи"
+                text="Через пару недель уточняем, как идёт. При необходимости меняем шаг или объём."
               />
             </div>
 
@@ -232,7 +243,7 @@ export default function HomePage() {
                 Начать подбор
               </Link>
               <Link href="/booking" className="btn btn-outline">
-                Записаться к Кристине
+                Записаться в салон
               </Link>
             </div>
           </div>

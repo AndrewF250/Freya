@@ -61,8 +61,8 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
             запрос
           </h2>
           <p className="mt-4 max-w-[56ch] text-[15px] leading-relaxed text-ink-soft">
-            Подборка собрана по вашим ответам. Это отправная точка — на консультации я могу её скорректировать, когда
-            увижу волосы вживую.
+            Подборка собрана по вашим ответам. Это отправная точка — на консультации мы можем её скорректировать, когда
+            увидим волосы вживую.
           </p>
 
           <ul className="mt-10 space-y-3">
@@ -108,7 +108,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
               label="Добавить в корзину"
             />
             <Link href="/booking" className="btn btn-outline w-full sm:w-auto">
-              Записаться с подбором
+              Записаться на диагностику
             </Link>
             <button type="button" onClick={restart} className="btn btn-soft w-full sm:w-auto">
               Пройти заново

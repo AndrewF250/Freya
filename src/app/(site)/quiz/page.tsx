@@ -7,7 +7,7 @@ import { getVisibleProducts } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Подбор ухода Davines",
   description:
-    "Онлайн-квиз: подберите шампунь, маску и уход Davines под тип волос. Результат можно купить или взять на консультацию к Кристине в Перми.",
+    "Онлайн-квиз: подберите шампунь, маску и уход Davines под тип волос в Перми. Результат можно купить или взять на консультацию в салон ФРЕЯ.",
   alternates: { canonical: "/quiz/" },
 };
 

@@ -17,14 +17,17 @@ export function MobileCta() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-cream/95 px-4 py-3 backdrop-blur-md md:hidden pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       <div className="mx-auto flex max-w-lg gap-2">
-        <Link href="/quiz" className="btn btn-outline btn-sm flex-1 !px-3">
+        <Link href="/quiz" className="btn btn-outline btn-sm flex-1 !px-2">
           Подбор
+        </Link>
+        <Link href="/booking" className="btn btn-soft btn-sm flex-1 !px-2">
+          Запись
         </Link>
         <a
           href={settings.telegram}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-primary btn-sm flex-1 !px-3"
+          className="btn btn-primary btn-sm flex-1 !px-2"
         >
           Telegram
         </a>

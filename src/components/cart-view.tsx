@@ -241,8 +241,13 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
           </button>
 
           <p className="mt-4 text-[12px] leading-relaxed text-muted">{deliveryText}</p>
+          <ul className="mt-4 space-y-2 text-[12px] leading-relaxed text-muted">
+            <li>· Оригинальный Davines от официального дистрибьютора</li>
+            <li>· Подтверждение заказа в Telegram в течение рабочего дня</li>
+            <li>· Доставка по Перми и СДЭК по России</li>
+          </ul>
           <p className="mt-3 text-[12px] leading-relaxed text-muted">
-            Оплата не проводится на сайте: Кристина подтвердит наличие и пришлёт способ оплаты.
+            Оплата не проводится на сайте: мы подтвердим наличие и пришлём способ оплаты.
           </p>
         </form>
       </aside>

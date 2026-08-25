@@ -8,8 +8,9 @@ import { telHref } from "@/lib/settings";
 import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
-  title: "Запись на приём",
-  description: "Запишитесь к Кристине в салон ФРЕЯ, Перм: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines.",
+  title: "Запись в салон",
+  description:
+    "Запись в салон ФРЕЯ, Перм: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines. Комсомольский проспект, 51А.",
   alternates: { canonical: "/booking/" },
 };
 
@@ -20,8 +21,8 @@ export default function BookingPage() {
     <>
       <PageHead
         eyebrow="Запись"
-        title="Записаться к Кристине"
-        text="Оставьте заявку на сайте или сразу напишите Кристине в Telegram с заполненными данными."
+        title="Запись в салон"
+        text="Оставьте заявку на сайте или напишите нам в Telegram — ответим и подтвердим время."
         photo={PHOTOS.catMask}
       />
 

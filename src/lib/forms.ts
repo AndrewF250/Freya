@@ -84,7 +84,7 @@ export async function submitBooking(formData: FormData): Promise<FormState> {
 
   return {
     ok: true,
-    message: `${name}, записал вас на ${date}${time ? ` в ${time}` : ""}. Кристина свяжется по номеру ${phone}, чтобы подтвердить.`,
+    message: `${name}, записали вас на ${date}${time ? ` в ${time}` : ""}. Мы свяжемся по номеру ${phone}, чтобы подтвердить. — Кристина, ${settings.salonName}`,
   };
 }
 
@@ -138,6 +138,6 @@ export async function submitOrder(formData: FormData): Promise<FormState> {
 
   return {
     ok: true,
-    message: `${name}, заказ на ${rub(total)} принят. Кристина позвонит на ${phone}, чтобы подтвердить наличие и способ получения.`,
+    message: `${name}, заказ на ${rub(total)} принят. Мы перезвоним на ${phone}, чтобы подтвердить наличие и способ получения. — Кристина, ${settings.salonName}`,
   };
 }

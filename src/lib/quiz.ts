@@ -95,7 +95,7 @@ export const QUIZ_STEPS: QuizStep[] = [
         concerns: { scalp: 3 },
         lines: { Naturaltech: 3 },
       },
-      { value: "unknown", label: "Не знаю", hint: "Кристина уточнит на консультации" },
+      { value: "unknown", label: "Не знаю", hint: "Уточним на консультации в салоне" },
     ],
   },
   {

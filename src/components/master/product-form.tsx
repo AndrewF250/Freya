@@ -419,7 +419,7 @@ export function ProductForm({
           />
           <Toggle
             label="Выводить на главной"
-            hint="Блок «Выбор Кристины»."
+            hint="Блок «Что чаще уезжает домой» на главной."
             checked={featured}
             onChange={setFeatured}
           />

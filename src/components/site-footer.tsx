@@ -3,7 +3,7 @@ import type { Settings } from "@/lib/settings";
 import { telHref } from "@/lib/settings";
 
 const NAV = [
-  { href: "/about", label: "О Кристине" },
+  { href: "/about", label: "Студия" },
   { href: "/shop", label: "Каталог Davines" },
   { href: "/quiz", label: "Подбор ухода" },
   { href: "/booking", label: "Запись" },

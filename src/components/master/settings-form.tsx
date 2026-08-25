@@ -24,7 +24,7 @@ const GROUPS: { title: string; hint?: string; keys: SettingKey[] }[] = [
   },
   {
     title: "Тексты на сайте",
-    hint: "Эти тексты видят клиенты на главной, в разделе «О Кристине» и при оформлении заказа.",
+    hint: "Эти тексты видят клиенты на главной, в разделе «Студия» и при оформлении заказа.",
     keys: ["heroTitle", "heroText", "aboutText", "deliveryText"],
   },
 ];

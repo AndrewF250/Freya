@@ -8,9 +8,9 @@ import { SERVICES } from "@/lib/services";
 import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
-  title: "О Кристине и студии ФРЕЯ",
+  title: "Студия ФРЕЯ — мастер и уход Davines",
   description:
-    "Кристина — парикмахер-стилист и амбассадор Davines в Перми. Диагностика волос, подбор ухода и запись в салон ФРЕЯ.",
+    "Студия ФРЕЯ в Перми: Кристина — амбассадор Davines. Диагностика волос, подбор ухода, услуги и запись в салон на Комсомольском, 51А.",
   alternates: { canonical: "/about/" },
 };
 
