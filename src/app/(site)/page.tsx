@@ -1,9 +1,4 @@
 import Link from "next/link";
-import { BrandBanner } from "@/components/brand-banner";
-import { BrandPhotos } from "@/components/brand-photos";
-import { CareMosaic } from "@/components/care-mosaic";
-import { FadeIn, Stagger, StaggerItem } from "@/components/motion";
-import { PhotoReveal } from "@/components/photo-reveal";
 import { ProductCard } from "@/components/product-card";
 import { SitePhoto } from "@/components/site-photo";
 import { WorkPhotos } from "@/components/work-photos";
@@ -30,7 +25,7 @@ export default function HomePage() {
       {/* ── Первый экран ─────────────────────────────────── */}
       <section className="border-b border-line bg-sand">
         <div className="shell grid items-center gap-8 py-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.7fr)] md:gap-10 md:py-14 lg:gap-14 lg:py-16 xl:gap-16 xl:py-20">
-          <FadeIn>
+          <div>
             <p className="eyebrow mb-5">Студия {settings.salonName} · Партнёр Davines</p>
             <h1 className="display text-[30px] sm:text-[42px] md:text-[52px] xl:text-[64px]">{settings.heroTitle}</h1>
             <p className="mt-5 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-[16px] xl:max-w-[52ch]">
@@ -51,22 +46,20 @@ export default function HomePage() {
               <Stat value={String(lines.length)} label={plural(lines.length, ["линейка", "линейки", "линеек"])} />
               <Stat value="10+" label="лет практики" />
             </dl>
-          </FadeIn>
+          </div>
 
-          <PhotoReveal>
-            <WorkPhotos
-              priority
-              fit="contain"
-              sizes="(max-width: 768px) 70vw, 26vw"
-              className="mx-auto aspect-[2/3] w-full max-w-[240px] rounded-card sm:max-w-[280px] md:mx-0 md:max-w-[320px] lg:max-w-[360px]"
-            />
-          </PhotoReveal>
+          <WorkPhotos
+            priority
+            fit="contain"
+            sizes="(max-width: 768px) 70vw, 26vw"
+            className="mx-auto aspect-[2/3] w-full max-w-[240px] rounded-card sm:max-w-[280px] md:mx-0 md:max-w-[320px] lg:max-w-[360px]"
+          />
         </div>
       </section>
 
       {/* ── Почему у Кристины ────────────────────────────── */}
       <section className="border-b border-line">
-        <Stagger className="shell grid gap-y-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-10 xl:py-16">
+        <div className="shell grid gap-y-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-10 xl:py-16">
           {[
             {
               t: "Диагностика до покупки",
@@ -85,27 +78,25 @@ export default function HomePage() {
               d: "Пишите, если что-то идёт не так. Скорректируем схему без новой записи.",
             },
           ].map((item) => (
-            <StaggerItem key={item.t} className="lg:border-l lg:border-line lg:pl-6 lg:first:border-0 lg:first:pl-0">
+            <div key={item.t} className="lg:border-l lg:border-line lg:pl-6 lg:first:border-0 lg:first:pl-0">
               <h3 className="text-[16px]">{item.t}</h3>
               <p className="mt-2 max-w-[38ch] text-[14px] leading-relaxed text-ink-soft">{item.d}</p>
-            </StaggerItem>
+            </div>
           ))}
-        </Stagger>
+        </div>
       </section>
 
       {/* ── О Кристине ───────────────────────────────────── */}
       <section className="section border-b border-line">
         <div className="shell grid gap-10 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.15fr)] md:items-center lg:gap-16 xl:gap-20">
-          <PhotoReveal>
-            <SitePhoto
-              src={PHOTOS.portrait.src}
-              alt={PHOTOS.portrait.alt}
-              fit="contain"
-              sizes="(max-width: 768px) 70vw, 28vw"
-              className="mx-auto aspect-[3/4] w-full max-w-[280px] rounded-card sm:max-w-[320px] md:mx-0 md:max-w-[360px] lg:max-w-[400px]"
-            />
-          </PhotoReveal>
-          <FadeIn delay={0.1}>
+          <SitePhoto
+            src={PHOTOS.portrait.src}
+            alt={PHOTOS.portrait.alt}
+            fit="contain"
+            sizes="(max-width: 768px) 70vw, 28vw"
+            className="mx-auto aspect-[3/4] w-full max-w-[280px] rounded-card sm:max-w-[320px] md:mx-0 md:max-w-[360px] lg:max-w-[400px]"
+          />
+          <div>
             <p className="eyebrow mb-3">{settings.masterTitle}</p>
             <h2 className="display text-[30px] md:text-[42px] xl:text-[48px]">{settings.masterName}</h2>
             <p className="mt-6 max-w-[54ch] text-[15px] leading-relaxed text-ink-soft md:text-[16px]">
@@ -119,34 +110,7 @@ export default function HomePage() {
                 Записаться на приём
               </Link>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ── Бренд Davines ────────────────────────────────── */}
-      <BrandBanner
-        src={PHOTOS.brandParma.src}
-        alt={PHOTOS.brandParma.alt}
-        className="border-b border-line"
-        overlay="from-navy/85 via-navy/55 to-navy/25"
-      />
-      <section className="relative -mt-[min(42vh,320px)] border-b border-line pb-0">
-        <div className="shell relative z-10 grid gap-8 py-16 md:grid-cols-[1fr_auto] md:items-end md:py-20 xl:py-24">
-          <FadeIn>
-            <p className="eyebrow mb-4 text-cream/50">Davines · Парма</p>
-            <h2 className="display max-w-[18ch] text-[28px] text-cream md:text-[40px] xl:text-[48px]">
-              Итальянский уход с характером
-            </h2>
-            <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-cream/70">
-              Семейный бренд из Пармы: натуральные ингредиенты, честный состав и философия «для хорошей жизни».
-              Я работаю с Davines как партнёр — и рекомендую только то, что проверила в кресле.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <Link href="/about" className="btn btn-ghost-light justify-self-start md:justify-self-end">
-              О бренде и студии →
-            </Link>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -154,16 +118,16 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-navy text-cream">
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[48%] lg:block" aria-hidden>
           <SitePhoto
-            src={PHOTOS.brandStylist.src}
+            src={PHOTOS.hands.src}
             alt=""
-            className="h-full w-full opacity-40"
+            className="h-full w-full opacity-35"
             sizes="48vw"
             objectPosition="center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/75 to-navy/30" />
         </div>
         <div className="shell relative grid gap-10 py-16 md:grid-cols-[1fr_auto] md:items-center md:py-20 xl:py-24">
-          <FadeIn>
+          <div>
             <p className="eyebrow mb-4 text-cream/45">Подбор ухода</p>
             <h2 className="display max-w-[20ch] text-[30px] md:text-[42px] xl:text-[48px]">
               Не знаете, с чего начать домашний уход?
@@ -172,12 +136,10 @@ export default function HomePage() {
               Пять вопросов о ваших волосах и коже головы — и я подберу уход из продуктов Davines под вашу задачу.
               Результат можно сразу купить или взять с собой на консультацию.
             </p>
-          </FadeIn>
-          <FadeIn delay={0.12}>
-            <Link href="/quiz" className="btn btn-ghost-light justify-self-start md:justify-self-end">
-              Пройти подбор →
-            </Link>
-          </FadeIn>
+          </div>
+          <Link href="/quiz" className="btn btn-ghost-light justify-self-start md:justify-self-end">
+            Пройти подбор →
+          </Link>
         </div>
       </section>
 
@@ -196,24 +158,6 @@ export default function HomePage() {
               <ProductCard key={p.id} product={p} priority={i < 4} />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Категории ухода ──────────────────────────────── */}
-      <section className="border-b border-line bg-sand">
-        <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16 xl:py-16">
-          <FadeIn>
-            <p className="eyebrow mb-3">Каталог</p>
-            <h2 className="display text-[28px] md:text-[38px]">От шампуня до стайлинга</h2>
-            <p className="mt-5 max-w-[50ch] text-[15px] leading-relaxed text-ink-soft">
-              В Davines каждая категория — отдельная история: очищение, питание, объём, кудри, защита цвета.
-              Я подбираю сочетание под ваш тип волос, а не продаю всё подряд.
-            </p>
-            <Link href="/shop" className="btn btn-outline mt-8">
-              Смотреть каталог
-            </Link>
-          </FadeIn>
-          <CareMosaic className="aspect-[4/3] min-h-[260px] lg:aspect-auto lg:min-h-[340px]" />
         </div>
       </section>
 
@@ -239,29 +183,26 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <PhotoReveal delay={0.1}>
-            <BrandPhotos
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              className="aspect-[3/2] rounded-card"
-              objectPosition="center 35%"
-            />
-          </PhotoReveal>
+          <SitePhoto
+            src={PHOTOS.still1.src}
+            alt={PHOTOS.still1.alt}
+            sizes="(max-width: 1024px) 100vw, 42vw"
+            className="aspect-[3/2] rounded-card"
+          />
         </div>
       </section>
 
       {/* ── Как это работает ─────────────────────────────── */}
       <section className="section">
         <div className="shell grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
-          <PhotoReveal>
-            <SitePhoto
-              src={PHOTOS.towel.src}
-              alt={PHOTOS.towel.alt}
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="aspect-[3/2] rounded-card lg:sticky lg:top-[92px] lg:aspect-[4/5]"
-              objectPosition="center 40%"
-            />
-          </PhotoReveal>
-          <FadeIn>
+          <SitePhoto
+            src={PHOTOS.towel.src}
+            alt={PHOTOS.towel.alt}
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            className="aspect-[3/2] rounded-card lg:sticky lg:top-[92px] lg:aspect-[4/5]"
+            objectPosition="center 40%"
+          />
+          <div>
             <SectionHead eyebrow="Как это работает" title="От запроса до результата" />
             <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
               <Step
@@ -289,7 +230,7 @@ export default function HomePage() {
                 Записаться к Кристине
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </>

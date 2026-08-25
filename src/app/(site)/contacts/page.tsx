@@ -28,7 +28,7 @@ export default function ContactsPage() {
         eyebrow="Контакты"
         title="Как нас найти"
         text="Студия на Комсомольском, 51А. Напишите в Telegram @bochkariova_cris, позвоните или оставьте заявку на сайте."
-        photo={PHOTOS.brandWide}
+        photo={PHOTOS.towel}
       />
 
       <section className="shell section grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
@@ -86,8 +86,8 @@ export default function ContactsPage() {
 
         <div className="grid gap-4">
           <SitePhoto
-            src={PHOTOS.brandStylist.src}
-            alt={PHOTOS.brandStylist.alt}
+            src={PHOTOS.still1.src}
+            alt={PHOTOS.still1.alt}
             sizes="(max-width: 1024px) 100vw, 55vw"
             className="aspect-[3/2] rounded-card"
           />
