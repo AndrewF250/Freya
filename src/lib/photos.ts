@@ -50,15 +50,6 @@ export const PHOTOS = {
   },
 } as const satisfies Record<string, SitePhotoSrc>;
 
-export const CATEGORY_TILES = [
-  { label: "Шампуни", photo: PHOTOS.catShampoo, href: "/shop?category=shampoo" },
-  { label: "Кондиционеры", photo: PHOTOS.catConditioner, href: "/shop?category=conditioner" },
-  { label: "Маски для волос", photo: PHOTOS.catMask, href: "/shop?category=mask" },
-  { label: "Несмываемый уход", photo: PHOTOS.catLeaveIn, href: "/shop?category=serum" },
-  { label: "Стайлинг", photo: PHOTOS.catStyling, href: "/shop?category=styling" },
-  { label: "Мини-формат", photo: PHOTOS.catMini, href: "/shop" },
-] as const;
-
 export const WORK_PHOTOS: SitePhotoSrc[] = [
   { src: "/photos/kristina-work-1.webp", alt: "Кристина за работой: уход у мойки" },
   { src: "/photos/kristina-work-2.webp", alt: "Кристина за работой: мытьё головы" },

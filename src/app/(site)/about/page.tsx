@@ -23,7 +23,7 @@ export default function AboutPage() {
         eyebrow={settings.masterTitle}
         title={settings.masterName}
         text={settings.aboutText}
-        photo={PHOTOS.still2}
+        photo={PHOTOS.catConditioner}
       />
 
       {/* ── Портрет и факты ──────────────────────────────── */}

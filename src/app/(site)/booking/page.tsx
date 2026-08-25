@@ -22,7 +22,7 @@ export default function BookingPage() {
         eyebrow="Запись"
         title="Записаться к Кристине"
         text="Оставьте заявку на сайте или сразу напишите Кристине в Telegram с заполненными данными."
-        photo={PHOTOS.hands}
+        photo={PHOTOS.catMask}
       />
 
       <div className="shell section grid gap-10 lg:grid-cols-[1fr_400px] lg:gap-16">

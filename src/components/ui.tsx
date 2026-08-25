@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SitePhoto } from "./site-photo";
+import { PhotoBackdrop, type PhotoBackdropTone } from "./photo-backdrop";
 
 /** Заголовок секции с надзаголовком и опциональной ссылкой справа. */
 export function SectionHead({
@@ -38,20 +38,23 @@ export function PageHead({
   text,
   children,
   photo,
+  photoTone = "sand",
 }: {
   eyebrow?: string;
   title: string;
   text?: string;
   children?: React.ReactNode;
   photo?: { src: string; alt: string };
+  photoTone?: PhotoBackdropTone;
 }) {
   return (
     <div className="relative overflow-hidden border-b border-line bg-sand">
       {photo && (
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[38%] lg:block xl:w-[42%]">
-          <SitePhoto src={photo.src} alt="" className="h-full w-full" sizes="42vw" />
-          <div className="absolute inset-0 bg-gradient-to-r from-sand via-sand/80 to-sand/25" />
-        </div>
+        <PhotoBackdrop
+          src={photo.src}
+          tone={photoTone}
+          photoClassName={photoTone === "navy" ? "opacity-40" : "opacity-90"}
+        />
       )}
       <div className="shell relative py-10 sm:py-14 md:py-20 xl:py-24">
         {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}

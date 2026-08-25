@@ -20,7 +20,7 @@ export default function QuizPage() {
         eyebrow="Квиз подбора"
         title="Подберём уход за минуту"
         text="Пять вопросов о волосах и коже головы. В конце — готовый набор ухода Davines, который можно сразу купить или взять с собой на консультацию."
-        photo={PHOTOS.towel}
+        photo={PHOTOS.catLeaveIn}
       />
       <QuizFlow
         products={products.map((p) => ({

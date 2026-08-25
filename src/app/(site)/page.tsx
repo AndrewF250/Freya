@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PhotoBackdrop } from "@/components/photo-backdrop";
 import { ProductCard } from "@/components/product-card";
 import { SitePhoto } from "@/components/site-photo";
 import { WorkPhotos } from "@/components/work-photos";
@@ -116,16 +117,13 @@ export default function HomePage() {
 
       {/* ── Квиз ─────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-navy text-cream">
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[48%] lg:block" aria-hidden>
-          <SitePhoto
-            src={PHOTOS.hands.src}
-            alt=""
-            className="h-full w-full opacity-35"
-            sizes="48vw"
-            objectPosition="center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/75 to-navy/30" />
-        </div>
+        <PhotoBackdrop
+          src={PHOTOS.catLeaveIn.src}
+          tone="navy"
+          photoClassName="opacity-35"
+          widthClass="w-[48%]"
+          sizes="48vw"
+        />
         <div className="shell relative grid gap-10 py-16 md:grid-cols-[1fr_auto] md:items-center md:py-20 xl:py-24">
           <div>
             <p className="eyebrow mb-4 text-cream/45">Подбор ухода</p>
@@ -144,8 +142,9 @@ export default function HomePage() {
       </section>
 
       {/* ── Избранные продукты ───────────────────────────── */}
-      <section className="section border-b border-line">
-        <div className="shell">
+      <section className="relative overflow-hidden border-b border-line bg-sand">
+        <PhotoBackdrop src={PHOTOS.catMask.src} tone="sand" photoClassName="opacity-50" widthClass="w-[44%]" />
+        <div className="shell relative section">
           <SectionHead
             eyebrow="Продукция"
             title="Выбор Кристины"
@@ -162,8 +161,14 @@ export default function HomePage() {
       </section>
 
       {/* ── Линейки ──────────────────────────────────────── */}
-      <section className="section border-b border-line">
-        <div className="shell grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+      <section className="relative overflow-hidden border-b border-line">
+        <PhotoBackdrop
+          src={PHOTOS.catConditioner.src}
+          tone="cream"
+          photoClassName="opacity-45"
+          widthClass="w-[46%] xl:w-[50%]"
+        />
+        <div className="shell relative section grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
           <div>
             <SectionHead
               eyebrow="Davines"
@@ -187,7 +192,7 @@ export default function HomePage() {
             src={PHOTOS.still1.src}
             alt={PHOTOS.still1.alt}
             sizes="(max-width: 1024px) 100vw, 42vw"
-            className="aspect-[3/2] rounded-card"
+            className="relative z-[1] aspect-[3/2] rounded-card"
           />
         </div>
       </section>

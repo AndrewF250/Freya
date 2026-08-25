@@ -28,7 +28,7 @@ export default function ContactsPage() {
         eyebrow="Контакты"
         title="Как нас найти"
         text="Студия на Комсомольском, 51А. Напишите в Telegram @bochkariova_cris, позвоните или оставьте заявку на сайте."
-        photo={PHOTOS.towel}
+        photo={PHOTOS.catStyling}
       />
 
       <section className="shell section grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
