@@ -24,7 +24,40 @@ export const PHOTOS = {
     src: "/photos/davines-hands.webp",
     alt: "Нанесение ухода Davines",
   },
+  catShampoo: {
+    src: "/photos/davines-cat-shampoo.webp",
+    alt: "Davines — шампуни",
+  },
+  catConditioner: {
+    src: "/photos/davines-cat-conditioner.webp",
+    alt: "Davines — кондиционеры",
+  },
+  catMask: {
+    src: "/photos/davines-cat-mask.webp",
+    alt: "Davines — маски для волос",
+  },
+  catLeaveIn: {
+    src: "/photos/davines-cat-leave-in.webp",
+    alt: "Davines — несмываемый уход",
+  },
+  catStyling: {
+    src: "/photos/davines-cat-styling.webp",
+    alt: "Davines — стайлинг",
+  },
+  catMini: {
+    src: "/photos/davines-cat-mini.webp",
+    alt: "Davines — мини-формат",
+  },
 } as const satisfies Record<string, SitePhotoSrc>;
+
+export const CATEGORY_TILES = [
+  { label: "Шампуни", photo: PHOTOS.catShampoo, href: "/shop?category=shampoo" },
+  { label: "Кондиционеры", photo: PHOTOS.catConditioner, href: "/shop?category=conditioner" },
+  { label: "Маски для волос", photo: PHOTOS.catMask, href: "/shop?category=mask" },
+  { label: "Несмываемый уход", photo: PHOTOS.catLeaveIn, href: "/shop?category=serum" },
+  { label: "Стайлинг", photo: PHOTOS.catStyling, href: "/shop?category=styling" },
+  { label: "Мини-формат", photo: PHOTOS.catMini, href: "/shop" },
+] as const;
 
 export const WORK_PHOTOS: SitePhotoSrc[] = [
   { src: "/photos/kristina-work-1.webp", alt: "Кристина за работой: уход у мойки" },
