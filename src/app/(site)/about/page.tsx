@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Placeholder } from "@/components/product-image";
+import { SitePhoto } from "@/components/site-photo";
+import { WorkPhotos } from "@/components/work-photos";
 import { PageHead, SectionHead, Step } from "@/components/ui";
+import { PHOTOS } from "@/lib/photos";
 import { SERVICES } from "@/lib/services";
 import { getSettings } from "@/lib/settings";
 
@@ -17,13 +19,20 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHead eyebrow={settings.masterTitle} title={settings.masterName} text={settings.aboutText} />
+      <PageHead
+        eyebrow={settings.masterTitle}
+        title={settings.masterName}
+        text={settings.aboutText}
+        photo={PHOTOS.still2}
+      />
 
       {/* ── Портрет и факты ──────────────────────────────── */}
-      <section className="shell section grid gap-10 md:grid-cols-[1fr_0.9fr] md:gap-16">
-        <Placeholder
-          label="Портрет Кристины в студии"
-          hint="public/kristina.jpg"
+      <section className="shell section grid gap-10 md:grid-cols-[1fr_0.95fr] md:gap-16 xl:gap-20">
+        <SitePhoto
+          src={PHOTOS.portrait.src}
+          alt={PHOTOS.portrait.alt}
+          objectPosition="center 28%"
+          sizes="(max-width: 768px) 100vw, 48vw"
           className="aspect-[4/5] rounded-card"
         />
 
@@ -131,11 +140,16 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Placeholder label="Интерьер студии" hint="public/studio-1.jpg" className="aspect-[3/4] rounded-card" />
-            <Placeholder
-              label="Рабочее место и продукция"
-              hint="public/studio-2.jpg"
+            <WorkPhotos
+              sizes="(max-width: 768px) 50vw, 28vw"
+              className="aspect-[3/4] rounded-card"
+            />
+            <SitePhoto
+              src={PHOTOS.still2.src}
+              alt={PHOTOS.still2.alt}
+              sizes="(max-width: 768px) 50vw, 28vw"
               className="mt-8 aspect-[3/4] rounded-card"
+              objectPosition="center"
             />
           </div>
         </div>

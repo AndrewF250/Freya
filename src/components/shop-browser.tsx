@@ -76,7 +76,7 @@ export function ShopBrowser({
         {filtersOpen ? "Скрыть фильтры" : `Фильтры${active ? " · активны" : ""}`}
       </button>
 
-      <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:gap-12">
+      <div className="grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-12 xl:grid-cols-[280px_1fr] xl:gap-16">
         {/* ── Фильтры ────────────────────────────────── */}
         <aside className={`lg:sticky lg:top-[92px] lg:self-start ${filtersOpen ? "block" : "hidden lg:block"}`}>
           <label className="block">
@@ -172,7 +172,7 @@ export function ShopBrowser({
               </button>
             </Empty>
           ) : (
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3 2xl:grid-cols-4">
               {filtered.map((p, i) => (
                 <ProductCard key={p.id} product={p} priority={i < 3} />
               ))}

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
-import { Placeholder } from "@/components/product-image";
+import { SitePhoto } from "@/components/site-photo";
+import { WorkPhotos } from "@/components/work-photos";
 import { SectionHead, Step } from "@/components/ui";
+import { PHOTOS } from "@/lib/photos";
 import { getFeaturedProducts, getLineCounts, getVisibleProducts } from "@/lib/products";
 import { getSettings } from "@/lib/settings";
 import { sortLines } from "@/lib/catalog";
@@ -22,11 +24,13 @@ export default function HomePage() {
     <>
       {/* ── Первый экран ─────────────────────────────────── */}
       <section className="border-b border-line bg-sand">
-        <div className="shell grid gap-10 py-14 md:grid-cols-2 md:items-center md:gap-16 md:py-24">
+        <div className="shell grid items-stretch gap-8 py-10 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] md:gap-10 md:py-14 lg:gap-14 lg:py-16 xl:gap-20 xl:py-20">
           <div>
             <p className="eyebrow mb-5">Студия {settings.salonName} · Партнёр Davines</p>
-            <h1 className="display text-[30px] sm:text-[42px] md:text-[62px]">{settings.heroTitle}</h1>
-            <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-[16px]">{settings.heroText}</p>
+            <h1 className="display text-[30px] sm:text-[42px] md:text-[52px] xl:text-[64px]">{settings.heroTitle}</h1>
+            <p className="mt-5 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-[16px] xl:max-w-[52ch]">
+              {settings.heroText}
+            </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
               <Link href="/quiz" className="btn btn-primary w-full sm:w-auto">
@@ -44,17 +48,20 @@ export default function HomePage() {
             </dl>
           </div>
 
-          <Placeholder
-            label="Фото студии или Кристины за работой"
-            hint="Загрузите изображение в public/hero.jpg"
-            className="aspect-[4/5] rounded-card md:aspect-[5/6]"
+          <SitePhoto
+            src={PHOTOS.portrait.src}
+            alt={PHOTOS.portrait.alt}
+            priority
+            objectPosition="center 28%"
+            sizes="(max-width: 768px) 100vw, 55vw"
+            className="aspect-[3/4] rounded-card md:aspect-auto md:min-h-[560px] md:h-full xl:min-h-[min(72vh,780px)]"
           />
         </div>
       </section>
 
       {/* ── Почему у Кристины ────────────────────────────── */}
       <section className="border-b border-line">
-        <div className="shell grid gap-y-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-10">
+        <div className="shell grid gap-y-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-10 xl:py-16">
           {[
             {
               t: "Диагностика до покупки",
@@ -75,7 +82,7 @@ export default function HomePage() {
           ].map((item) => (
             <div key={item.t} className="lg:border-l lg:border-line lg:pl-6 lg:first:border-0 lg:first:pl-0">
               <h3 className="text-[16px]">{item.t}</h3>
-              <p className="mt-2 max-w-[34ch] text-[14px] leading-relaxed text-ink-soft">{item.d}</p>
+              <p className="mt-2 max-w-[38ch] text-[14px] leading-relaxed text-ink-soft">{item.d}</p>
             </div>
           ))}
         </div>
@@ -83,16 +90,15 @@ export default function HomePage() {
 
       {/* ── О Кристине ───────────────────────────────────── */}
       <section className="section border-b border-line">
-        <div className="shell grid gap-10 md:grid-cols-[0.85fr_1fr] md:items-center md:gap-16">
-          <Placeholder
-            label="Портрет Кристины"
-            hint="public/kristina.jpg"
-            className="aspect-[4/5] rounded-card"
+        <div className="shell grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center lg:gap-16 xl:gap-20">
+          <WorkPhotos
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="aspect-[3/4] rounded-card md:aspect-[4/5] xl:min-h-[640px]"
           />
           <div>
             <p className="eyebrow mb-3">{settings.masterTitle}</p>
-            <h2 className="display text-[30px] md:text-[42px]">{settings.masterName}</h2>
-            <p className="mt-6 max-w-[52ch] text-[15px] leading-relaxed text-ink-soft md:text-[16px]">
+            <h2 className="display text-[30px] md:text-[42px] xl:text-[48px]">{settings.masterName}</h2>
+            <p className="mt-6 max-w-[54ch] text-[15px] leading-relaxed text-ink-soft md:text-[16px]">
               {settings.aboutText}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -108,11 +114,21 @@ export default function HomePage() {
       </section>
 
       {/* ── Квиз ─────────────────────────────────────────── */}
-      <section className="bg-navy text-cream">
-        <div className="shell grid gap-10 py-16 md:grid-cols-[1fr_auto] md:items-center md:py-20">
+      <section className="relative overflow-hidden bg-navy text-cream">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[48%] lg:block" aria-hidden>
+          <SitePhoto
+            src={PHOTOS.hands.src}
+            alt=""
+            className="h-full w-full opacity-35"
+            sizes="48vw"
+            objectPosition="center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/75 to-navy/30" />
+        </div>
+        <div className="shell relative grid gap-10 py-16 md:grid-cols-[1fr_auto] md:items-center md:py-20 xl:py-24">
           <div>
             <p className="eyebrow mb-4 text-cream/45">Подбор ухода</p>
-            <h2 className="display max-w-[20ch] text-[30px] md:text-[42px]">
+            <h2 className="display max-w-[20ch] text-[30px] md:text-[42px] xl:text-[48px]">
               Не знаете, с чего начать домашний уход?
             </h2>
             <p className="mt-5 max-w-[54ch] text-[15px] leading-relaxed text-cream/65">
@@ -136,7 +152,7 @@ export default function HomePage() {
             href="/shop"
             hrefLabel="Весь каталог"
           />
-          <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4 xl:gap-6">
             {featured.map((p, i) => (
               <ProductCard key={p.id} product={p} priority={i < 4} />
             ))}
@@ -146,56 +162,73 @@ export default function HomePage() {
 
       {/* ── Линейки ──────────────────────────────────────── */}
       <section className="section border-b border-line">
-        <div className="shell">
-          <SectionHead
-            eyebrow="Davines"
-            title="Линейки под конкретную задачу"
-            text="У каждой линейки свой ключевой ингредиент и своя работа. Выбирайте по запросу, а не по красивой банке."
-          />
-          <div className="mt-10 flex flex-wrap gap-2.5">
-            {lines.map(({ line, count }) => (
-              <Link
-                key={line}
-                href={`/shop?line=${encodeURIComponent(line)}`}
-                className="chip !px-4 !py-2.5 !text-[13px] hover:!border-navy"
-              >
-                {line}
-                <span className="text-muted">{count}</span>
-              </Link>
-            ))}
+        <div className="shell grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+          <div>
+            <SectionHead
+              eyebrow="Davines"
+              title="Линейки под конкретную задачу"
+              text="У каждой линейки свой ключевой ингредиент и своя работа. Выбирайте по запросу, а не по красивой банке."
+            />
+            <div className="mt-10 flex flex-wrap gap-2.5">
+              {lines.map(({ line, count }) => (
+                <Link
+                  key={line}
+                  href={`/shop?line=${encodeURIComponent(line)}`}
+                  className="chip !px-4 !py-2.5 !text-[13px] hover:!border-navy"
+                >
+                  {line}
+                  <span className="text-muted">{count}</span>
+                </Link>
+              ))}
+            </div>
           </div>
+          <SitePhoto
+            src={PHOTOS.still1.src}
+            alt={PHOTOS.still1.alt}
+            sizes="(max-width: 1024px) 100vw, 42vw"
+            className="aspect-[3/2] rounded-card"
+          />
         </div>
       </section>
 
       {/* ── Как это работает ─────────────────────────────── */}
       <section className="section">
-        <div className="shell">
-          <SectionHead eyebrow="Как это работает" title="От запроса до результата" />
-          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
-            <Step
-              n="01"
-              title="Разбираемся с запросом"
-              text="Онлайн-подбор или очная диагностика в студии: смотрим состояние длины и кожи головы."
-            />
-            <Step
-              n="02"
-              title="Собираем уход"
-              text="Два-четыре продукта Davines, которые дополняют друг друга, а не дублируют."
-            />
-            <Step
-              n="03"
-              title="Остаюсь на связи"
-              text="Через пару недель уточняю, как идёт. При необходимости меняем шаг или объём."
-            />
-          </div>
+        <div className="shell grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+          <SitePhoto
+            src={PHOTOS.towel.src}
+            alt={PHOTOS.towel.alt}
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            className="aspect-[3/2] rounded-card lg:sticky lg:top-[92px] lg:aspect-[4/5]"
+            objectPosition="center 40%"
+          />
+          <div>
+            <SectionHead eyebrow="Как это работает" title="От запроса до результата" />
+            <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+              <Step
+                n="01"
+                title="Разбираемся с запросом"
+                text="Онлайн-подбор или очная диагностика в студии: смотрим состояние длины и кожи головы."
+              />
+              <Step
+                n="02"
+                title="Собираем уход"
+                text="Два-четыре продукта Davines, которые дополняют друг друга, а не дублируют."
+              />
+              <Step
+                n="03"
+                title="Остаюсь на связи"
+                text="Через пару недель уточняю, как идёт. При необходимости меняем шаг или объём."
+              />
+            </div>
 
-          <div className="mt-14 flex flex-wrap gap-3 border-t border-line pt-10">
-            <Link href="/quiz" className="btn btn-primary">
-              Начать подбор
-            </Link>
-            <Link href="/booking" className="btn btn-outline">
-              Записаться к Кристине
-            </Link>
+            <div className="mt-14 flex flex-wrap gap-3 border-t border-line pt-10">
+              <Link href="/quiz" className="btn btn-primary">
+                Начать подбор
+              </Link>
+              <Link href="/booking" className="btn btn-outline">
+                Записаться к Кристине
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -206,7 +239,7 @@ export default function HomePage() {
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <dt className="font-display text-[30px] leading-none">{value}</dt>
+      <dt className="font-display text-[30px] leading-none xl:text-[36px]">{value}</dt>
       <dd className="mt-1.5 text-[12px] tracking-[0.04em] text-muted">{label}</dd>
     </div>
   );

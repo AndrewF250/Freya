@@ -139,12 +139,26 @@
   .field-label { display: block; font-size: 12px; letter-spacing: .04em; color: var(--color-ink-soft); margin-bottom: 6px; }
 
   /* ── Раскладка ───────────────────────────────────────── */
-  .shell { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 16px; }
+  .shell {
+    width: 100%;
+    max-width: 1680px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
   @media (min-width: 768px) { .shell { padding-inline: 32px; } }
+  @media (min-width: 1280px) { .shell { padding-inline: 48px; } }
+  @media (min-width: 1600px) {
+    .shell { max-width: 1800px; padding-inline: 64px; }
+  }
+  @media (min-width: 1920px) {
+    .shell { max-width: 1920px; padding-inline: 80px; }
+  }
   .section { padding-block: 48px; }
-  @media (min-width: 768px) { .section { padding-block: 96px; } }
+  @media (min-width: 768px) { .section { padding-block: 80px; } }
+  @media (min-width: 1280px) { .section { padding-block: 104px; } }
   .section-tight { padding-block: 32px; }
-  @media (min-width: 768px) { .section-tight { padding-block: 64px; } }
+  @media (min-width: 768px) { .section-tight { padding-block: 56px; } }
+  @media (min-width: 1280px) { .section-tight { padding-block: 72px; } }
   .mobile-cta-spacer {
     height: calc(5.25rem + env(safe-area-inset-bottom, 0px));
   }
