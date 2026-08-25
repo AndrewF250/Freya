@@ -24,7 +24,7 @@ export default function HomePage() {
     <>
       {/* ── Первый экран ─────────────────────────────────── */}
       <section className="border-b border-line bg-sand">
-        <div className="shell grid items-stretch gap-8 py-10 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] md:gap-10 md:py-14 lg:gap-14 lg:py-16 xl:gap-20 xl:py-20">
+        <div className="shell grid items-center gap-8 py-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.7fr)] md:gap-10 md:py-14 lg:gap-14 lg:py-16 xl:gap-16 xl:py-20">
           <div>
             <p className="eyebrow mb-5">Студия {settings.salonName} · Партнёр Davines</p>
             <h1 className="display text-[30px] sm:text-[42px] md:text-[52px] xl:text-[64px]">{settings.heroTitle}</h1>
@@ -48,13 +48,11 @@ export default function HomePage() {
             </dl>
           </div>
 
-          <SitePhoto
-            src={PHOTOS.portrait.src}
-            alt={PHOTOS.portrait.alt}
+          <WorkPhotos
             priority
-            objectPosition="center 28%"
-            sizes="(max-width: 768px) 100vw, 55vw"
-            className="aspect-[3/4] rounded-card md:aspect-auto md:min-h-[560px] md:h-full xl:min-h-[min(72vh,780px)]"
+            fit="contain"
+            sizes="(max-width: 768px) 70vw, 26vw"
+            className="mx-auto aspect-[2/3] w-full max-w-[240px] rounded-card sm:max-w-[280px] md:mx-0 md:max-w-[320px] lg:max-w-[360px]"
           />
         </div>
       </section>
@@ -90,10 +88,13 @@ export default function HomePage() {
 
       {/* ── О Кристине ───────────────────────────────────── */}
       <section className="section border-b border-line">
-        <div className="shell grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center lg:gap-16 xl:gap-20">
-          <WorkPhotos
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="aspect-[3/4] rounded-card md:aspect-[4/5] xl:min-h-[640px]"
+        <div className="shell grid gap-10 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.15fr)] md:items-center lg:gap-16 xl:gap-20">
+          <SitePhoto
+            src={PHOTOS.portrait.src}
+            alt={PHOTOS.portrait.alt}
+            fit="contain"
+            sizes="(max-width: 768px) 70vw, 28vw"
+            className="mx-auto aspect-[3/4] w-full max-w-[280px] rounded-card sm:max-w-[320px] md:mx-0 md:max-w-[360px] lg:max-w-[400px]"
           />
           <div>
             <p className="eyebrow mb-3">{settings.masterTitle}</p>

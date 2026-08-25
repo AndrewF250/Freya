@@ -8,6 +8,7 @@ export function SitePhoto({
   priority = false,
   sizes = "(max-width: 768px) 100vw, 50vw",
   objectPosition = "center",
+  fit = "cover",
 }: {
   src: string;
   alt: string;
@@ -15,6 +16,7 @@ export function SitePhoto({
   priority?: boolean;
   sizes?: string;
   objectPosition?: string;
+  fit?: "cover" | "contain";
 }) {
   return (
     <div className={`relative overflow-hidden bg-sand ${className}`}>
@@ -24,7 +26,7 @@ export function SitePhoto({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover"
+        className={fit === "contain" ? "object-contain" : "object-cover"}
         style={{ objectPosition }}
       />
     </div>

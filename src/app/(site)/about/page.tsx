@@ -27,13 +27,13 @@ export default function AboutPage() {
       />
 
       {/* ── Портрет и факты ──────────────────────────────── */}
-      <section className="shell section grid gap-10 md:grid-cols-[1fr_0.95fr] md:gap-16 xl:gap-20">
+      <section className="shell section grid items-center gap-10 md:grid-cols-[minmax(0,0.7fr)_1fr] md:gap-16 xl:gap-20">
         <SitePhoto
           src={PHOTOS.portrait.src}
           alt={PHOTOS.portrait.alt}
-          objectPosition="center 28%"
-          sizes="(max-width: 768px) 100vw, 48vw"
-          className="aspect-[4/5] rounded-card"
+          fit="contain"
+          sizes="(max-width: 768px) 70vw, 28vw"
+          className="mx-auto aspect-[3/4] w-full max-w-[280px] rounded-card sm:max-w-[320px] md:mx-0 md:max-w-[360px]"
         />
 
         <div className="self-center">
@@ -141,8 +141,9 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <WorkPhotos
-              sizes="(max-width: 768px) 50vw, 28vw"
-              className="aspect-[3/4] rounded-card"
+              fit="contain"
+              sizes="(max-width: 768px) 50vw, 22vw"
+              className="aspect-[2/3] rounded-card"
             />
             <SitePhoto
               src={PHOTOS.still2.src}

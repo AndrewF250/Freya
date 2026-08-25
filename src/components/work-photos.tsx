@@ -13,10 +13,12 @@ export function WorkPhotos({
   className = "",
   sizes = "(max-width: 768px) 100vw, 50vw",
   priority = false,
+  fit = "cover",
 }: {
   className?: string;
   sizes?: string;
   priority?: boolean;
+  fit?: "cover" | "contain";
 }) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
@@ -46,7 +48,7 @@ export function WorkPhotos({
             fill
             sizes={sizes}
             priority={priority && i === 0}
-            className="object-cover object-[center_20%]"
+            className={fit === "contain" ? "object-contain" : "object-cover object-[center_20%]"}
           />
         </motion.div>
       ))}
