@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FadeIn } from "@/components/motion";
+import { LinePhotos } from "@/components/line-photos";
+import { PhotoReveal } from "@/components/photo-reveal";
 import { SitePhoto } from "@/components/site-photo";
 import { WorkPhotos } from "@/components/work-photos";
 import { PageHead, SectionHead, Step } from "@/components/ui";
@@ -23,20 +26,22 @@ export default function AboutPage() {
         eyebrow={settings.masterTitle}
         title={settings.masterName}
         text={settings.aboutText}
-        photo={PHOTOS.still2}
+        photo={PHOTOS.brandParma}
       />
 
       {/* ── Портрет и факты ──────────────────────────────── */}
       <section className="shell section grid items-center gap-10 md:grid-cols-[minmax(0,0.7fr)_1fr] md:gap-16 xl:gap-20">
-        <SitePhoto
-          src={PHOTOS.portrait.src}
-          alt={PHOTOS.portrait.alt}
-          fit="contain"
-          sizes="(max-width: 768px) 70vw, 28vw"
-          className="mx-auto aspect-[3/4] w-full max-w-[280px] rounded-card sm:max-w-[320px] md:mx-0 md:max-w-[360px]"
-        />
+        <PhotoReveal>
+          <SitePhoto
+            src={PHOTOS.portrait.src}
+            alt={PHOTOS.portrait.alt}
+            fit="contain"
+            sizes="(max-width: 768px) 70vw, 28vw"
+            className="mx-auto aspect-[3/4] w-full max-w-[280px] rounded-card sm:max-w-[320px] md:mx-0 md:max-w-[360px]"
+          />
+        </PhotoReveal>
 
-        <div className="self-center">
+        <FadeIn delay={0.08} className="self-center">
           <h2 className="display text-[28px] md:text-[36px]">Почему Davines</h2>
           <p className="mt-5 text-[15px] leading-relaxed text-ink-soft md:text-[16px]">
             Я перепробовала много профессиональных марок и остановилась на Davines — итальянском семейном бренде из
@@ -55,11 +60,30 @@ export default function AboutPage() {
             <Fact value="45 мин" label="длится диагностика" />
             <Fact value="Парма" label="откуда приезжает продукция" />
           </dl>
+        </FadeIn>
+      </section>
+
+      <section className="border-y border-line bg-sand">
+        <div className="shell section grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-16">
+          <FadeIn>
+            <SectionHead
+              eyebrow="Essential Haircare"
+              title="Линейка, с которой всё началось"
+              text="Классическая линия Davines: растительные экстракты, понятные задачи и формулы, которые я использую в работе каждый день."
+            />
+          </FadeIn>
+          <PhotoReveal delay={0.1}>
+            <LinePhotos
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="aspect-[16/10] rounded-card"
+              objectPosition="center 40%"
+            />
+          </PhotoReveal>
         </div>
       </section>
 
       {/* ── Подход ───────────────────────────────────────── */}
-      <section className="border-y border-line bg-sand">
+      <section className="border-b border-line">
         <div className="shell section">
           <SectionHead
             eyebrow="Подход"
@@ -146,8 +170,8 @@ export default function AboutPage() {
               className="aspect-[2/3] rounded-card"
             />
             <SitePhoto
-              src={PHOTOS.still2.src}
-              alt={PHOTOS.still2.alt}
+              src={PHOTOS.brandTall.src}
+              alt={PHOTOS.brandTall.alt}
               sizes="(max-width: 768px) 50vw, 28vw"
               className="mt-8 aspect-[3/4] rounded-card"
               objectPosition="center"

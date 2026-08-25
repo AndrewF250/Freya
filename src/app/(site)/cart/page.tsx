@@ -18,7 +18,7 @@ export default function CartPage() {
         eyebrow="Заказ"
         title="Корзина"
         text="Оставьте контакты — заказ уйдёт Кристине в Telegram. Она подтвердит наличие и согласует получение."
-        photo={PHOTOS.still2}
+        photo={PHOTOS.careMask}
       />
       <CartView deliveryText={settings.deliveryText} />
     </>

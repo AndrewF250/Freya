@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BookingForm } from "@/components/booking-form";
+import { PhotoReveal } from "@/components/photo-reveal";
 import { SitePhoto } from "@/components/site-photo";
 import { PageHead } from "@/components/ui";
 import { PHOTOS } from "@/lib/photos";
@@ -22,19 +23,21 @@ export default function BookingPage() {
         eyebrow="Запись"
         title="Записаться к Кристине"
         text="Оставьте заявку на сайте или сразу напишите Кристине в Telegram с заполненными данными."
-        photo={PHOTOS.hands}
+        photo={PHOTOS.brandStylist}
       />
 
       <div className="shell section grid gap-10 lg:grid-cols-[1fr_400px] lg:gap-16">
         <BookingForm services={SERVICE_TITLES} />
 
         <aside className="lg:sticky lg:top-[92px] lg:self-start">
-          <SitePhoto
-            src={PHOTOS.still2.src}
-            alt={PHOTOS.still2.alt}
-            sizes="(max-width: 1024px) 100vw, 400px"
-            className="mb-5 hidden aspect-[3/2] rounded-card lg:block"
-          />
+          <PhotoReveal>
+            <SitePhoto
+              src={PHOTOS.brandNature.src}
+              alt={PHOTOS.brandNature.alt}
+              sizes="(max-width: 1024px) 100vw, 400px"
+              className="mb-5 hidden aspect-[3/2] rounded-card lg:block"
+            />
+          </PhotoReveal>
           <div className="card-flat p-5">
             <p className="eyebrow">Студия</p>
             <p className="mt-3 text-[15px]">{settings.address}</p>
