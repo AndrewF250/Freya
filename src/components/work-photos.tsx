@@ -22,36 +22,50 @@ export function WorkPhotos({
 }) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [prev, setPrev] = useState(0);
 
   useEffect(() => {
     if (reduceMotion) return;
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % WORK_PHOTOS.length);
+      setIndex((current) => {
+        setPrev(current);
+        return (current + 1) % WORK_PHOTOS.length;
+      });
     }, INTERVAL_MS);
     return () => window.clearInterval(id);
   }, [reduceMotion]);
 
+  const objectClass = fit === "contain" ? "object-contain" : "object-cover object-[center_20%]";
+  const current = WORK_PHOTOS[index];
+  const underneath = WORK_PHOTOS[prev];
+
   return (
-    <div className={`relative overflow-hidden bg-sand ${className}`}>
-      {WORK_PHOTOS.map((photo, i) => (
-        <motion.div
-          key={photo.src}
-          className="absolute inset-0"
-          initial={false}
-          animate={{ opacity: i === index ? 1 : 0 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 0.9, ease: EASE }}
-          aria-hidden={i !== index}
-        >
-          <Image
-            src={withBasePath(photo.src)}
-            alt={i === index ? photo.alt : ""}
-            fill
-            sizes={sizes}
-            priority={priority && i === 0}
-            className={fit === "contain" ? "object-contain" : "object-cover object-[center_20%]"}
-          />
-        </motion.div>
-      ))}
+    <div className={`relative overflow-hidden bg-[#1b2430] ${className}`}>
+      <Image
+        src={withBasePath(underneath.src)}
+        alt=""
+        fill
+        sizes={sizes}
+        priority={priority}
+        className={objectClass}
+        aria-hidden
+      />
+      <motion.div
+        key={current.src}
+        className="absolute inset-0"
+        initial={reduceMotion || index === prev ? false : { opacity: 0, scale: 1.02 }}
+        animate={{ opacity: 1, scale: reduceMotion ? 1 : 1 }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 1.15, ease: EASE }}
+      >
+        <Image
+          src={withBasePath(current.src)}
+          alt={current.alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className={objectClass}
+        />
+      </motion.div>
     </div>
   );
 }

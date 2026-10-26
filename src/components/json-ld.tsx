@@ -17,12 +17,12 @@ export function LocalBusinessJsonLd() {
     email: s.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Комсомольский проспект, 51А",
+      streetAddress: s.address.replace(/^Пермь,?\s*/i, ""),
       addressLocality: "Пермь",
       addressCountry: "RU",
     },
-    openingHours: "Mo-Sa 10:00-20:00",
-    sameAs: [s.telegram, s.whatsapp, s.instagram].filter((u) => u && u !== "#"),
+    openingHours: "Mo-Su 10:00-21:00",
+    sameAs: [s.telegram, s.whatsapp, s.instagram, s.vk].filter((u) => u && u !== "#"),
     priceRange: "₽₽",
     areaServed: "Пермь",
     employee: {

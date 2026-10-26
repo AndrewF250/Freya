@@ -23,6 +23,7 @@ export function SiteFooter({ settings }: { settings: Settings }) {
           <div className="mt-7 flex flex-wrap gap-2">
             <SocialLink href={settings.telegram} label="Telegram" />
             <SocialLink href={settings.whatsapp} label="WhatsApp" />
+            <SocialLink href={settings.vk} label="ВКонтакте" />
             <SocialLink href={settings.instagram} label="Instagram" />
           </div>
         </div>

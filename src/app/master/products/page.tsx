@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { MasterProductList } from "@/components/master/product-list";
-import { sortLines } from "@/lib/catalog";
+import { catalogFrom, sortLines } from "@/lib/catalog";
 import { isMasterAuthenticated } from "@/lib/master-auth";
-import { downloadJson, exportMasterData, getStoredProducts, resetMasterData } from "@/lib/master-store";
+import { downloadJson, exportMasterData, getStoredProducts, getStoredSettings, resetMasterData } from "@/lib/master-store";
 
 function MasterProductsContent() {
   const router = useRouter();
@@ -18,7 +18,7 @@ function MasterProductsContent() {
     if (!isMasterAuthenticated()) router.replace("/master");
   }, [router]);
 
-  const lines = sortLines([...new Set(products.map((p) => p.line))]);
+  const lines = sortLines([...new Set(products.map((p) => p.line))], catalogFrom(getStoredSettings()).lines);
   const hidden = products.filter((p) => !p.visible).length;
   const featured = products.filter((p) => p.featured).length;
 
@@ -28,7 +28,7 @@ function MasterProductsContent() {
         <div>
           <h1 className="display text-[28px] sm:text-[30px]">Товары</h1>
           <p className="mt-2 text-[14px] text-ink-soft">
-            {products.length} в каталоге · {hidden} скрыто · {featured} на главной
+            {products.length} в каталоге · {hidden} скрыто · {featured} в выборе Кристины
           </p>
         </div>
         <Link href="/master/products/new" className="btn btn-primary w-full sm:w-auto">

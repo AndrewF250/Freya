@@ -7,7 +7,7 @@ import { ProductCard } from "@/components/product-card";
 import { ProductImage } from "@/components/product-image";
 import { getProductBySlug, getRelated, getVisibleProducts } from "@/lib/products";
 import { getSettings } from "@/lib/settings";
-import { CATEGORIES, CONCERNS, HAIR_TYPES, type CategoryKey, type ConcernKey, type HairTypeKey } from "@/lib/catalog";
+import { catalogFrom, catalogLabel } from "@/lib/catalog";
 import { rub } from "@/lib/format";
 
 export function generateStaticParams() {
@@ -33,7 +33,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const related = getRelated(product);
   const settings = getSettings();
-  const categoryLabel = CATEGORIES[product.category as CategoryKey] ?? CATEGORIES.other;
+  const catalog = catalogFrom(settings);
+  const categoryLabel = catalogLabel(catalog.categories, product.category, "Другое");
 
   return (
     <>
@@ -72,6 +73,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div>
           <p className="eyebrow">
             {product.line} · {categoryLabel}
+            {product.featured ? " · Выбор Кристины" : ""}
           </p>
           <h1 className="display mt-3 text-[34px] md:text-[46px]">{product.nameEn || product.nameRu}</h1>
           <p className="mt-3 text-[15px] text-ink-soft">{product.nameRu}</p>
@@ -98,8 +100,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
 
           <Link href="/booking" className="btn btn-soft mt-3 w-full sm:w-auto">
-            Консультация по этому продукту
+            Записаться на диагностику с этим продуктом
           </Link>
+          <p className="mt-2 max-w-[46ch] text-[13px] leading-relaxed text-muted">
+            Разберём, подходит ли он вашим волосам, и соберём уход вокруг него. Результат подбора можно приложить к
+            заявке.
+          </p>
 
           {product.description && (
             <p className="mt-9 max-w-[54ch] text-[15px] leading-relaxed text-ink-soft">{product.description}</p>
@@ -109,12 +115,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <div className="mt-8 flex flex-wrap gap-2">
               {product.concerns.map((c) => (
                 <span key={c} className="badge">
-                  {CONCERNS[c as ConcernKey] ?? c}
+                  {catalogLabel(catalog.concerns, c, c)}
                 </span>
               ))}
               {product.hairTypes.map((h) => (
                 <span key={h} className="chip !cursor-default">
-                  {HAIR_TYPES[h as HairTypeKey] ?? h}
+                  {catalogLabel(catalog.hairTypes, h, h)}
                 </span>
               ))}
             </div>

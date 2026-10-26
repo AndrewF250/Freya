@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { LoginForm } from "@/components/master/login-form";
 import { isMasterAuthenticated } from "@/lib/master-auth";
@@ -8,15 +8,11 @@ import { getSettings } from "@/lib/settings";
 
 export default function MasterLoginPage() {
   const router = useRouter();
-  const [ready, setReady] = useState(false);
   const settings = getSettings();
 
   useEffect(() => {
     if (isMasterAuthenticated()) router.replace("/master/products");
-    setReady(true);
   }, [router]);
-
-  if (!ready) return null;
 
   return (
     <div className="shell flex min-h-screen items-center justify-center py-16">

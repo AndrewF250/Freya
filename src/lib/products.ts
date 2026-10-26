@@ -18,9 +18,24 @@ export type ProductView = {
   hairTypes: string[];
   visible: boolean;
   featured: boolean;
+  sortOrder?: number;
 };
 
-const sorted = [...products].sort((a, b) => a.sortOrder - b.sortOrder || a.nameRu.localeCompare(b.nameRu, "ru"));
+type SortableProduct = {
+  featured?: boolean;
+  sortOrder?: number;
+  nameRu?: string;
+  price?: number;
+};
+
+export function compareByPopularity(a: SortableProduct, b: SortableProduct): number {
+  if (Boolean(a.featured) !== Boolean(b.featured)) return a.featured ? -1 : 1;
+  return (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || (a.nameRu ?? "").localeCompare(b.nameRu ?? "", "ru");
+}
+
+const sorted = [...products]
+  .filter((p) => p.visible !== false)
+  .sort(compareByPopularity);
 
 export function getVisibleProducts(): ProductView[] {
   return sorted;
