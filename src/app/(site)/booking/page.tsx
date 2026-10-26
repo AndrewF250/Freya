@@ -10,7 +10,7 @@ import { getSettings } from "@/lib/settings";
 export const metadata: Metadata = {
   title: "Запись в салон",
   description:
-    "Запись в салон ФРЕЯ, Перм: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines. Комсомольский проспект, 51А.",
+    "Запись в салон ФРЕЯ, Пермь: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines. Улица Ленина, 50.",
   alternates: { canonical: "/booking/" },
 };
 
@@ -26,8 +26,10 @@ export default function BookingPage() {
         photo={PHOTOS.catMask}
       />
 
-      <div className="shell section grid gap-10 lg:grid-cols-[1fr_400px] lg:gap-16">
-        <BookingForm services={SERVICE_TITLES} />
+      <div className="shell section grid min-w-0 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-16">
+        <div className="min-w-0">
+          <BookingForm services={SERVICE_TITLES} />
+        </div>
 
         <aside className="lg:sticky lg:top-[92px] lg:self-start">
           <SitePhoto

@@ -95,7 +95,18 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
             <span className="font-display text-[24px] tabular-nums">{rub(total)}</span>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="card-flat mt-8 p-5">
+            <p className="text-[15px]">Хотите проверить набор на диагностике?</p>
+            <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">
+              Это стартовый уход по вашим ответам. На консультации Кристина посмотрит волосы вживую и при
+              необходимости скорректирует продукты.
+            </p>
+            <Link href="/booking" className="btn btn-primary mt-4 w-full sm:w-auto">
+              Записаться на диагностику
+            </Link>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <AddRitualButton
               products={ritual.map((p) => ({
                 slug: p.slug,
@@ -107,9 +118,6 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
               }))}
               label="Добавить в корзину"
             />
-            <Link href="/booking" className="btn btn-outline w-full sm:w-auto">
-              Записаться на диагностику
-            </Link>
             <button type="button" onClick={restart} className="btn btn-soft w-full sm:w-auto">
               Пройти заново
             </button>

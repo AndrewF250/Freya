@@ -9,7 +9,7 @@ import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Контакты",
-  description: "Салон ФРЕЯ, Перм: Комсомольский проспект 51А. Телефон, Telegram @bochkariova_cris, часы работы, карта и как добраться.",
+  description: "Салон ФРЕЯ, Пермь: улица Ленина, 50, 8 этаж. Телефон, Telegram @bochkariova_cris, часы работы, карта и как добраться.",
   alternates: { canonical: "/contacts/" },
 };
 
@@ -19,6 +19,7 @@ export default function ContactsPage() {
   const socials = [
     { href: settings.telegram, label: "Telegram" },
     { href: settings.whatsapp, label: "WhatsApp" },
+    { href: settings.vk, label: "ВКонтакте" },
     { href: settings.instagram, label: "Instagram" },
   ].filter((s) => s.href && s.href !== "#");
 
@@ -27,7 +28,7 @@ export default function ContactsPage() {
       <PageHead
         eyebrow="Контакты"
         title="Как нас найти"
-        text="Студия на Комсомольском, 51А. Напишите в Telegram @bochkariova_cris, позвоните или оставьте заявку на сайте."
+        text={`${settings.address}. Напишите в Telegram, позвоните или оставьте заявку на сайте.`}
         photo={PHOTOS.catStyling}
       />
 

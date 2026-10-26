@@ -4,9 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
-import { CATEGORIES, CATEGORY_KEYS, CONCERNS, CONCERN_KEYS, HAIR_TYPES, HAIR_TYPE_KEYS } from "@/lib/catalog";
+import {
+  catalogFrom,
+  uniqueCatalogKey,
+  type CatalogEntry,
+  type ResolvedCatalog,
+} from "@/lib/catalog";
 import { DEFAULT_IMAGE_BG, normalizeHex, sampleImageBackground } from "@/lib/image-bg";
-import { removeProduct, saveProductFromInput, getStoredSettings, type SaveProductResult } from "@/lib/master-store";
+import {
+  removeProduct,
+  saveProductFromInput,
+  getStoredSettings,
+  saveStoredSettings,
+  type SaveProductResult,
+} from "@/lib/master-store";
 import { parseImageBgPresets } from "@/lib/booking-slots";
 import { withBasePath } from "@/lib/paths";
 import { ImageBgPicker } from "./image-bg-picker";
@@ -48,8 +59,11 @@ export function ProductForm({
   const [removeImage, setRemoveImage] = useState(false);
   const [visible, setVisible] = useState(product?.visible ?? true);
   const [featured, setFeatured] = useState(product?.featured ?? false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const [imageBg, setImageBg] = useState(product?.imageBg ?? DEFAULT_IMAGE_BG);
+  const [catalog, setCatalog] = useState<ResolvedCatalog>(() => catalogFrom(getStoredSettings()));
   const imageBgPresets = parseImageBgPresets(getStoredSettings());
+  const lineOptions = [...new Set([...catalog.lines, ...lines, product?.line].filter(Boolean) as string[])];
 
   useEffect(() => {
     return () => {
@@ -98,7 +112,7 @@ export function ProductForm({
       setPending(false);
       return;
     }
-    if (!CATEGORY_KEYS.includes(category as (typeof CATEGORY_KEYS)[number])) {
+    if (!catalog.categories.some((c) => c.key === category)) {
       setState({ ok: false, message: "Выберите тип продукта." });
       setPending(false);
       return;
@@ -135,8 +149,14 @@ export function ProductForm({
       image = imagePath.startsWith("/") ? imagePath : `/${imagePath}`;
     }
 
-    const concerns = CONCERN_KEYS.filter((c) => fd.get(`concern:${c}`) === "on");
-    const hairTypes = HAIR_TYPE_KEYS.filter((h) => fd.get(`hair:${h}`) === "on");
+    const concerns = catalog.concerns.map((c) => c.key).filter((c) => fd.get(`concern:${c}`) === "on");
+    const hairTypes = catalog.hairTypes.map((h) => h.key).filter((h) => fd.get(`hair:${h}`) === "on");
+    persistCatalog({
+      ...catalog,
+      lines: catalog.lines.some((l) => l.toLowerCase() === line.toLowerCase())
+        ? catalog.lines
+        : [...catalog.lines, line],
+    });
 
     const result = saveProductFromInput(product?.id ?? null, {
       nameRu,
@@ -164,9 +184,30 @@ export function ProductForm({
     }
   }
 
+  function persistCatalog(next: ResolvedCatalog) {
+    const settings = getStoredSettings();
+    saveStoredSettings({ ...settings, catalog: next });
+    setCatalog(next);
+  }
+
+  function addCatalogEntry(kind: "categories" | "concerns" | "hairTypes", label: string) {
+    const trimmed = label.trim();
+    if (trimmed.length < 2) return;
+    const list = catalog[kind];
+    if (list.some((e) => e.label.toLowerCase() === trimmed.toLowerCase())) return;
+    const entry: CatalogEntry = { key: uniqueCatalogKey(trimmed, list), label: trimmed };
+    persistCatalog({ ...catalog, [kind]: [...list, entry] });
+  }
+
+  function addLine(label: string) {
+    const trimmed = label.trim();
+    if (trimmed.length < 2) return;
+    if (catalog.lines.some((l) => l.toLowerCase() === trimmed.toLowerCase())) return;
+    persistCatalog({ ...catalog, lines: [...catalog.lines, trimmed] });
+  }
+
   function handleDelete() {
     if (!product) return;
-    if (!confirm(`Удалить «${product.nameRu}»? Это необратимо.`)) return;
     removeProduct(product.id);
     router.push("/master/products?deleted=1");
   }
@@ -193,32 +234,41 @@ export function ProductForm({
             <span className="mt-1.5 block text-[12px] text-muted">Показывается крупно в карточке товара.</span>
           </label>
 
-          <label>
-            <span className="field-label">Линейка</span>
-            <input
-              name="line"
-              defaultValue={product?.line ?? "Davines"}
-              list="lines-list"
-              placeholder="MoMo"
-              className="field"
-            />
-            <datalist id="lines-list">
-              {lines.map((l) => (
-                <option key={l} value={l} />
-              ))}
-            </datalist>
-          </label>
+          <div>
+            <label>
+              <span className="field-label">Линейка</span>
+              <input
+                name="line"
+                defaultValue={product?.line ?? lineOptions[0] ?? "Davines"}
+                list="lines-list"
+                placeholder="MoMo"
+                className="field"
+              />
+              <datalist id="lines-list">
+                {lineOptions.map((l) => (
+                  <option key={l} value={l} />
+                ))}
+              </datalist>
+            </label>
+            <AddInline placeholder="Новая линейка" onAdd={(label) => addLine(label)} />
+          </div>
 
-          <label>
-            <span className="field-label">Тип продукта *</span>
-            <select name="category" defaultValue={product?.category ?? "shampoo"} className="field">
-              {CATEGORY_KEYS.map((c) => (
-                <option key={c} value={c}>
-                  {CATEGORIES[c]}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div>
+            <label>
+              <span className="field-label">Тип продукта *</span>
+              <select name="category" defaultValue={product?.category ?? catalog.categories[0]?.key} className="field">
+                {catalog.categories.map((c) => (
+                  <option key={c.key} value={c.key}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <AddInline
+              placeholder="Новый тип, например Несмываемый уход"
+              onAdd={(label) => addCatalogEntry("categories", label)}
+            />
+          </div>
 
           <label>
             <span className="field-label">Объём</span>
@@ -288,19 +338,31 @@ export function ProductForm({
           <div>
             <p className="field-label">Какие задачи решает</p>
             <div className="flex flex-wrap gap-2">
-              {CONCERN_KEYS.map((c) => (
-                <CheckChip key={c} name={`concern:${c}`} label={CONCERNS[c]} defaultChecked={product?.concerns.includes(c)} />
+              {catalog.concerns.map((c) => (
+                <CheckChip
+                  key={c.key}
+                  name={`concern:${c.key}`}
+                  label={c.label}
+                  defaultChecked={product?.concerns.includes(c.key)}
+                />
               ))}
             </div>
+            <AddInline placeholder="Новая задача" onAdd={(label) => addCatalogEntry("concerns", label)} />
           </div>
 
           <div className="mt-5">
             <p className="field-label">Для каких волос</p>
             <div className="flex flex-wrap gap-2">
-              {HAIR_TYPE_KEYS.map((h) => (
-                <CheckChip key={h} name={`hair:${h}`} label={HAIR_TYPES[h]} defaultChecked={product?.hairTypes.includes(h)} />
+              {catalog.hairTypes.map((h) => (
+                <CheckChip
+                  key={h.key}
+                  name={`hair:${h.key}`}
+                  label={h.label}
+                  defaultChecked={product?.hairTypes.includes(h.key)}
+                />
               ))}
             </div>
+            <AddInline placeholder="Новый тип волос" onAdd={(label) => addCatalogEntry("hairTypes", label)} />
           </div>
         </Fieldset>
 
@@ -418,8 +480,8 @@ export function ProductForm({
             onChange={setVisible}
           />
           <Toggle
-            label="Выводить на главной"
-            hint="Блок «Что чаще уезжает домой» на главной."
+            label="Выбор Кристины"
+            hint="Блок на главной, бейдж на карточке и верх каталога."
             checked={featured}
             onChange={setFeatured}
           />
@@ -433,11 +495,30 @@ export function ProductForm({
           <div className="card mt-5 p-5">
             <p className="eyebrow mb-3">Удаление</p>
             <p className="text-[13px] leading-relaxed text-ink-soft">
-              Товар исчезнет из каталога. Если нужно временно убрать — снимите галочку «Показывать в каталоге».
+              Если товар просто не нужен на витрине — снимите «Показывать в каталоге». Удаление убирает его из кабинета
+              этого браузера. Чтобы он пропал с опубликованного сайта, после удаления экспортируйте JSON и загрузите его
+              в репозиторий.
             </p>
-            <button type="button" onClick={handleDelete} className="btn btn-outline btn-sm mt-4 w-full">
-              Удалить товар
-            </button>
+            {confirmDelete ? (
+              <div className="mt-4 rounded-lg border border-line bg-sand p-4">
+                <p className="text-[14px]">Удалить «{product.nameRu}» из кабинета?</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-muted">
+                  Это не отменить из интерфейса. Скрыть товар безопаснее, чем удалять.
+                </p>
+                <div className="mt-4 flex flex-col gap-2">
+                  <button type="button" onClick={handleDelete} className="btn btn-outline btn-sm w-full">
+                    Да, удалить
+                  </button>
+                  <button type="button" onClick={() => setConfirmDelete(false)} className="btn btn-soft btn-sm w-full">
+                    Оставить
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button type="button" onClick={() => setConfirmDelete(true)} className="btn btn-outline btn-sm mt-4 w-full">
+                Удалить товар
+              </button>
+            )}
           </div>
         )}
       </aside>
@@ -486,6 +567,37 @@ function Fieldset({
       <legend className="eyebrow mb-4">{title}</legend>
       <div className={columns === 2 ? "grid gap-5 sm:grid-cols-2" : "grid gap-5"}>{children}</div>
     </fieldset>
+  );
+}
+
+function AddInline({ placeholder, onAdd }: { placeholder: string; onAdd: (label: string) => void }) {
+  const [value, setValue] = useState("");
+  return (
+    <span className="mt-2 flex gap-2">
+      <input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder={placeholder}
+        className="field !py-2"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            onAdd(value);
+            setValue("");
+          }
+        }}
+      />
+      <button
+        type="button"
+        className="btn btn-soft btn-sm shrink-0"
+        onClick={() => {
+          onAdd(value);
+          setValue("");
+        }}
+      >
+        Добавить
+      </button>
+    </span>
   );
 }
 

@@ -173,8 +173,8 @@ export type ScorableProduct = {
 const SLOT_ORDER: string[][] = [
   ["shampoo"],
   ["mask", "conditioner"],
-  ["serum", "oil", "scalp"],
-  ["styling", "conditioner", "mask", "other"],
+  ["leaveIn", "serum", "oil", "scalp"],
+  ["styling", "leaveIn", "conditioner", "mask", "other"],
 ];
 
 export function scoreProduct(p: ScorableProduct, answers: QuizAnswers): number {
@@ -183,13 +183,13 @@ export function scoreProduct(p: ScorableProduct, answers: QuizAnswers): number {
     const chosen = step.options.find((o) => o.value === answers[step.id]);
     if (!chosen) continue;
     for (const [key, weight] of Object.entries(chosen.concerns ?? {})) {
-      if (p.concerns.includes(key)) score += weight;
+      if (p.concerns.includes(key)) score += weight ?? 0;
     }
     for (const [key, weight] of Object.entries(chosen.hairTypes ?? {})) {
-      if (p.hairTypes.includes(key)) score += weight;
+      if (p.hairTypes.includes(key)) score += weight ?? 0;
     }
     for (const [line, weight] of Object.entries(chosen.lines ?? {})) {
-      if (p.line === line) score += weight;
+      if (p.line === line) score += weight ?? 0;
     }
   }
   return score;

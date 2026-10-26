@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { CATEGORIES, type CategoryKey } from "@/lib/catalog";
+import { catalogFrom, catalogLabel } from "@/lib/catalog";
+import { getStoredSettings } from "@/lib/master-store";
 import { rub, plural } from "@/lib/format";
 import { productImageBg } from "@/lib/image-bg";
 import { withBasePath } from "@/lib/paths";
@@ -80,7 +81,7 @@ function ProductActionsMenu({
                 onOpenChange(false);
               }}
             >
-              {product.featured ? "Убрать с главной" : "Показать на главной"}
+              {product.featured ? "Убрать из выбора Кристины" : "Выбор Кристины"}
             </button>
             <Link
               href={`/master/products/edit?id=${product.id}`}
@@ -159,7 +160,7 @@ export function MasterProductList({
           <select value={only} onChange={(e) => setOnly(e.target.value as typeof only)} className="field !w-auto">
             <option value="all">Все товары</option>
             <option value="hidden">Только скрытые</option>
-            <option value="featured">Только с главной</option>
+            <option value="featured">Только выбор Кристины</option>
           </select>
         </label>
 
@@ -203,7 +204,7 @@ export function MasterProductList({
                   </Link>
                 </p>
                 <p className="mt-0.5 truncate text-[13px] text-muted">
-                  {p.line} · {CATEGORIES[p.category as CategoryKey] ?? CATEGORIES.other}
+                  {p.line} · {catalogLabel(catalogFrom(getStoredSettings()).categories, p.category, "Другое")}
                   {p.volume ? ` · ${p.volume}` : ""}
                 </p>
                 <p className="mt-1 text-[14px] tabular-nums sm:hidden">{rub(p.price)}</p>
@@ -235,7 +236,7 @@ export function MasterProductList({
                     p.featured ? "border-olive bg-olive-soft text-olive-deep" : "border-line bg-paper text-muted"
                   }`}
                 >
-                  Главная
+                  Выбор Кристины
                 </button>
                 <Link href={`/master/products/edit?id=${p.id}`} className="btn btn-soft btn-sm !px-3">
                   Изменить

@@ -1,3 +1,4 @@
+import { BackToTop } from "@/components/back-to-top";
 import { CartProvider } from "@/components/cart";
 import { LocalBusinessJsonLd } from "@/components/json-ld";
 import { MobileCta } from "@/components/mobile-cta";
@@ -20,6 +21,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </main>
         <SiteFooter settings={settings} />
         <MobileCta />
+        <BackToTop />
       </div>
     </CartProvider>
   );

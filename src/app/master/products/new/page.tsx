@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { ProductForm } from "@/components/master/product-form";
-import { sortLines } from "@/lib/catalog";
+import { catalogFrom, sortLines } from "@/lib/catalog";
 import { isMasterAuthenticated } from "@/lib/master-auth";
-import { getStoredProducts } from "@/lib/master-store";
+import { getStoredProducts, getStoredSettings } from "@/lib/master-store";
 
 export default function NewProductPage() {
   const router = useRouter();
   const products = getStoredProducts();
-  const lines = sortLines([...new Set(products.map((p) => p.line))]);
+  const lines = sortLines([...new Set(products.map((p) => p.line))], catalogFrom(getStoredSettings()).lines);
 
   useEffect(() => {
     if (!isMasterAuthenticated()) router.replace("/master");

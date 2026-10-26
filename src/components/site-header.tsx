@@ -14,7 +14,7 @@ const NAV = [
   { href: "/contacts", label: "Контакты" },
 ];
 
-export function SiteHeader({ salonName: _salonName }: { salonName: string }) {
+export function SiteHeader({ salonName }: { salonName: string }) {
   const pathname = usePathname();
   const { count, ready } = useCart();
   const [open, setOpen] = useState(false);
@@ -22,9 +22,10 @@ export function SiteHeader({ salonName: _salonName }: { salonName: string }) {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream/92 backdrop-blur-sm pt-[env(safe-area-inset-top)]">
+    <>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-cream/92 backdrop-blur-sm pt-[env(safe-area-inset-top)]">
       <div className="shell flex h-[60px] items-center gap-3 sm:h-[68px] sm:gap-6">
-        <Link href="/" className="flex min-w-0 shrink items-center gap-2 sm:gap-3" aria-label="На главную">
+        <Link href="/" className="flex min-w-0 shrink items-center gap-2 sm:gap-3" aria-label={`На главную — ${salonName}`}>
           <SalonLogo />
           <span className="hidden whitespace-nowrap rounded-pill border border-line bg-paper px-2.5 py-1 text-[10px] tracking-[0.12em] text-muted uppercase md:inline">
             Партнёр Davines
@@ -89,6 +90,11 @@ export function SiteHeader({ salonName: _salonName }: { salonName: string }) {
         </nav>
       )}
     </header>
+    <div
+      className="h-[calc(60px+env(safe-area-inset-top,0px))] shrink-0 sm:h-[calc(68px+env(safe-area-inset-top,0px))]"
+      aria-hidden
+    />
+    </>
   );
 }
 

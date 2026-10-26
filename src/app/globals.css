@@ -32,7 +32,6 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    overflow-x: hidden;
     scroll-behavior: smooth;
   }
   body {
@@ -41,7 +40,6 @@
     font-family: var(--font-sans);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
     padding-bottom: env(safe-area-inset-bottom);
   }
   ::selection { background: var(--color-olive-soft); color: var(--color-ink); }
@@ -133,7 +131,10 @@
     border-radius: 10px; font-size: 16px;
     transition: border-color .16s ease;
     min-height: 44px;
+    min-width: 0;
+    max-width: 100%;
   }
+  input[type="date"].field { min-width: 0; }
   .field::placeholder { color: var(--color-muted); }
   .field:focus { outline: none; border-color: var(--color-olive); }
   .field-label { display: block; font-size: 12px; letter-spacing: .04em; color: var(--color-ink-soft); margin-bottom: 6px; }
@@ -168,6 +169,28 @@
   @media (min-width: 768px) {
     .mobile-cta-spacer { height: 0; }
     .mobile-cta-offset { padding-bottom: 0; }
+  }
+
+  .back-to-top {
+    position: fixed;
+    right: 16px;
+    bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+    z-index: 45;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-line);
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    .back-to-top { bottom: 32px; }
   }
 
   /* Заглушка под будущее фото */

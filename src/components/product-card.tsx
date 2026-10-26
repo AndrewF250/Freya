@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { AddButton } from "./add-to-cart";
 import { ProductImage } from "./product-image";
+import { catalogFrom, catalogLabel } from "@/lib/catalog";
 import { rub } from "@/lib/format";
-import { CATEGORIES, type CategoryKey } from "@/lib/catalog";
+import { getSettings } from "@/lib/settings";
 
 export type CardProduct = {
   slug: string;
@@ -15,10 +16,12 @@ export type CardProduct = {
   oldPrice?: number | null;
   image: string;
   imageBg?: string;
+  featured?: boolean;
 };
 
 export function ProductCard({ product, priority = false }: { product: CardProduct; priority?: boolean }) {
-  const categoryLabel = CATEGORIES[product.category as CategoryKey] ?? CATEGORIES.other;
+  const catalog = catalogFrom(getSettings());
+  const categoryLabel = catalogLabel(catalog.categories, product.category, "Другое");
 
   return (
     <article className="card group relative flex flex-col overflow-hidden transition-colors hover:border-muted">
@@ -33,7 +36,10 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
       </Link>
 
       <div className="flex flex-1 flex-col p-4">
-        <p className="eyebrow">{product.line}</p>
+        <div className="flex items-start justify-between gap-2">
+          <p className="eyebrow">{product.line}</p>
+          {product.featured ? <span className="badge shrink-0">Выбор Кристины</span> : null}
+        </div>
 
         <h3 className="mt-2 text-[14px] leading-snug font-normal sm:text-[15px]">
           <Link href={`/shop/${product.slug}`} className="transition-colors hover:text-olive-deep">

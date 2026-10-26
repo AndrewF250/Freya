@@ -1,30 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ProductForm } from "@/components/master/product-form";
-import { sortLines } from "@/lib/catalog";
+import { catalogFrom, sortLines } from "@/lib/catalog";
 import { isMasterAuthenticated } from "@/lib/master-auth";
-import { getProductById, getStoredProducts } from "@/lib/master-store";
+import { getProductById, getStoredProducts, getStoredSettings } from "@/lib/master-store";
 
 function EditProductContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id") ?? "";
   const created = searchParams.get("created") === "1";
-  const [products, setProducts] = useState(getStoredProducts());
+  const products = getStoredProducts();
   const product = id ? getProductById(id) : undefined;
-  const lines = sortLines([...new Set(products.map((p) => p.line))]);
+  const lines = sortLines([...new Set(products.map((p) => p.line))], catalogFrom(getStoredSettings()).lines);
 
   useEffect(() => {
     if (!isMasterAuthenticated()) router.replace("/master");
     else if (id && !getProductById(id)) router.replace("/master/products");
   }, [router, id]);
-
-  useEffect(() => {
-    setProducts(getStoredProducts());
-  }, [id]);
 
   if (!id || !product) return null;
 

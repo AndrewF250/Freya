@@ -75,7 +75,7 @@ export function BookingSlotsEditor({
               <button type="button" className="chip" onClick={() => applyPreset(preset)}>
                 {preset.name}
               </button>
-              {!["weekday", "morning", "evening", "saturday"].includes(preset.id) && (
+              {presets.length > 1 && (
                 <button
                   type="button"
                   onClick={() => deletePreset(preset.id)}

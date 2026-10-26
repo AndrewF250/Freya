@@ -8,7 +8,7 @@ import { SectionHead, Step } from "@/components/ui";
 import { PHOTOS } from "@/lib/photos";
 import { getFeaturedProducts, getLineCounts, getVisibleProducts } from "@/lib/products";
 import { getSettings } from "@/lib/settings";
-import { sortLines } from "@/lib/catalog";
+import { catalogFrom, sortLines } from "@/lib/catalog";
 import { plural } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -24,7 +24,11 @@ export default function HomePage() {
   const lineRows = getLineCounts();
   const total = getVisibleProducts().length;
 
-  const lines = sortLines(lineRows.map((r) => r.line)).map((line) => ({
+  const catalog = catalogFrom(settings);
+  const lines = sortLines(
+    lineRows.map((r) => r.line),
+    catalog.lines,
+  ).map((line) => ({
     line,
     count: lineRows.find((r) => r.line === line)?.count ?? 0,
   }));
@@ -158,8 +162,8 @@ export default function HomePage() {
         <div className="shell relative section">
           <SectionHead
             eyebrow="Продукция"
-            title="Что чаще уезжает домой"
-            text="То, что чаще всего уезжает домой после консультации — и работает у большинства."
+            title="Выбор Кристины"
+            text="То, что я чаще всего собираю в домашний уход — проверено в работе."
             href="/shop"
             hrefLabel="Весь каталог"
           />

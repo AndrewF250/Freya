@@ -8,7 +8,7 @@ import { downloadJson, exportMasterData, getStoredSettings } from "@/lib/master-
 
 export default function MasterSettingsPage() {
   const router = useRouter();
-  const [settings, setSettings] = useState(getStoredSettings());
+  const [settings] = useState(getStoredSettings());
 
   useEffect(() => {
     if (!isMasterAuthenticated()) router.replace("/master");

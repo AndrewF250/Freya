@@ -1,5 +1,5 @@
 import { parseJson } from "./format";
-import { getSettings } from "./settings";
+import { DEFAULT_TELEGRAM_BOOKING_PRESET, getSettings } from "./settings";
 import { buildTelegramUrl } from "./telegram";
 
 export type BookingPayload = {
@@ -33,27 +33,45 @@ export function collectBookingPayload(form: HTMLFormElement): BookingPayload {
   };
 }
 
-export function formatBookingMessage(payload: BookingPayload): string {
-  const settings = getSettings();
-  const lines = [
-    `Запись в ${settings.salonName}`,
-    "",
-    `Имя: ${payload.name}`,
-    `Телефон: ${payload.phone}`,
-    payload.email ? `E-mail: ${payload.email}` : "",
-    `Услуга: ${payload.service}`,
-    `Когда: ${payload.date}${payload.time ? ` в ${payload.time}` : ""}`,
-    payload.comment ? `Комментарий: ${payload.comment}` : "",
-  ].filter(Boolean);
-
+function quizBlock(payload: BookingPayload): string {
+  const parts: string[] = [];
   if (payload.quiz?.summary?.length) {
-    lines.push("", "Ответы подбора:", ...payload.quiz.summary.map((s) => `• ${s}`));
+    parts.push("Ответы подбора:", ...payload.quiz.summary.map((s) => `• ${s}`));
   }
   if (payload.quiz?.products?.length) {
-    lines.push("", "Подобранный уход:", ...payload.quiz.products.map((s) => `• ${s}`));
+    parts.push("Подобранный уход:", ...payload.quiz.products.map((s) => `• ${s}`));
+  }
+  return parts.join("\n");
+}
+
+export function formatBookingMessage(payload: BookingPayload, preset?: string): string {
+  const settings = getSettings();
+  const template = (preset ?? settings.telegramMessagePreset ?? DEFAULT_TELEGRAM_BOOKING_PRESET).trim();
+  const when = `${payload.date}${payload.time ? ` в ${payload.time}` : ""}`.trim();
+  const vars: Record<string, string> = {
+    salon: settings.salonName,
+    name: payload.name,
+    phone: payload.phone,
+    email: payload.email ? `E-mail: ${payload.email}` : "",
+    service: payload.service,
+    date: payload.date,
+    time: payload.time,
+    when,
+    comment: payload.comment ? `Комментарий: ${payload.comment}` : "",
+    quiz: quizBlock(payload),
+  };
+
+  let out = template;
+  for (const [key, value] of Object.entries(vars)) {
+    out = out.replaceAll(`{${key}}`, value);
   }
 
-  return lines.join("\n");
+  return out
+    .split("\n")
+    .map((line) => line.trimEnd())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 export function buildTelegramBookingUrl(telegramLink: string, message: string): string | null {
