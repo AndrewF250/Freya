@@ -54,7 +54,7 @@ export async function submitBooking(formData: FormData): Promise<FormState> {
 
   const error = validateContact(name, phone);
   if (error) return { ok: false, message: error };
-  if (!service) return { ok: false, message: "Выберите услугу." };
+  if (!service) return { ok: false, message: "Выберите хотя бы одну услугу." };
   if (!date) return { ok: false, message: "Выберите дату визита." };
 
   const settings = getSettings();

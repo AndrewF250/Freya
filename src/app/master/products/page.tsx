@@ -3,30 +3,29 @@
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { MasterProductList } from "@/components/master/product-list";
-import { catalogFrom, sortLines } from "@/lib/catalog";
+import { MasterShopBrowser } from "@/components/master/master-shop-browser";
 import { isMasterAuthenticated } from "@/lib/master-auth";
-import { downloadJson, exportMasterData, getStoredProducts, getStoredSettings, resetMasterData } from "@/lib/master-store";
+import { downloadJson, exportMasterData, getStoredProducts, resetMasterData } from "@/lib/master-store";
 
 function MasterProductsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const deleted = searchParams.get("deleted") === "1";
   const [products, setProducts] = useState(getStoredProducts());
+  const [browserKey, setBrowserKey] = useState(0);
 
   useEffect(() => {
     if (!isMasterAuthenticated()) router.replace("/master");
   }, [router]);
 
-  const lines = sortLines([...new Set(products.map((p) => p.line))], catalogFrom(getStoredSettings()).lines);
   const hidden = products.filter((p) => !p.visible).length;
   const featured = products.filter((p) => p.featured).length;
 
   return (
-    <div className="shell py-10">
+    <div className="shell py-8 sm:py-10">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="display text-[28px] sm:text-[30px]">Товары</h1>
+          <h1 className="display text-[26px] sm:text-[30px]">Товары</h1>
           <p className="mt-2 text-[14px] text-ink-soft">
             {products.length} в каталоге · {hidden} скрыто · {featured} в выборе Кристины
           </p>
@@ -57,13 +56,14 @@ function MasterProductsContent() {
           onClick={() => {
             resetMasterData();
             setProducts(getStoredProducts());
+            setBrowserKey((k) => k + 1);
           }}
         >
           Сбросить
         </button>
       </div>
 
-      <MasterProductList products={products} lines={lines} onChange={() => setProducts(getStoredProducts())} />
+      <MasterShopBrowser key={browserKey} onChange={() => setProducts(getStoredProducts())} />
     </div>
   );
 }

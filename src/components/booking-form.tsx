@@ -17,7 +17,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   const [state, setState] = useState<FormState>(null);
   const [pending, setPending] = useState(false);
   const [time, setTime] = useState("");
-  const [service, setService] = useState("");
+  const [servicesSelected, setServicesSelected] = useState<string[]>([]);
   const [quiz, setQuiz] = useState<SavedQuiz | null>(null);
   const [attach, setAttach] = useState(true);
   const [bookingPayload, setBookingPayload] = useState<ReturnType<typeof collectBookingPayload> | null>(null);
@@ -35,7 +35,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
       const id = window.setTimeout(() => {
         if (cancelled) return;
         setQuiz(parsed);
-        setService((current) => current || DIAGNOSTIC_SERVICE);
+        setServicesSelected((current) => (current.length ? current : [DIAGNOSTIC_SERVICE]));
       }, 0);
       return () => {
         cancelled = true;
@@ -59,6 +59,10 @@ export function BookingForm({ services }: { services: readonly string[] }) {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (servicesSelected.length === 0) {
+      setState({ ok: false, message: "Выберите хотя бы одну услугу." });
+      return;
+    }
     setPending(true);
     const form = e.currentTarget;
     const payload = collectBookingPayload(form);
@@ -96,7 +100,7 @@ export function BookingForm({ services }: { services: readonly string[] }) {
       return;
     }
     if (!payload.service) {
-      setState({ ok: false, message: "Выберите услугу." });
+      setState({ ok: false, message: "Выберите хотя бы одну услугу." });
       return;
     }
     openTelegramWith(payload);
@@ -134,28 +138,34 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="card min-w-0 overflow-hidden p-5 sm:p-6 md:p-8" id="booking-form">
       <input type="hidden" name="time" value={time} />
+      <input type="hidden" name="service" value={servicesSelected.join(", ")} />
       {quiz && attach && <input type="hidden" name="quiz" value={JSON.stringify(quiz)} />}
 
       <div className="grid min-w-0 gap-5">
-        <label className="min-w-0">
-          <span className="field-label">Услуга *</span>
-          <select
-            name="service"
-            required
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            className="field"
-          >
-            <option value="" disabled>
-              Выберите услугу
-            </option>
-            {services.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="min-w-0">
+          <span className="field-label">Услуги *</span>
+          <p className="mb-2 text-[12px] leading-relaxed text-muted">Можно выбрать несколько.</p>
+          <div className="flex flex-wrap gap-2">
+            {services.map((s) => {
+              const active = servicesSelected.includes(s);
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  className="chip !whitespace-normal !leading-snug"
+                  data-active={active}
+                  onClick={() =>
+                    setServicesSelected((current) =>
+                      current.includes(s) ? current.filter((item) => item !== s) : [...current, s],
+                    )
+                  }
+                >
+                  {s}
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
         <label className="min-w-0">
           <span className="field-label">Дата *</span>

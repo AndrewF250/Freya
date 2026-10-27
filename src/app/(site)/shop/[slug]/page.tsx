@@ -95,6 +95,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 volume: product.volume,
                 price: product.price,
                 image: product.image,
+                imageBg: product.imageBg,
               }}
             />
           </div>
@@ -155,7 +156,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <section className="section border-t border-line">
           <div className="shell">
             <h2 className="display text-[26px] md:text-[32px]">Хорошо работает вместе</h2>
-            <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {related.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}

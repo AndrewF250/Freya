@@ -9,7 +9,7 @@ export const SETTING_DEFAULTS = {
   salonName: "ФРЕЯ",
   phone: "+7 (908) 255-09-10",
   email: "hello@freya-salon.ru",
-  address: "Пермь, улица Ленина, 50, 8 этаж",
+  address: "Пермь, Комсомольский проспект, 51А",
   hours: "Ежедневно 10:00 — 21:00",
   telegram: "https://t.me/",
   instagram: "https://instagram.com/",
