@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SitePhoto } from "@/components/site-photo";
 import { PageHead } from "@/components/ui";
 import { YandexMap } from "@/components/yandex-map";
 import { PHOTOS } from "@/lib/photos";
@@ -9,7 +8,7 @@ import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Контакты",
-  description: "Салон ФРЕЯ, Пермь: улица Ленина, 50, 8 этаж. Телефон, Telegram @bochkariova_cris, часы работы, карта и как добраться.",
+  description: "Салон ФРЕЯ, Пермь: Комсомольский проспект, 51А. Телефон, Telegram @bochkariova_cris, часы работы, карта и как добраться.",
   alternates: { canonical: "/contacts/" },
 };
 
@@ -32,7 +31,7 @@ export default function ContactsPage() {
         photo={PHOTOS.catStyling}
       />
 
-      <section className="shell section grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
+      <section className="shell section grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
         <div>
           <dl className="divide-y divide-line border-t border-line">
             <Row label="Телефон">
@@ -85,15 +84,7 @@ export default function ContactsPage() {
           </div>
         </div>
 
-        <div className="grid gap-4">
-          <SitePhoto
-            src={PHOTOS.still1.src}
-            alt={PHOTOS.still1.alt}
-            sizes="(max-width: 1024px) 100vw, 55vw"
-            className="aspect-[3/2] rounded-card"
-          />
-          <YandexMap settings={settings} />
-        </div>
+        <YandexMap settings={settings} className="min-h-[280px] lg:h-auto lg:min-h-full" />
       </section>
     </>
   );

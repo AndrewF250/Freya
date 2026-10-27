@@ -10,7 +10,7 @@ import { getSettings } from "@/lib/settings";
 export const metadata: Metadata = {
   title: "Запись в салон",
   description:
-    "Запись в салон ФРЕЯ, Пермь: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines. Улица Ленина, 50.",
+    "Запись в салон ФРЕЯ, Пермь: диагностика, стрижка, окрашивание и подбор домашнего ухода Davines. Комсомольский проспект, 51А.",
   alternates: { canonical: "/booking/" },
 };
 

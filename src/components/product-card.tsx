@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AddButton } from "./add-to-cart";
+import { CartQtyControl } from "./add-to-cart";
 import { ProductImage } from "./product-image";
 import { catalogFrom, catalogLabel } from "@/lib/catalog";
 import { rub } from "@/lib/format";
@@ -24,7 +24,7 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
   const categoryLabel = catalogLabel(catalog.categories, product.category, "Другое");
 
   return (
-    <article className="card group relative flex flex-col overflow-hidden transition-colors hover:border-muted">
+    <article className="card group relative flex min-w-0 flex-col overflow-hidden transition-colors hover:border-muted">
       <Link href={`/shop/${product.slug}`} className="block" tabIndex={-1} aria-hidden>
         <ProductImage
           src={product.image}
@@ -35,7 +35,7 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
         />
       </Link>
 
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
         <div className="flex items-start justify-between gap-2">
           <p className="eyebrow">{product.line}</p>
           {product.featured ? <span className="badge shrink-0">Выбор Кристины</span> : null}
@@ -61,7 +61,7 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
             <p className="text-[16px] tabular-nums">{rub(product.price)}</p>
           </div>
           <div className="relative z-10">
-            <AddButton
+            <CartQtyControl
               product={{
                 slug: product.slug,
                 nameRu: product.nameRu,
@@ -69,6 +69,7 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
                 volume: product.volume,
                 price: product.price,
                 image: product.image,
+                imageBg: product.imageBg,
               }}
             />
           </div>

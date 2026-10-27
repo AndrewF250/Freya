@@ -23,7 +23,8 @@ export function ProductImage({
   if (!src) return <Placeholder label={alt} className={className} />;
 
   const bg = productImageBg(bgColor);
-  const imageUrl = src.startsWith("data:") || src.startsWith("blob:") ? src : withBasePath(src);
+  const inline = src.startsWith("data:") || src.startsWith("blob:");
+  const imageUrl = inline ? src : withBasePath(src);
 
   return (
     <div className={`relative overflow-hidden ${className}`} style={{ backgroundColor: bg }}>
@@ -33,6 +34,7 @@ export function ProductImage({
         fill
         sizes={sizes}
         priority={priority}
+        unoptimized={inline}
         className="object-contain p-5"
       />
     </div>
