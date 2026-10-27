@@ -5,77 +5,134 @@ import { useCart, type CartItem } from "./cart";
 
 type Input = Omit<CartItem, "qty">;
 
-/** Компактная кнопка «+» для карточки в сетке. */
-export function AddButton({ product }: { product: Input }) {
-  const { add } = useCart();
-  const [added, setAdded] = useState(false);
+export function CartQtyControl({
+  product,
+  size = "compact",
+}: {
+  product: Input;
+  size?: "compact" | "lg";
+}) {
+  const { items, add, setQty, ready } = useCart();
+  const qty = items.find((i) => i.slug === product.slug)?.qty ?? 0;
+  const compact = size === "compact";
+
+  if (!ready) {
+    return (
+      <span
+        className={
+          compact
+            ? "inline-flex h-8 w-8 shrink-0 rounded-pill border border-line bg-paper"
+            : "inline-flex h-11 min-w-[190px] rounded-pill border border-line bg-paper"
+        }
+        aria-hidden
+      />
+    );
+  }
+
+  if (qty <= 0) {
+    return (
+      <button
+        type="button"
+        onClick={() => add(product)}
+        aria-label={`Добавить «${product.nameRu}» в корзину`}
+        className={
+          compact
+            ? "flex h-8 w-8 shrink-0 items-center justify-center rounded-pill border border-line bg-paper text-ink transition-colors hover:border-navy hover:bg-navy hover:text-white sm:h-9 sm:w-9"
+            : "btn btn-primary min-w-[190px]"
+        }
+      >
+        {compact ? (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+            <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+          </svg>
+        ) : (
+          "В корзину"
+        )}
+      </button>
+    );
+  }
 
   return (
-    <button
-      type="button"
-      onClick={() => {
-        add(product);
-        setAdded(true);
-        window.setTimeout(() => setAdded(false), 1400);
-      }}
-      aria-label={`Добавить «${product.nameRu}» в корзину`}
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-pill border border-line bg-paper text-ink transition-colors hover:border-navy hover:bg-navy hover:text-white"
+    <div
+      className={
+        compact
+          ? "flex h-8 shrink-0 items-center rounded-pill border border-navy bg-navy text-white sm:h-9"
+          : "flex h-11 items-center rounded-pill border border-navy bg-navy text-white"
+      }
     >
-      {added ? (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden>
-          <path d="m5 13 4.5 4.5L19 7" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ) : (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-          <path d="M12 5v14M5 12h14" strokeLinecap="round" />
-        </svg>
-      )}
-    </button>
+      <button
+        type="button"
+        onClick={() => setQty(product.slug, qty - 1)}
+        className={compact ? "h-8 w-7 text-[16px] leading-none sm:h-9 sm:w-8" : "h-11 w-11 text-[18px] leading-none"}
+        aria-label="Уменьшить количество"
+      >
+        −
+      </button>
+      <span
+        className={compact ? "min-w-[1.1rem] text-center text-[12px] tabular-nums sm:text-[13px]" : "min-w-[1.75rem] text-center text-[15px] tabular-nums"}
+        aria-live="polite"
+      >
+        {qty}
+      </span>
+      <button
+        type="button"
+        onClick={() => setQty(product.slug, Math.min(99, qty + 1))}
+        className={compact ? "h-8 w-7 text-[16px] leading-none sm:h-9 sm:w-8" : "h-11 w-11 text-[18px] leading-none"}
+        aria-label="Увеличить количество"
+        disabled={qty >= 99}
+      >
+        +
+      </button>
+    </div>
   );
 }
 
-/** Блок с количеством и крупной кнопкой — для страницы товара. */
+/** Блок с количеством, привязанный к корзине — для страницы товара. */
 export function AddToCartBlock({ product }: { product: Input }) {
-  const { add } = useCart();
-  const [qty, setQty] = useState(1);
-  const [added, setAdded] = useState(false);
+  const { items, add, setQty, ready } = useCart();
+  const qty = items.find((i) => i.slug === product.slug)?.qty ?? 0;
 
   return (
     <div className="flex flex-wrap items-center gap-3">
       <div className="flex items-center rounded-pill border border-line bg-paper">
         <button
           type="button"
-          onClick={() => setQty((q) => Math.max(1, q - 1))}
+          onClick={() => {
+            if (qty <= 0) return;
+            setQty(product.slug, qty - 1);
+          }}
           className="h-11 w-11 rounded-pill text-ink-soft transition-colors hover:text-ink disabled:opacity-40"
-          disabled={qty <= 1}
+          disabled={!ready || qty <= 0}
           aria-label="Уменьшить количество"
         >
           −
         </button>
         <span className="w-8 text-center text-[15px] tabular-nums" aria-live="polite">
-          {qty}
+          {ready ? qty : "—"}
         </span>
         <button
           type="button"
-          onClick={() => setQty((q) => Math.min(99, q + 1))}
+          onClick={() => {
+            if (qty <= 0) add(product);
+            else setQty(product.slug, Math.min(99, qty + 1));
+          }}
           className="h-11 w-11 rounded-pill text-ink-soft transition-colors hover:text-ink"
           aria-label="Увеличить количество"
+          disabled={!ready || qty >= 99}
         >
           +
         </button>
       </div>
 
-      <button
-        type="button"
-        onClick={() => {
-          add(product, qty);
-          setAdded(true);
-          window.setTimeout(() => setAdded(false), 1800);
-        }}
-        className="btn btn-primary min-w-[190px]"
-      >
-        {added ? "Добавлено в корзину" : "В корзину"}
-      </button>
+      {qty <= 0 ? (
+        <button type="button" onClick={() => add(product)} disabled={!ready} className="btn btn-primary min-w-[190px]">
+          В корзину
+        </button>
+      ) : (
+        <p className="text-[14px] text-ink-soft">
+          В корзине: <span className="tabular-nums text-ink">{qty}</span>
+        </p>
+      )}
     </div>
   );
 }

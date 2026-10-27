@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { WORK_PHOTOS } from "@/lib/photos";
 import { withBasePath } from "@/lib/paths";
 
-const INTERVAL_MS = 5200;
-const EASE = [0.22, 1, 0.36, 1] as const;
+const INTERVAL_MS = 7200;
+const FADE = { duration: 2.15, ease: [0.4, 0, 0.2, 1] } as const;
+const KEN = { duration: INTERVAL_MS / 1000, ease: "linear" } as const;
 
 export function WorkPhotos({
   className = "",
@@ -38,6 +39,7 @@ export function WorkPhotos({
   const objectClass = fit === "contain" ? "object-contain" : "object-cover object-[center_20%]";
   const current = WORK_PHOTOS[index];
   const underneath = WORK_PHOTOS[prev];
+  const animateIn = !reduceMotion && index !== prev;
 
   return (
     <div className={`relative overflow-hidden bg-[#1b2430] ${className}`}>
@@ -52,19 +54,26 @@ export function WorkPhotos({
       />
       <motion.div
         key={current.src}
-        className="absolute inset-0"
-        initial={reduceMotion || index === prev ? false : { opacity: 0, scale: 1.02 }}
-        animate={{ opacity: 1, scale: reduceMotion ? 1 : 1 }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 1.15, ease: EASE }}
+        className="absolute inset-0 will-change-[opacity,transform]"
+        initial={animateIn ? { opacity: 0 } : false}
+        animate={{ opacity: 1 }}
+        transition={reduceMotion ? { duration: 0 } : FADE}
       >
-        <Image
-          src={withBasePath(current.src)}
-          alt={current.alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className={objectClass}
-        />
+        <motion.div
+          className="absolute inset-0"
+          initial={animateIn ? { scale: 1.03 } : false}
+          animate={{ scale: reduceMotion ? 1 : 1.06 }}
+          transition={reduceMotion ? { duration: 0 } : KEN}
+        >
+          <Image
+            src={withBasePath(current.src)}
+            alt={current.alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            className={objectClass}
+          />
+        </motion.div>
       </motion.div>
     </div>
   );
