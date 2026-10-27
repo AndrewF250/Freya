@@ -58,11 +58,11 @@ export function MasterProductCard({
 
   return (
     <article
-      className={`card group relative flex min-w-0 flex-col overflow-hidden transition-colors hover:border-muted ${
+      className={`card group relative flex min-w-0 flex-col overflow-visible transition-colors hover:border-muted ${
         product.visible ? "" : "bg-sand/70"
       }`}
     >
-      <Link href={`/master/products/edit?id=${product.id}`} className="block" tabIndex={-1} aria-hidden>
+      <Link href={`/master/products/edit?id=${product.id}`} className="block overflow-hidden rounded-t-card" tabIndex={-1} aria-hidden>
         <ProductImage
           src={product.image}
           alt={product.nameEn || product.nameRu}
@@ -72,9 +72,9 @@ export function MasterProductCard({
       </Link>
 
       <div className="flex flex-1 flex-col p-3 sm:p-4">
-        <div className="flex items-start justify-between gap-2">
-          <p className="eyebrow">{product.line}</p>
-          {product.featured ? <span className="badge shrink-0">Выбор Кристины</span> : null}
+        <div className="flex flex-wrap items-start justify-between gap-1.5">
+          <p className="eyebrow min-w-0">{product.line}</p>
+          {product.featured ? <span className="badge max-w-full whitespace-normal">Выбор Кристины</span> : null}
         </div>
 
         <h3 className="mt-2 text-[14px] leading-snug font-normal sm:text-[15px]">
@@ -88,23 +88,9 @@ export function MasterProductCard({
           {product.volume ? ` · ${product.volume}` : ""}
         </p>
 
-        <div className="relative z-10 mt-3 flex flex-wrap gap-1.5">
-          {product.concerns.map((key) => (
-            <button
-              key={key}
-              type="button"
-              className="chip !min-h-7 !px-2 !py-0 !text-[11px]"
-              onClick={() => toggleConcern(key)}
-              aria-label={`Убрать задачу «${catalogLabel(catalog.concerns, key, key)}»`}
-            >
-              {catalogLabel(catalog.concerns, key, key)} ×
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-4 flex items-end justify-between gap-3 pt-1">
+        <div className="mt-auto pt-4">
           <p className="text-[16px] tabular-nums">{rub(product.price)}</p>
-          <div className="relative z-10 flex flex-wrap justify-end gap-1.5">
+          <div className="relative z-10 mt-2 flex flex-wrap gap-1.5">
             <button
               type="button"
               onClick={() => toggle("visible")}
@@ -140,7 +126,7 @@ export function MasterProductCard({
           </button>
 
           {open && (
-            <div className="mt-3 grid gap-4">
+            <div className="absolute inset-x-0 top-full z-30 mt-2 max-h-[min(320px,60vh)] space-y-3 overflow-y-auto rounded-card border border-line bg-paper p-3 shadow-[0_12px_32px_rgba(27,36,48,.12)]">
               <LabelGroup title="Тип продукта">
                 {catalog.categories.map((c) => (
                   <FilterChip
@@ -239,3 +225,4 @@ function LabelGroup({ title, children }: { title: string; children: React.ReactN
     </div>
   );
 }
+

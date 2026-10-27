@@ -36,9 +36,9 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
       </Link>
 
       <div className="flex flex-1 flex-col p-3 sm:p-4">
-        <div className="flex items-start justify-between gap-2">
-          <p className="eyebrow">{product.line}</p>
-          {product.featured ? <span className="badge shrink-0">Выбор Кристины</span> : null}
+        <div className="flex flex-wrap items-start justify-between gap-1.5">
+          <p className="eyebrow min-w-0">{product.line}</p>
+          {product.featured ? <span className="badge max-w-full whitespace-normal">Выбор Кристины</span> : null}
         </div>
 
         <h3 className="mt-2 text-[14px] leading-snug font-normal sm:text-[15px]">
