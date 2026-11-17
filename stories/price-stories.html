@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Сторис — прайс ФРЕЯ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1920px;background:#1b2430;font-family:Montserrat,sans-serif;color:#faf6f0;overflow:hidden}
+  .slide{display:none;position:relative;width:1080px;height:1920px;overflow:hidden}
+  .slide.on{display:block}
+  .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(2px) saturate(.85);transform:scale(1.04)}
+  .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,36,48,.58) 0%,rgba(27,36,48,.74) 40%,rgba(27,36,48,.9) 100%)}
+  .ghost{position:absolute;left:0;right:0;top:318px;text-align:center;font-weight:600;font-size:230px;letter-spacing:.04em;line-height:1;color:rgba(250,246,240,.09);white-space:nowrap}
+  .wrap{position:absolute;left:90px;right:90px;top:250px;bottom:260px;display:flex;flex-direction:column}
+  .brand{font-size:26px;letter-spacing:.5em;text-transform:uppercase;color:#c6a15b;text-align:center;padding-left:.5em}
+  h1{margin-top:44px;font-weight:300;font-size:84px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding-left:.1em}
+  .rule{width:90px;height:2px;background:#c6a15b;margin:44px auto 56px}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .list{list-style:none}
+  .list li{display:flex;align-items:flex-end;gap:22px;padding:22px 0;font-size:40px;line-height:1.25;font-weight:400}
+  .list li .t{flex:0 1 auto;max-width:640px}
+  .list li small{display:block;font-size:26px;font-weight:300;color:rgba(250,246,240,.62);margin-top:4px}
+  .list li i{flex:1;margin-bottom:12px;border-bottom:2px dotted rgba(250,246,240,.32);min-width:30px}
+  .list li b{font-weight:500;white-space:nowrap;color:#faf6f0}
+  .list.big li{padding:34px 0;font-size:46px}
+  .list.tight li{padding:12px 0;font-size:38px}
+  .list.extra{margin-top:34px;padding-top:22px;border-top:1px solid rgba(250,246,240,.2)}
+  h4{font-weight:500;font-size:40px;letter-spacing:.08em;text-transform:uppercase;color:#c6a15b;margin-top:26px}
+  h4:first-child{margin-top:0}
+  .sub{font-size:27px;font-weight:300;color:rgba(250,246,240,.65);margin:6px 0 8px}
+  .foot{margin-top:36px;font-size:27px;font-weight:300;color:rgba(250,246,240,.65)}
+  .contact{text-align:center;display:flex;flex-direction:column;gap:30px;font-size:38px;font-weight:300}
+  .contact .lead{font-size:42px;line-height:1.4;margin-bottom:20px}
+  .contact .big-line{font-size:60px;font-weight:500;letter-spacing:.04em}
+  .contact .mute{margin-top:40px;font-size:26px;letter-spacing:.3em;text-transform:uppercase;color:#c6a15b}
+</style></head><body>
+<section class="slide" data-n="1">
+  <div class="bg" style="background-image:url(assets/wash.jpg)"></div><div class="shade"></div>
+  <div class="ghost" style="font-size:230px">ПРАЙС</div>
+  <div class="wrap"><div class="brand">Фрея</div><h1>Стрижки</h1><div class="rule"></div><div class="body"><ul class="list big"><li><span class="t">Стрижка</span><i></i><b>2 000 ₽</b></li><li><span class="t">Стрижка чёлки</span><i></i><b>900 ₽</b></li><li><span class="t">Мытьё головы и лёгкая укладка феном</span><i></i><b>1 600 ₽</b></li><li><span class="t">Стрижка + экспресс-уход</span><i></i><b>3 500 ₽</b></li></ul></div></div>
+</section>
+<section class="slide" data-n="2">
+  <div class="bg" style="background-image:url(assets/a14.jpg)"></div><div class="shade"></div>
+  <div class="ghost" style="font-size:230px">ЦВЕТ</div>
+  <div class="wrap"><div class="brand">Фрея</div><h1>Окрашивание</h1><div class="rule"></div><div class="body"><ul class="list"><li><span class="t">Тонирование</span><i></i><b>от 5 000 ₽</b></li><li><span class="t">Окрашивание в один тон</span><i></i><b>от 6 500 ₽</b></li><li><span class="t">Окрашивание корней<small>не более 1,5 см</small></span><i></i><b>4 800 ₽</b></li><li><span class="t">Сложные техники окрашивания</span><i></i><b>от 8 000 ₽</b></li><li><span class="t">Контуринг</span><i></i><b>8 500 ₽</b></li><li><span class="t">Выход из чёрного</span><i></i><b>от 15 000 ₽</b></li><li><span class="t">Исправление чужого окрашивания</span><i></i><b>от 13 000 ₽</b></li></ul>
+           <p class="foot">* Стоимость может увеличиться для густых или длинных волос</p></div></div>
+</section>
+<section class="slide" data-n="3">
+  <div class="bg" style="background-image:url(assets/pour.jpg)"></div><div class="shade"></div>
+  <div class="ghost" style="font-size:230px">УХОД</div>
+  <div class="wrap"><div class="brand">Фрея</div><h1>Уход</h1><div class="rule"></div><div class="body"><h4>Davines Naturaltech</h4><p class="sub">Терапевтическая серия</p>
+                  <ul class="list tight"><li><span class="t">Короткие</span><i></i><b>3 500 ₽</b></li><li><span class="t">Средние</span><i></i><b>4 000 ₽</b></li><li><span class="t">Длинные</span><i></i><b>от 4 500 ₽</b></li></ul><h4>Авторский уход</h4><p class="sub">От Кристины, на составах Davines</p>
+                  <ul class="list tight"><li><span class="t">Короткие</span><i></i><b>4 000 ₽</b></li><li><span class="t">Средние</span><i></i><b>4 500 ₽</b></li><li><span class="t">Длинные</span><i></i><b>5 000 ₽</b></li></ul><ul class="list tight extra"><li><span class="t">Пилинг кожи головы и экспресс-уход</span><i></i><b>3 500 ₽</b></li><li><span class="t">Детокс-уход Beautiful Things</span><i></i><b>3 000 ₽</b></li></ul></div></div>
+</section>
+<section class="slide" data-n="4">
+  <div class="bg" style="background-image:url(assets/scissors.jpg)"></div><div class="shade"></div>
+  <div class="ghost" style="font-size:185px">ЗАПИСЬ</div>
+  <div class="wrap"><div class="brand">Фрея</div><h1>Запись</h1><div class="rule"></div><div class="body"><div class="contact">
+      <p class="lead">Записывайтесь в личные сообщения или по телефону</p>
+      <p class="big-line">+7 (908) 255-09-10</p>
+      <p>Пермь, Комсомольский проспект, 51А</p>
+      <p>Ежедневно 10:00 — 21:00</p>
+      <p class="mute">Davines · ФРЕЯ · Пермь</p>
+    </div></div></div>
+</section>
+<script>
+  const n = new URLSearchParams(location.search).get("n") || "1";
+  document.querySelector('.slide[data-n="' + n + '"]').classList.add("on");
+</script>
+</body></html>

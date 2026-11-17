@@ -4,7 +4,7 @@ import { SitePhoto } from "@/components/site-photo";
 import { WorkPhotos } from "@/components/work-photos";
 import { PageHead, SectionHead, Step } from "@/components/ui";
 import { PHOTOS } from "@/lib/photos";
-import { SERVICES } from "@/lib/services";
+import { PriceList } from "@/components/price-list";
 import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
@@ -90,22 +90,11 @@ export default function AboutPage() {
       <section className="shell section">
         <SectionHead
           eyebrow="Услуги"
-          title="С чем можно прийти"
+          title="Прайс"
           href="/booking"
           hrefLabel="Записаться"
         />
-        <div className="mt-10 divide-y divide-line border-t border-line">
-          {SERVICES.map((s) => (
-            <div key={s.id} className="grid gap-2 py-6 md:grid-cols-[1fr_2fr_auto] md:items-baseline md:gap-8">
-              <h3 className="text-[17px]">{s.title}</h3>
-              <p className="max-w-[62ch] text-[14px] leading-relaxed text-ink-soft">{s.text}</p>
-              <div className="text-[14px] md:text-right">
-                <p className="text-muted">{s.duration}</p>
-                <p className="mt-0.5 text-olive-deep">{s.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <PriceList className="mt-10" />
       </section>
 
       {/* ── Студия ───────────────────────────────────────── */}

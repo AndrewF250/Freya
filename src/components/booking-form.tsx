@@ -7,10 +7,10 @@ import { collectBookingPayload, formatBookingMessage, buildTelegramBookingUrl } 
 import { submitBooking, type FormState } from "@/lib/forms";
 import { addLead } from "@/lib/leads-store";
 import { getSettings } from "@/lib/settings";
+import { DIAGNOSTIC_SERVICE } from "@/lib/services";
 import { QUIZ_STORAGE_KEY } from "./quiz-flow";
 
 type SavedQuiz = { summary: string[]; products: string[] };
-const DIAGNOSTIC_SERVICE = "Консультация и диагностика";
 
 export function BookingForm({ services }: { services: readonly string[] }) {
   const formRef = useRef<HTMLFormElement>(null);

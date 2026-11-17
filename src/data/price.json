@@ -1,0 +1,59 @@
+{
+  "groups": [
+    {
+      "id": "cuts",
+      "title": "Стрижки и укладка",
+      "storyTitle": "Прайс",
+      "items": [
+        { "id": "haircut", "title": "Стрижка", "price": "2 000 ₽" },
+        { "id": "fringe", "title": "Стрижка чёлки", "price": "900 ₽" },
+        { "id": "wash-style", "title": "Мытьё головы и лёгкая укладка феном", "price": "1 600 ₽" },
+        { "id": "cut-express", "title": "Стрижка + экспресс-уход", "price": "3 500 ₽" }
+      ]
+    },
+    {
+      "id": "color",
+      "title": "Окрашивание",
+      "storyTitle": "Окрашивание",
+      "items": [
+        { "id": "toning", "title": "Тонирование", "price": "от 5 000 ₽" },
+        { "id": "one-tone", "title": "Окрашивание в один тон", "price": "от 6 500 ₽" },
+        { "id": "roots", "title": "Окрашивание корней", "note": "не более 1,5 см", "price": "4 800 ₽" },
+        { "id": "complex", "title": "Сложные техники окрашивания", "price": "от 8 000 ₽" },
+        { "id": "contouring", "title": "Контуринг", "price": "8 500 ₽" },
+        { "id": "black-exit", "title": "Выход из чёрного", "price": "от 15 000 ₽" },
+        { "id": "fix-color", "title": "Исправление чужого окрашивания", "price": "от 13 000 ₽" }
+      ],
+      "footnote": "Стоимость может увеличиться для густых или длинных волос"
+    },
+    {
+      "id": "care",
+      "title": "Уход",
+      "storyTitle": "Уход",
+      "subgroups": [
+        {
+          "title": "Davines Naturaltech",
+          "note": "Терапевтическая серия",
+          "items": [
+            { "title": "Короткие", "price": "3 500 ₽" },
+            { "title": "Средние", "price": "4 000 ₽" },
+            { "title": "Длинные", "price": "от 4 500 ₽" }
+          ]
+        },
+        {
+          "title": "Авторский уход",
+          "note": "От Кристины, на составах Davines",
+          "items": [
+            { "title": "Короткие", "price": "4 000 ₽" },
+            { "title": "Средние", "price": "4 500 ₽" },
+            { "title": "Длинные", "price": "5 000 ₽" }
+          ]
+        }
+      ],
+      "items": [
+        { "id": "scalp-express", "title": "Пилинг кожи головы и экспресс-уход", "price": "3 500 ₽" },
+        { "id": "detox", "title": "Детокс-уход Beautiful Things", "price": "3 000 ₽" }
+      ]
+    }
+  ]
+}

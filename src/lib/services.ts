@@ -1,47 +1,26 @@
-/** Услуги студии — используются на странице «Студия» и в форме записи. */
-export const SERVICES = [
-  {
-    id: "consultation",
-    title: "Консультация и диагностика",
-    duration: "45 мин",
-    price: "от 2 500 ₽",
-    text: "Разбираем состояние длины и кожи головы, собираем схему домашнего ухода. Стоимость засчитывается при покупке набора.",
-  },
-  {
-    id: "haircut",
-    title: "Стрижка",
-    duration: "60–90 мин",
-    price: "от 6 000 ₽",
-    text: "Форма, структура, баланс. Стрижка с учётом плотности волос и того, как вы укладываетесь дома.",
-  },
-  {
-    id: "color",
-    title: "Цвет и тонирование",
-    duration: "90–180 мин",
-    price: "от 7 000 ₽",
-    text: "Окрашивание, обесцвечивание и тонирование на натуральных красителях Davines.",
-  },
-  {
-    id: "reconstruction",
-    title: "Реконструкция",
-    duration: "90–120 мин",
-    price: "от 8 000 ₽",
-    text: "Восстановление структуры волос после осветления, химии и термоукладок.",
-  },
-  {
-    id: "scalp",
-    title: "Уход для кожи головы",
-    duration: "60 мин",
-    price: "от 5 500 ₽",
-    text: "Очищение, баланс микробиома, снятие чувствительности. Подбирается по результатам диагностики.",
-  },
-  {
-    id: "care-selection",
-    title: "Подбор домашнего ухода",
-    duration: "30 мин",
-    price: "бесплатно при покупке",
-    text: "Разбираем ваш текущий уход и заменяем то, что не работает. Можно офлайн или онлайн.",
-  },
-] as const;
+import price from "@/data/price.json";
 
-export const SERVICE_TITLES = SERVICES.map((s) => s.title);
+/** Прайс студии — единый источник для страницы «Студия», формы записи и сторис (scripts/build-price-stories.mjs). */
+export type PriceItem = { title: string; price: string; note?: string };
+export type PriceSubgroup = { title: string; note?: string; items: PriceItem[] };
+export type PriceGroup = {
+  id: string;
+  title: string;
+  items: PriceItem[];
+  subgroups?: PriceSubgroup[];
+  footnote?: string;
+};
+
+export const PRICE_GROUPS = price.groups as PriceGroup[];
+
+/** Позиция, с которой начинается запись после квиза. */
+export const DIAGNOSTIC_SERVICE = "Консультация и подбор ухода";
+
+/** Услуги для выбора в форме записи. */
+export const SERVICE_TITLES: string[] = [
+  DIAGNOSTIC_SERVICE,
+  ...PRICE_GROUPS.flatMap((g) => [
+    ...(g.subgroups ?? []).map((s) => s.title),
+    ...g.items.map((i) => i.title),
+  ]),
+];

@@ -3,7 +3,8 @@ import { BookingForm } from "@/components/booking-form";
 import { SitePhoto } from "@/components/site-photo";
 import { PageHead } from "@/components/ui";
 import { PHOTOS } from "@/lib/photos";
-import { SERVICES, SERVICE_TITLES } from "@/lib/services";
+import { PriceList } from "@/components/price-list";
+import { SERVICE_TITLES } from "@/lib/services";
 import { telHref } from "@/lib/settings";
 import { getSettings } from "@/lib/settings";
 
@@ -48,18 +49,8 @@ export default function BookingPage() {
           </div>
 
           <div className="mt-5 border-t border-line pt-6">
-            <p className="eyebrow mb-4">Услуги и время</p>
-            <ul className="space-y-4">
-              {SERVICES.map((s) => (
-                <li key={s.id}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className="text-[14px]">{s.title}</p>
-                    <p className="shrink-0 text-[13px] text-muted">{s.duration}</p>
-                  </div>
-                  <p className="mt-0.5 text-[13px] text-olive-deep">{s.price}</p>
-                </li>
-              ))}
-            </ul>
+            <p className="eyebrow mb-4">Прайс</p>
+            <PriceList compact />
           </div>
         </aside>
       </div>
