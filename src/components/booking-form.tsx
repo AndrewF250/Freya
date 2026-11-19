@@ -9,12 +9,15 @@ import { addLead } from "@/lib/leads-store";
 import { getSettings } from "@/lib/settings";
 import { DIAGNOSTIC_SERVICE } from "@/lib/services";
 import { QUIZ_STORAGE_KEY } from "./quiz-flow";
+import { FieldError, fieldProps } from "./field-error";
+import { LIMITS, firstError, formatPhone, validateBooking, type FieldErrors } from "@/lib/validation";
 
 type SavedQuiz = { summary: string[]; products: string[] };
 
 export function BookingForm({ services }: { services: readonly string[] }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<FormState>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
   const [pending, setPending] = useState(false);
   const [time, setTime] = useState("");
   const [servicesSelected, setServicesSelected] = useState<string[]>([]);
@@ -49,7 +52,31 @@ export function BookingForm({ services }: { services: readonly string[] }) {
     };
   }, []);
 
-  const today = new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  const toLocalDate = (d: Date) => new Date(d.getTime() - d.getTimezoneOffset() * 60_000).toISOString().slice(0, 10);
+  const today = toLocalDate(now);
+  const maxDate = toLocalDate(new Date(now.getTime() + LIMITS.bookingDaysAhead * 86_400_000));
+
+  /** Проверяет поля, подсвечивает ошибки и возвращает данные заявки, если всё в порядке. */
+  function validate() {
+    const form = formRef.current;
+    if (!form) return null;
+    const payload = collectBookingPayload(form);
+    const fieldErrors = validateBooking(payload, slots);
+    setErrors(fieldErrors);
+    if (firstError(fieldErrors)) {
+      setState({ ok: false, message: "Проверьте выделенные поля." });
+      const field = Object.keys(fieldErrors)[0];
+      const target =
+        field === "service" || field === "time"
+          ? form.querySelector<HTMLElement>(`[data-field="${field}"] button`)
+          : form.querySelector<HTMLElement>(`[name="${field}"]`);
+      target?.focus();
+      return null;
+    }
+    setState(null);
+    return payload;
+  }
 
   function openTelegramWith(payload: ReturnType<typeof collectBookingPayload>) {
     const url = buildTelegramBookingUrl(settings.telegram, formatBookingMessage(payload, settings.telegramMessagePreset));
@@ -59,13 +86,10 @@ export function BookingForm({ services }: { services: readonly string[] }) {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (servicesSelected.length === 0) {
-      setState({ ok: false, message: "Выберите хотя бы одну услугу." });
-      return;
-    }
-    setPending(true);
     const form = e.currentTarget;
-    const payload = collectBookingPayload(form);
+    const payload = validate();
+    if (!payload) return;
+    setPending(true);
     const result = await submitBooking(new FormData(form));
 
     if (result?.ok) {
@@ -88,22 +112,8 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   }
 
   function duplicateToTelegram() {
-    const form = formRef.current;
-    if (!form) return;
-    const payload = collectBookingPayload(form);
-    if (payload.name.length < 2) {
-      setState({ ok: false, message: "Укажите, как к вам обращаться." });
-      return;
-    }
-    if (payload.phone.replace(/\D/g, "").length < 10) {
-      setState({ ok: false, message: "Проверьте номер телефона — кажется, в нём не хватает цифр." });
-      return;
-    }
-    if (!payload.service) {
-      setState({ ok: false, message: "Выберите хотя бы одну услугу." });
-      return;
-    }
-    openTelegramWith(payload);
+    const payload = validate();
+    if (payload) openTelegramWith(payload);
   }
 
   if (state?.ok) {
@@ -136,13 +146,13 @@ export function BookingForm({ services }: { services: readonly string[] }) {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="card min-w-0 overflow-hidden p-5 sm:p-6 md:p-8" id="booking-form">
+    <form ref={formRef} onSubmit={handleSubmit} noValidate className="card min-w-0 overflow-hidden p-5 sm:p-6 md:p-8" id="booking-form">
       <input type="hidden" name="time" value={time} />
       <input type="hidden" name="service" value={servicesSelected.join(", ")} />
       {quiz && attach && <input type="hidden" name="quiz" value={JSON.stringify(quiz)} />}
 
       <div className="grid min-w-0 gap-5">
-        <div className="min-w-0">
+        <div className="min-w-0" data-field="service">
           <span className="field-label">Услуги *</span>
           <p className="mb-2 text-[12px] leading-relaxed text-muted">Можно выбрать несколько.</p>
           <div className="flex flex-wrap gap-2">
@@ -165,14 +175,24 @@ export function BookingForm({ services }: { services: readonly string[] }) {
               );
             })}
           </div>
+          <FieldError id="service" message={errors.service} />
         </div>
 
         <label className="min-w-0">
           <span className="field-label">Дата *</span>
-          <input type="date" name="date" required min={today} className="field" />
+          <input
+            type="date"
+            name="date"
+            required
+            min={today}
+            max={maxDate}
+            className="field"
+            {...fieldProps("date", errors)}
+          />
+          <FieldError id="date" message={errors.date} />
         </label>
 
-        <div className="min-w-0">
+        <div className="min-w-0" data-field="time">
           <span className="field-label">Удобное время</span>
           <div className="flex flex-wrap gap-2">
             {slots.map((s) => (
@@ -187,12 +207,23 @@ export function BookingForm({ services }: { services: readonly string[] }) {
               </button>
             ))}
           </div>
+          <FieldError id="time" message={errors.time} />
         </div>
 
         <div className="grid min-w-0 gap-5 sm:grid-cols-2">
           <label className="min-w-0">
             <span className="field-label">Как к вам обращаться *</span>
-            <input name="name" required minLength={2} placeholder="Анна" className="field" autoComplete="name" />
+            <input
+              name="name"
+              required
+              minLength={2}
+              maxLength={LIMITS.name}
+              placeholder="Анна"
+              className="field"
+              autoComplete="name"
+              {...fieldProps("name", errors)}
+            />
+            <FieldError id="name" message={errors.name} />
           </label>
 
           <label className="min-w-0">
@@ -201,16 +232,31 @@ export function BookingForm({ services }: { services: readonly string[] }) {
               name="phone"
               type="tel"
               required
+              inputMode="tel"
               placeholder="+7 (999) 123-45-67"
               className="field"
               autoComplete="tel"
+              onBlur={(e) => {
+                e.currentTarget.value = formatPhone(e.currentTarget.value);
+              }}
+              {...fieldProps("phone", errors)}
             />
+            <FieldError id="phone" message={errors.phone} />
           </label>
         </div>
 
         <label className="min-w-0">
           <span className="field-label">E-mail</span>
-          <input name="email" type="email" placeholder="anna@example.com" className="field" autoComplete="email" />
+          <input
+            name="email"
+            type="email"
+            maxLength={LIMITS.email}
+            placeholder="anna@example.com"
+            className="field"
+            autoComplete="email"
+            {...fieldProps("email", errors)}
+          />
+          <FieldError id="email" message={errors.email} />
         </label>
 
         <label className="min-w-0">
@@ -218,9 +264,12 @@ export function BookingForm({ services }: { services: readonly string[] }) {
           <textarea
             name="comment"
             rows={4}
+            maxLength={LIMITS.comment}
             placeholder="Например: после осветления волосы стали ломкими, хочу разобраться с уходом"
             className="field resize-y"
+            {...fieldProps("comment", errors)}
           />
+          <FieldError id="comment" message={errors.comment} />
         </label>
       </div>
 

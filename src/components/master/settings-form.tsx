@@ -12,7 +12,7 @@ import {
 } from "@/lib/booking-slots";
 import { catalogFrom, type CatalogConfig } from "@/lib/catalog";
 import { LONG_SETTINGS, SETTING_LABELS, DEFAULT_TELEGRAM_BOOKING_PRESET, type SettingKey, type Settings } from "@/lib/settings";
-import { getStoredProducts, saveStoredSettings } from "@/lib/master-store";
+import { getStoredProducts, getStoredSettings, saveStoredSettings } from "@/lib/master-store";
 import { BookingSlotsEditor } from "./booking-slots-editor";
 import { CatalogEntriesEditor, LinesEditor } from "./catalog-editor";
 
@@ -54,6 +54,8 @@ export function SettingsForm({ initial }: { initial: Settings }) {
     };
     saveStoredSettings({
       ...values,
+      // Анкету редактируют на соседней вкладке — берём свежую версию, чтобы не затереть её.
+      quiz: getStoredSettings().quiz,
       bookingSlots: sortTimeSlots(values.bookingSlots ?? []),
       bookingSlotPresets: values.bookingSlotPresets ?? DEFAULT_SLOT_PRESETS,
       imageBgPresets: values.imageBgPresets ?? DEFAULT_IMAGE_BG_PRESETS,

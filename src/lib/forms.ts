@@ -1,17 +1,12 @@
 import { getProductsBySlugs } from "./products";
 import { getSettings } from "./settings";
 import { rub, parseJson } from "./format";
+import { firstError, formatPhone, validateBooking, validateOrder } from "./validation";
+import { parseBookingSlots } from "./booking-slots";
 
 export type FormState = { ok: boolean; message: string } | null;
 
 const WEB3FORMS_URL = "https://api.web3forms.com/submit";
-const digits = (s: string) => s.replace(/\D/g, "");
-
-function validateContact(name: string, phone: string): string | null {
-  if (name.trim().length < 2) return "Укажите, как к вам обращаться.";
-  if (digits(phone).length < 10) return "Проверьте номер телефона — кажется, в нём не хватает цифр.";
-  return null;
-}
 
 async function sendForm(subject: string, message: string): Promise<FormState> {
   const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
@@ -52,17 +47,16 @@ export async function submitBooking(formData: FormData): Promise<FormState> {
   const comment = String(formData.get("comment") ?? "").trim();
   const quiz = String(formData.get("quiz") ?? "").trim();
 
-  const error = validateContact(name, phone);
-  if (error) return { ok: false, message: error };
-  if (!service) return { ok: false, message: "Выберите хотя бы одну услугу." };
-  if (!date) return { ok: false, message: "Выберите дату визита." };
-
   const settings = getSettings();
+  const error = firstError(
+    validateBooking({ name, phone, email, service, date, time, comment }, parseBookingSlots(settings)),
+  );
+  if (error) return { ok: false, message: error };
   const lines = [
     `Новая запись — ${settings.salonName}`,
     "",
     `Имя: ${name}`,
-    `Телефон: ${phone}`,
+    `Телефон: ${formatPhone(phone)}`,
     email ? `E-mail: ${email}` : "",
     `Услуга: ${service}`,
     `Когда: ${date}${time ? ` в ${time}` : ""}`,
@@ -93,19 +87,21 @@ export async function submitOrder(formData: FormData): Promise<FormState> {
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const comment = String(formData.get("comment") ?? "").trim();
-  const delivery = String(formData.get("delivery") ?? "Доставка по Перми").trim();
+  const delivery = String(formData.get("delivery") ?? "").trim();
+  const address = String(formData.get("address") ?? "").trim();
+  const orderId = String(formData.get("orderId") ?? "").trim();
+  const payment = String(formData.get("paymentLabel") ?? "").trim();
   const rawItems = parseJson<{ slug: string; qty: number }[]>(String(formData.get("items") ?? "[]"), []);
 
-  const error = validateContact(name, phone);
+  const error = firstError(validateOrder({ name, phone, email, delivery, address, comment, items: rawItems }));
   if (error) return { ok: false, message: error };
-  if (rawItems.length === 0) return { ok: false, message: "Корзина пуста." };
 
   const products = getProductsBySlugs(rawItems.map((i) => i.slug));
   const items = rawItems
     .map((i) => {
       const p = products.find((x) => x.slug === i.slug);
       if (!p) return null;
-      const qty = Math.max(1, Math.min(99, Math.round(Number(i.qty) || 1)));
+      const qty = i.qty;
       return { slug: p.slug, name: `${p.line} — ${p.nameEn || p.nameRu}`, price: p.price, qty };
     })
     .filter((x): x is NonNullable<typeof x> => x !== null);
@@ -118,26 +114,28 @@ export async function submitOrder(formData: FormData): Promise<FormState> {
   const settings = getSettings();
 
   const message = [
-    `Новый заказ — ${settings.salonName}`,
+    `Новый заказ ${orderId} — ${settings.salonName}`,
     "",
     ...items.map((i) => `• ${i.name} × ${i.qty} — ${rub(i.price * i.qty)}`),
     "",
     `Итого: ${rub(total)}`,
     `Получение: ${delivery}`,
+    `Адрес: ${address}`,
+    payment ? `Оплата: ${payment}` : "",
     "",
     `Имя: ${name}`,
-    `Телефон: ${phone}`,
+    `Телефон: ${formatPhone(phone)}`,
     email ? `E-mail: ${email}` : "",
     comment ? `Комментарий: ${comment}` : "",
   ]
     .filter(Boolean)
     .join("\n");
 
-  const result = await sendForm(`Заказ — ${settings.salonName}`, message);
+  const result = await sendForm(`Заказ ${orderId} — ${settings.salonName}`, message);
   if (!result || !result.ok) return result ?? { ok: false, message: "Не удалось отправить заказ." };
 
   return {
     ok: true,
-    message: `${name}, заказ на ${rub(total)} принят. Мы перезвоним на ${phone}, чтобы подтвердить наличие и способ получения. — Кристина, ${settings.salonName}`,
+    message: `${name}, заказ ${orderId} на ${rub(total)} принят. Мы перезвоним на ${phone}, чтобы подтвердить наличие и способ получения. — Кристина, ${settings.salonName}`,
   };
 }

@@ -107,7 +107,7 @@ export function MasterShopBrowser({ onChange }: { onChange?: () => void }) {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="MoMo, маска, объём…"
+              placeholder="OI, MOMO, маска, объём…"
               className="field"
             />
           </label>

@@ -40,7 +40,8 @@ npm run dev
 
 Сайт собирается из статических JSON-файлов:
 
-- `src/data/products.json` — каталог товаров (цены, описания, видимость, избранное)
+- `src/data/products.json` — каталог товаров, импортирован с davines.ru (цены, описания, эффекты, состав, фото)
+- `src/data/catalog.json` — словарь каталога с davines.ru: типы продуктов, эффекты, типы волос, линии, серии
 - `src/data/settings.json` — контакты, тексты на главной и в разделах
 
 После изменений закоммитьте и запушьте в `main` — GitHub Actions автоматически обновит сайт.
@@ -70,7 +71,13 @@ npm run export-data
 
 Фото студии и Davines лежат в `public/photos/` (портрет Кристины, работа в салоне, категории ухода).
 
-Фото продукции — в `public/products/`.
+Фото продукции — в `public/products/<slug>/`.
+
+Обновить каталог с официального сайта (полностью заменяет товары и фото; HTML и картинки кэшируются в указанной папке):
+
+```bash
+node scripts/import-davines-catalog.mjs ../davines-cache
+```
 
 Чтобы скачать новые категорийные фото с davines.ru:
 
@@ -98,3 +105,11 @@ node scripts/fetch-davines-category-photos.mjs
 1. В настройках репозитория: **Pages → Source: GitHub Actions**
 2. Добавьте secret `WEB3FORMS_KEY` для работы форм
 3. URL: `https://andrewf250.github.io/Freya/`
+
+## Онлайн-оплата (ЮKassa)
+
+В корзине уже есть выбор «Онлайн картой или СБП», но он выключен, пока не задан `NEXT_PUBLIC_PAYMENT_API_URL`.
+Сайт статический, поэтому платёж создаёт отдельный бэкенд (serverless-функция) с `shopId` и секретным ключом
+магазина — в браузер ключ попадать не должен. Контракт запроса и формат чека по 54-ФЗ описаны в
+`src/lib/payments.ts`; после оплаты ЮKassa возвращает клиента на `/cart/?payment=return&order=<номер>`.
+

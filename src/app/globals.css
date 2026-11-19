@@ -121,6 +121,16 @@
   .chip:hover { border-color: var(--color-muted); }
   .chip[data-active="true"] { background: var(--color-navy); border-color: var(--color-navy); color: #fff; }
 
+  /* Ярлык свойства продукта: эффект или тип волос — один формат для всех. */
+  .tag {
+    display: inline-flex; align-items: center;
+    padding: 6px 12px; border-radius: var(--radius-pill);
+    font-size: 12px; line-height: 1.25; letter-spacing: .01em;
+    background: var(--color-olive-soft); color: var(--color-olive-deep);
+    border: 1px solid transparent; transition: border-color .16s ease;
+  }
+  a.tag:hover { border-color: var(--color-olive-deep); }
+
   .badge {
     display: inline-flex; align-items: center;
     padding: 4px 10px; border-radius: var(--radius-pill);
@@ -143,6 +153,7 @@
   input[type="date"].field { min-width: 0; }
   .field::placeholder { color: var(--color-muted); }
   .field:focus { outline: none; border-color: var(--color-olive); }
+  .field[data-invalid="true"] { border-color: #a1432f; }
   .field-label { display: block; font-size: 12px; letter-spacing: .04em; color: var(--color-ink-soft); margin-bottom: 6px; }
 
   /* ── Раскладка ───────────────────────────────────────── */

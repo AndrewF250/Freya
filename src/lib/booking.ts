@@ -1,6 +1,7 @@
 import { parseJson } from "./format";
 import { DEFAULT_TELEGRAM_BOOKING_PRESET, getSettings } from "./settings";
 import { buildTelegramUrl } from "./telegram";
+import { formatPhone } from "./validation";
 
 export type BookingPayload = {
   name: string;
@@ -20,7 +21,7 @@ export function collectBookingPayload(form: HTMLFormElement): BookingPayload {
 
   return {
     name: String(formData.get("name") ?? "").trim(),
-    phone: String(formData.get("phone") ?? "").trim(),
+    phone: formatPhone(String(formData.get("phone") ?? "")),
     email: String(formData.get("email") ?? "").trim(),
     service: String(formData.get("service") ?? "").trim(),
     date: String(formData.get("date") ?? "").trim(),

@@ -3,6 +3,9 @@ import { QuizFlow } from "@/components/quiz-flow";
 import { PageHead } from "@/components/ui";
 import { PHOTOS } from "@/lib/photos";
 import { getVisibleProducts } from "@/lib/products";
+import { catalogFrom } from "@/lib/catalog";
+import { resolveQuizSteps } from "@/lib/quiz";
+import { getSettings } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "Подбор ухода Davines",
@@ -12,14 +15,18 @@ export const metadata: Metadata = {
 };
 
 export default function QuizPage() {
+  // Все продукты: наборы и мини попадают в подбор, только если мастер закрепил их за ответом.
   const products = getVisibleProducts();
+  const settings = getSettings();
+  const catalog = catalogFrom(settings);
+  const steps = resolveQuizSteps(settings);
 
   return (
     <>
       <PageHead
         eyebrow="Квиз подбора"
         title="Подберём уход за минуту"
-        text="Пять вопросов о волосах и коже головы. В конце — готовый набор ухода Davines, который можно сразу купить или взять с собой на консультацию."
+        text="Пять вопросов о волосах и коже головы и комментарий своими словами. В конце — готовый набор ухода Davines, который можно сразу купить или взять с собой на консультацию."
         photo={PHOTOS.catLeaveIn}
       />
       <QuizFlow
@@ -29,6 +36,7 @@ export default function QuizPage() {
           nameRu: p.nameRu,
           nameEn: p.nameEn,
           line: p.line,
+          series: p.series,
           category: p.category,
           volume: p.volume,
           price: p.price,
@@ -36,7 +44,11 @@ export default function QuizPage() {
           imageBg: p.imageBg,
           concerns: p.concerns,
           hairTypes: p.hairTypes,
+          variants: p.variants,
+          related: p.related,
         }))}
+        steps={steps}
+        tagLabels={Object.fromEntries([...catalog.concerns, ...catalog.hairTypes].map((e) => [e.key, e.label]))}
       />
     </>
   );

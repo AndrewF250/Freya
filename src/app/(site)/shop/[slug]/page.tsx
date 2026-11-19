@@ -4,10 +4,10 @@ import { notFound } from "next/navigation";
 import { AddToCartBlock } from "@/components/add-to-cart";
 import { BreadcrumbJsonLd, ProductJsonLd } from "@/components/json-ld";
 import { ProductCard } from "@/components/product-card";
-import { ProductImage } from "@/components/product-image";
+import { ProductGallery } from "@/components/product-gallery";
 import { getProductBySlug, getRelated, getVisibleProducts } from "@/lib/products";
 import { getSettings } from "@/lib/settings";
-import { catalogFrom, catalogLabel } from "@/lib/catalog";
+import { catalogFrom, catalogLabel, LINE_TAGLINES } from "@/lib/catalog";
 import { rub } from "@/lib/format";
 
 export function generateStaticParams() {
@@ -19,8 +19,8 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
     const product = getProductBySlug(p.slug);
     if (!product) return { title: "Продукт не найден" };
     return {
-      title: `${product.nameEn || product.nameRu} — ${product.line}`,
-      description: `${product.description.slice(0, 130)} Купить в салоне ФРЕЯ, Перм.`,
+      title: `${product.nameEn || product.nameRu} — Davines ${product.line}`,
+      description: `${(product.description || product.nameRu).replace(/\s+/g, " ").slice(0, 130)} Купить в салоне ФРЕЯ, Пермь.`,
       alternates: { canonical: `/shop/${product.slug}/` },
     };
   });
@@ -35,6 +35,27 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const settings = getSettings();
   const catalog = catalogFrom(settings);
   const categoryLabel = catalogLabel(catalog.categories, product.category, "Другое");
+  const lineTagline = product.lineTagline || LINE_TAGLINES[product.line] || "";
+  const variants = product.variants ?? [];
+  // Ярлыки — только те, что есть в словаре каталога: эффекты продукта и типы волос из его описания.
+  const tags = [
+    ...product.concerns.flatMap((key) => {
+      const entry = catalog.concerns.find((e) => e.key === key);
+      return entry ? [{ label: entry.label, href: `/shop?concern=${encodeURIComponent(key)}` }] : [];
+    }),
+    ...product.hairTypes.flatMap((key) => {
+      const entry = catalog.hairTypes.find((e) => e.key === key);
+      return entry ? [{ label: entry.label, href: `/shop?hair=${encodeURIComponent(key)}` }] : [];
+    }),
+  ];
+  const details = (
+    [
+      ["Подойдёт ли мне", product.suitability],
+      ["Ключевой ингредиент", product.keyIngredient],
+      ["С чем сочетать", product.pairing],
+      ["Применение", product.usage],
+    ] as const
+  ).filter(([, text]) => Boolean(text)) as [string, string][];
 
   return (
     <>
@@ -61,22 +82,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </div>
 
       <section className="shell grid gap-10 py-10 md:grid-cols-2 md:gap-16 md:py-14">
-        <ProductImage
-          src={product.image}
+        <ProductGallery
+          images={product.gallery?.length ? product.gallery : product.image ? [product.image] : []}
           alt={product.nameEn || product.nameRu}
-          sizes="(max-width: 768px) 100vw, 45vw"
-          priority
           bgColor={product.imageBg}
-          className="aspect-square rounded-card border border-line"
         />
 
         <div>
           <p className="eyebrow">
-            {product.line} · {categoryLabel}
+            {product.line}
+            {product.series?.length ? ` · ${product.series.join(", ")}` : ""} · {categoryLabel}
             {product.featured ? " · Выбор Кристины" : ""}
           </p>
           <h1 className="display mt-3 text-[34px] md:text-[46px]">{product.nameEn || product.nameRu}</h1>
-          <p className="mt-3 text-[15px] text-ink-soft">{product.nameRu}</p>
+          {product.nameEn && product.nameRu !== product.nameEn && (
+            <p className="mt-3 text-[15px] text-ink-soft">{product.nameRu}</p>
+          )}
 
           <div className="mt-7 flex items-baseline gap-3">
             <p className="font-display text-[32px] leading-none tabular-nums">{rub(product.price)}</p>
@@ -85,6 +106,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             ) : null}
             {product.volume && <p className="text-[14px] text-muted">/ {product.volume}</p>}
           </div>
+
+          {variants.length > 1 && (
+            <div className="mt-5">
+              <p className="field-label">Объём</p>
+              <div className="flex flex-wrap gap-2">
+                {variants.map((v) =>
+                  v.slug === product.slug ? (
+                    <span key={v.slug} className="chip" data-active="true" aria-current="page">
+                      {v.volume}
+                    </span>
+                  ) : (
+                    <Link key={v.slug} href={`/shop/${v.slug}`} className="chip">
+                      {v.volume}
+                    </Link>
+                  ),
+                )}
+              </div>
+            </div>
+          )}
 
           <div className="mt-8">
             <AddToCartBlock
@@ -109,29 +149,64 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </p>
 
           {product.description && (
-            <p className="mt-9 max-w-[54ch] text-[15px] leading-relaxed text-ink-soft">{product.description}</p>
+            <p className="mt-9 max-w-[54ch] text-[15px] leading-relaxed whitespace-pre-line text-ink-soft">
+              {product.description}
+            </p>
           )}
 
-          {(product.concerns.length > 0 || product.hairTypes.length > 0) && (
-            <div className="mt-8 flex flex-wrap gap-2">
-              {product.concerns.map((c) => (
-                <span key={c} className="badge">
-                  {catalogLabel(catalog.concerns, c, c)}
-                </span>
+          {tags.length > 0 && (
+            <ul className="mt-8 flex flex-wrap gap-2" aria-label="Свойства продукта">
+              {tags.map((t) => (
+                <li key={t.href}>
+                  <Link href={t.href} className="tag">
+                    {t.label}
+                  </Link>
+                </li>
               ))}
-              {product.hairTypes.map((h) => (
-                <span key={h} className="chip !cursor-default">
-                  {catalogLabel(catalog.hairTypes, h, h)}
-                </span>
-              ))}
-            </div>
+            </ul>
           )}
 
           <dl className="mt-9 divide-y divide-line border-t border-line text-[14px]">
-            {product.usage && (
+            {details.map(([label, text]) => (
+              <div key={label} className="grid gap-1 py-4 sm:grid-cols-[150px_1fr] sm:gap-6">
+                <dt className="text-muted">{label}</dt>
+                <dd className="leading-relaxed whitespace-pre-line text-ink-soft">{text}</dd>
+              </div>
+            ))}
+            {product.composition && (
+              <div className="py-4">
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-muted transition-colors hover:text-ink">
+                    Состав
+                    <span aria-hidden className="transition-transform group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-[12px] leading-relaxed break-words text-ink-soft">{product.composition}</p>
+                </details>
+              </div>
+            )}
+            <div className="grid gap-1 py-4 sm:grid-cols-[150px_1fr] sm:gap-6">
+              <dt className="text-muted">Линия</dt>
+              <dd className="text-ink-soft">
+                <Link href={`/shop?line=${encodeURIComponent(product.line)}`} className="underline-offset-4 hover:underline">
+                  Davines {product.line}
+                </Link>
+                {lineTagline ? ` — ${lineTagline}` : ""}
+                {product.series?.map((s) => (
+                  <span key={s}>
+                    {" · "}
+                    <Link href={`/shop?series=${encodeURIComponent(s)}`} className="underline-offset-4 hover:underline">
+                      {s}
+                    </Link>
+                  </span>
+                ))}
+              </dd>
+            </div>
+            {product.sku && (
               <div className="grid gap-1 py-4 sm:grid-cols-[150px_1fr] sm:gap-6">
-                <dt className="text-muted">Применение</dt>
-                <dd className="leading-relaxed text-ink-soft">{product.usage}</dd>
+                <dt className="text-muted">Артикул</dt>
+                <dd className="tabular-nums text-ink-soft">{product.sku}</dd>
               </div>
             )}
             <div className="grid gap-1 py-4 sm:grid-cols-[150px_1fr] sm:gap-6">

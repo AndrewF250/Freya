@@ -10,6 +10,7 @@ export type CardProduct = {
   nameRu: string;
   nameEn: string;
   line: string;
+  series?: string[];
   category: string;
   volume: string;
   price: number;
@@ -37,7 +38,10 @@ export function ProductCard({ product, priority = false }: { product: CardProduc
 
       <div className="flex flex-1 flex-col p-3 sm:p-4">
         <div className="flex flex-wrap items-start justify-between gap-1.5">
-          <p className="eyebrow min-w-0">{product.line}</p>
+          <p className="eyebrow min-w-0">
+            {product.line}
+            {product.series?.[0] ? ` · ${product.series[0]}` : ""}
+          </p>
           {product.featured ? <span className="badge max-w-full whitespace-normal">Выбор Кристины</span> : null}
         </div>
 

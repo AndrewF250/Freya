@@ -24,7 +24,8 @@ type CartContext = {
   clear: () => void;
 };
 
-const STORAGE_KEY = "freya-cart-v1";
+// v2 — каталог заменён ассортиментом с davines.ru, старые позиции корзины недействительны.
+const STORAGE_KEY = "freya-cart-v2";
 const Ctx = createContext<CartContext | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {

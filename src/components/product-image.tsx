@@ -12,7 +12,10 @@ export function ProductImage({
   priority = false,
   className = "",
   bgColor,
+  padding = "p-5",
 }: {
+  /** Отступ вокруг packshot; для мелких превью — меньше. */
+  padding?: string;
   src: string;
   alt: string;
   sizes?: string;
@@ -35,7 +38,7 @@ export function ProductImage({
         sizes={sizes}
         priority={priority}
         unoptimized={inline}
-        className="object-contain p-5"
+        className={`object-contain ${padding}`}
       />
     </div>
   );

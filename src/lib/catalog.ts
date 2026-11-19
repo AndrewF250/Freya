@@ -1,4 +1,5 @@
 /** Общий словарь каталога — используется и на витрине, и в кабинете мастера. */
+import catalogJson from "@/data/catalog.json";
 
 export type CatalogEntry = {
   key: string;
@@ -19,58 +20,37 @@ export type ResolvedCatalog = {
   lines: string[];
 };
 
-export const DEFAULT_CATEGORIES: CatalogEntry[] = [
-  { key: "shampoo", label: "Шампуни" },
-  { key: "conditioner", label: "Кондиционеры" },
-  { key: "mask", label: "Маски" },
-  { key: "leaveIn", label: "Несмываемый уход" },
-  { key: "serum", label: "Сыворотки" },
-  { key: "oil", label: "Масла" },
-  { key: "scalp", label: "Уход за кожей головы" },
-  { key: "styling", label: "Стайлинг" },
-  { key: "other", label: "Другое" },
-];
+/**
+ * Словарь каталога импортирован с davines.ru (scripts/import-davines-catalog.mjs):
+ * типы продуктов, эффекты («Задача»), типы волос, линии и серии — как на официальном сайте.
+ */
+type ImportedCatalog = {
+  importedAt: string;
+  categories: CatalogEntry[];
+  concerns: CatalogEntry[];
+  hairTypes: CatalogEntry[];
+  lines: { name: string; tagline: string }[];
+  series: string[];
+};
+const imported = catalogJson as ImportedCatalog;
 
-export const DEFAULT_CONCERNS: CatalogEntry[] = [
-  { key: "dryness", label: "Сухость и обезвоженность" },
-  { key: "damage", label: "Повреждение и ломкость" },
-  { key: "volume", label: "Недостаток объёма" },
-  { key: "color", label: "Защита цвета" },
-  { key: "curls", label: "Кудри и завиток" },
-  { key: "frizz", label: "Пушистость" },
-  { key: "scalp", label: "Кожа головы" },
-  { key: "shine", label: "Блеск и мягкость" },
-];
+/** Версия импорта — по ней кабинет мастера сбрасывает устаревшие локальные правки каталога. */
+export const CATALOG_VERSION = imported.importedAt;
 
-export const DEFAULT_HAIR_TYPES: CatalogEntry[] = [
-  { key: "normal", label: "Нормальные" },
-  { key: "dry", label: "Сухие" },
-  { key: "oily", label: "Жирные у корней" },
-  { key: "colored", label: "Окрашенные" },
-  { key: "curly", label: "Кудрявые" },
-  { key: "thin", label: "Тонкие" },
-  { key: "damaged", label: "Повреждённые" },
-];
+export const DEFAULT_CATEGORIES: CatalogEntry[] = imported.categories;
+export const DEFAULT_CONCERNS: CatalogEntry[] = imported.concerns;
+export const DEFAULT_HAIR_TYPES: CatalogEntry[] = imported.hairTypes;
 
-/** Порядок вывода линеек Davines в фильтрах. */
-export const LINE_ORDER = [
-  "MoMo",
-  "NouNou",
-  "Love",
-  "Dede",
-  "Minu",
-  "Melu",
-  "Volu",
-  "Solu",
-  "OI",
-  "Alchemic",
-  "Heart of Glass",
-  "Naturaltech",
-  "More Inside",
-  "The Circle Chronicles",
-  "Essential Haircare",
-  "Davines",
-];
+/** Порядок вывода линий Davines в фильтрах. */
+export const LINE_ORDER = [...imported.lines.map((l) => l.name), "Davines"];
+
+/** Подписи линий: «OI» → «для абсолютной красоты». */
+export const LINE_TAGLINES: Record<string, string> = Object.fromEntries(
+  imported.lines.filter((l) => l.tagline).map((l) => [l.name, l.tagline]),
+);
+
+/** Серии (семейства) внутри линий: MOMO, NOUNOU, LOVE Curl, Energizing… */
+export const SERIES_ORDER = imported.series;
 
 const translit: Record<string, string> = {
   а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh", з: "z", и: "i", й: "i",
@@ -127,6 +107,8 @@ export function catalogLabel(entries: CatalogEntry[], key: string, fallback = ke
   return entries.find((e) => e.key === key)?.label ?? fallback;
 }
 
+export const sortSeries = (series: string[]) => sortLines(series, SERIES_ORDER);
+
 export const sortLines = (lines: string[], order: string[] = LINE_ORDER) =>
   [...lines].sort((a, b) => {
     const ia = order.indexOf(a);
@@ -140,8 +122,8 @@ export const CONCERNS = Object.fromEntries(DEFAULT_CONCERNS.map((e) => [e.key, e
 export const HAIR_TYPES = Object.fromEntries(DEFAULT_HAIR_TYPES.map((e) => [e.key, e.label])) as Record<string, string>;
 
 export type CategoryKey = string;
-export type ConcernKey = (typeof DEFAULT_CONCERNS)[number]["key"];
-export type HairTypeKey = (typeof DEFAULT_HAIR_TYPES)[number]["key"];
+export type ConcernKey = string;
+export type HairTypeKey = string;
 
 export const CATEGORY_KEYS = DEFAULT_CATEGORIES.map((e) => e.key);
 export const CONCERN_KEYS = DEFAULT_CONCERNS.map((e) => e.key);

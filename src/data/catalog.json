@@ -1,0 +1,267 @@
+{
+  "source": "https://davines.ru/catalog/",
+  "importedAt": "2026-11-19",
+  "categories": [
+    {
+      "key": "shampoo",
+      "label": "Шампуни"
+    },
+    {
+      "key": "conditioner",
+      "label": "Кондиционеры"
+    },
+    {
+      "key": "mask",
+      "label": "Маски для волос"
+    },
+    {
+      "key": "leaveIn",
+      "label": "Несмываемые продукты"
+    },
+    {
+      "key": "styling",
+      "label": "Стайлинг"
+    },
+    {
+      "key": "body",
+      "label": "Продукты для тела"
+    },
+    {
+      "key": "set",
+      "label": "Наборы"
+    },
+    {
+      "key": "mini",
+      "label": "Мини формат"
+    }
+  ],
+  "concerns": [
+    {
+      "key": "bleska",
+      "label": "Для блеска"
+    },
+    {
+      "key": "plotnosti",
+      "label": "Для плотности"
+    },
+    {
+      "key": "uvlazhneniya",
+      "label": "Для увлажнения"
+    },
+    {
+      "key": "discipliny",
+      "label": "Для дисциплины"
+    },
+    {
+      "key": "pitaniya-i-vosstanovleniya",
+      "label": "Для питания и восстановления"
+    },
+    {
+      "key": "sohraneniya-cveta",
+      "label": "Для сохранения цвета"
+    },
+    {
+      "key": "chastogo-mytya",
+      "label": "Для частого мытья"
+    },
+    {
+      "key": "glyancevyi-effekt",
+      "label": "Глянцевый эффект"
+    },
+    {
+      "key": "zaschity-ot-lomkosti",
+      "label": "Для защиты от ломкости"
+    },
+    {
+      "key": "termozaschity",
+      "label": "Для термозащиты"
+    },
+    {
+      "key": "gladkosti",
+      "label": "Для гладкости"
+    },
+    {
+      "key": "delikatnogo-ochischeniya",
+      "label": "Для деликатного очищения"
+    },
+    {
+      "key": "ukrepleniya",
+      "label": "Для укрепления"
+    },
+    {
+      "key": "protiv-vypadeniya",
+      "label": "Против выпадения"
+    },
+    {
+      "key": "sozdaniya-lokonov",
+      "label": "Для создания локонов"
+    },
+    {
+      "key": "usileniya-zavitka",
+      "label": "Для усиления завитка"
+    },
+    {
+      "key": "protiv-perhoti",
+      "label": "Против перхоти"
+    },
+    {
+      "key": "protiv-zagryazneniya",
+      "label": "Против загрязнения"
+    },
+    {
+      "key": "zaschity-ot-solnca",
+      "label": "Для защиты от солнца"
+    },
+    {
+      "key": "glyancevoi-gladkosti",
+      "label": "Для глянцевой гладкости"
+    },
+    {
+      "key": "pridaniya-cveta",
+      "label": "Для придания цвета"
+    },
+    {
+      "key": "glubokogo-ochischeniya",
+      "label": "Для глубокого очищения"
+    },
+    {
+      "key": "protiv-zhirnosti",
+      "label": "Против жирности"
+    },
+    {
+      "key": "tekstury",
+      "label": "Для текстуры"
+    },
+    {
+      "key": "nevesomyi-effekt",
+      "label": "Невесомый эффект"
+    },
+    {
+      "key": "protiv-chuvstvitelnosti",
+      "label": "Против чувствительности"
+    }
+  ],
+  "hairTypes": [
+    {
+      "key": "vse-tipy",
+      "label": "Для всех типов волос"
+    },
+    {
+      "key": "suhie",
+      "label": "Для сухих волос"
+    },
+    {
+      "key": "obezvozhennye",
+      "label": "Для обезвоженных волос"
+    },
+    {
+      "key": "tonkie",
+      "label": "Для тонких волос"
+    },
+    {
+      "key": "povrezhdennyh",
+      "label": "Для повреждённых волос"
+    },
+    {
+      "key": "vyuschihsya-kudryavyh",
+      "label": "Для вьющихся и кудрявых волос"
+    },
+    {
+      "key": "neposlushnye",
+      "label": "Для непослушных волос"
+    },
+    {
+      "key": "zhestkih",
+      "label": "Для жёстких волос"
+    },
+    {
+      "key": "okrashennyh",
+      "label": "Для окрашенных волос"
+    },
+    {
+      "key": "osvetlennyh",
+      "label": "Для осветлённых волос"
+    },
+    {
+      "key": "obescvechennye",
+      "label": "Для обесцвеченных волос"
+    }
+  ],
+  "lines": [
+    {
+      "name": "Alchemic",
+      "tagline": "оттеночный уход"
+    },
+    {
+      "name": "Authentic",
+      "tagline": "для волос и тела"
+    },
+    {
+      "name": "Beautiful Things",
+      "tagline": "поддержание цвета"
+    },
+    {
+      "name": "Essential",
+      "tagline": "ежедневный уход"
+    },
+    {
+      "name": "Heart of glass",
+      "tagline": "для блондинок"
+    },
+    {
+      "name": "Liquid Spell",
+      "tagline": "уплотняющий флюид для объема"
+    },
+    {
+      "name": "More Inside",
+      "tagline": "стайлинг"
+    },
+    {
+      "name": "NaturalTech",
+      "tagline": "терапевтический уход"
+    },
+    {
+      "name": "OI",
+      "tagline": "для абсолютной красоты"
+    },
+    {
+      "name": "Pasta & Love",
+      "tagline": "для мужчин"
+    },
+    {
+      "name": "SU",
+      "tagline": "солнечная линия"
+    },
+    {
+      "name": "The Circle Chronicles",
+      "tagline": "экспресс маски"
+    },
+    {
+      "name": "WE STAND",
+      "tagline": ""
+    }
+  ],
+  "series": [
+    "NOUNOU",
+    "MOMO",
+    "MINU",
+    "VOLU",
+    "SOLU",
+    "DEDE",
+    "LOVE Curl",
+    "LOVE Smoothing",
+    "MELU",
+    "Energizing",
+    "Purifying",
+    "Nourishing",
+    "Replumping",
+    "Calming",
+    "Detoxifying",
+    "Elevating",
+    "Rebalancing",
+    "Renewing",
+    "Well-Being",
+    "Базовые оттенки",
+    "Креативные оттенки"
+  ]
+}

@@ -9,33 +9,41 @@ import type { CatalogEntry } from "@/lib/catalog";
 import { compareByPopularity } from "@/lib/products";
 import { plural } from "@/lib/format";
 
-type Product = CardProduct & { id: string; concerns: string[]; sortOrder?: number };
+type Product = CardProduct & { id: string; concerns: string[]; hairTypes: string[]; series: string[]; sortOrder?: number };
 
 type Sort = "popularity" | "price-asc" | "price-desc";
 
 export function ShopBrowser({
   products,
   lines,
+  series,
   categories,
   concerns,
+  hairTypes,
 }: {
   products: Product[];
   lines: string[];
+  series: string[];
   categories: CatalogEntry[];
   concerns: CatalogEntry[];
+  hairTypes: CatalogEntry[];
 }) {
   const searchParams = useSearchParams();
   const lineParam = searchParams.get("line") ?? "";
   const categoryParam = searchParams.get("category") ?? "";
+  const seriesParam = searchParams.get("series") ?? "";
   const [line, setLine] = useState(lineParam);
+  const [seriesName, setSeriesName] = useState(seriesParam);
+  const [hairType, setHairType] = useState(searchParams.get("hair") ?? "");
   const [category, setCategory] = useState(categoryParam);
-  const [concern, setConcern] = useState("");
+  const [concern, setConcern] = useState(searchParams.get("concern") ?? "");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("popularity");
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   const categoryKeys = useMemo(() => new Set(categories.map((c) => c.key)), [categories]);
   const selectedLine = lines.includes(line) ? line : "";
+  const selectedSeries = series.includes(seriesName) ? seriesName : "";
   const selectedCategory = categoryKeys.has(category) ? category : "";
 
   const categoryCounts = useMemo(() => {
@@ -55,6 +63,20 @@ export function ShopBrowser({
     for (const p of products) map.set(p.line, (map.get(p.line) ?? 0) + 1);
     return map;
   }, [products]);
+  const seriesCounts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of products) for (const s of p.series) map.set(s, (map.get(s) ?? 0) + 1);
+    return map;
+  }, [products]);
+  const hairCounts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of products) for (const h of p.hairTypes) map.set(h, (map.get(h) ?? 0) + 1);
+    return map;
+  }, [products]);
+  const hairTypesPresent = useMemo(
+    () => hairTypes.filter((h) => (hairCounts.get(h.key) ?? 0) > 0),
+    [hairTypes, hairCounts],
+  );
 
   const categoriesPresent = useMemo(
     () => categories.filter((c) => (categoryCounts.get(c.key) ?? 0) > 0),
@@ -69,19 +91,23 @@ export function ShopBrowser({
     const q = query.trim().toLowerCase();
     const list = products.filter((p) => {
       if (selectedLine && p.line !== selectedLine) return false;
+      if (selectedSeries && !p.series.includes(selectedSeries)) return false;
+      if (hairType && !p.hairTypes.includes(hairType)) return false;
       if (selectedCategory && p.category !== selectedCategory) return false;
       if (concern && !p.concerns.includes(concern)) return false;
-      if (q && !`${p.nameRu} ${p.nameEn} ${p.line}`.toLowerCase().includes(q)) return false;
+      if (q && !`${p.nameRu} ${p.nameEn} ${p.line} ${p.series.join(" ")}`.toLowerCase().includes(q)) return false;
       return true;
     });
     if (sort === "price-asc") return [...list].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") return [...list].sort((a, b) => b.price - a.price);
     return [...list].sort(compareByPopularity);
-  }, [products, selectedLine, selectedCategory, concern, query, sort]);
+  }, [products, selectedLine, selectedSeries, hairType, selectedCategory, concern, query, sort]);
 
-  const active = Boolean(selectedLine || selectedCategory || concern || query);
+  const active = Boolean(selectedLine || selectedSeries || hairType || selectedCategory || concern || query);
   const reset = () => {
     setLine("");
+    setSeriesName("");
+    setHairType("");
     setCategory("");
     setConcern("");
     setQuery("");
@@ -106,7 +132,7 @@ export function ShopBrowser({
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="MoMo, маска, объём…"
+              placeholder="OI, MOMO, маска, объём…"
               className="field"
             />
           </label>
@@ -141,7 +167,22 @@ export function ShopBrowser({
             ))}
           </FilterGroup>
 
-          <FilterGroup title="Линейка">
+          <FilterGroup title="Тип волос">
+            {hairTypesPresent.map((h) => (
+              <button
+                key={h.key}
+                type="button"
+                className="chip"
+                data-active={hairType === h.key}
+                onClick={() => setHairType(hairType === h.key ? "" : h.key)}
+              >
+                {h.label}
+                <span className="text-muted">{hairCounts.get(h.key) ?? 0}</span>
+              </button>
+            ))}
+          </FilterGroup>
+
+          <FilterGroup title="Линия">
             {lines.map((l) => (
               <button
                 key={l}
@@ -155,6 +196,23 @@ export function ShopBrowser({
               </button>
             ))}
           </FilterGroup>
+
+          {series.length > 0 && (
+            <FilterGroup title="Серия">
+              {series.map((name) => (
+                <button
+                  key={name}
+                  type="button"
+                  className="chip"
+                  data-active={selectedSeries === name}
+                  onClick={() => setSeriesName(selectedSeries === name ? "" : name)}
+                >
+                  {name}
+                  <span className="text-muted">{seriesCounts.get(name) ?? 0}</span>
+                </button>
+              ))}
+            </FilterGroup>
+          )}
 
           {active && (
             <button type="button" onClick={reset} className="btn btn-soft btn-sm mt-7 w-full">

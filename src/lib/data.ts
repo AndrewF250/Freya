@@ -20,6 +20,20 @@ export type ProductRow = {
   visible: boolean;
   featured: boolean;
   sortOrder: number;
+  /** Поля из карточки davines.ru */
+  lineTagline?: string;
+  series?: string[];
+  sku?: string;
+  suitability?: string;
+  keyIngredient?: string;
+  pairing?: string;
+  composition?: string;
+  specs?: { name: string; value: string }[];
+  variants?: { volume: string; slug: string }[];
+  /** «Сопутствующие товары» с davines.ru — slug наших товаров. */
+  related?: string[];
+  gallery?: string[];
+  sourceUrl?: string;
 };
 
 export const products = productsJson as ProductRow[];

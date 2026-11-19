@@ -4,33 +4,57 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AddRitualButton } from "./add-to-cart";
 import { ProductImage } from "./product-image";
-import { QUIZ_STEPS, buildRitual, describeAnswers, type QuizAnswers, type ScorableProduct } from "@/lib/quiz";
+import {
+  buildRitualDetailed,
+  describeAnswers,
+  type QuizAnswers,
+  type QuizStep,
+  type ScorableProduct,
+} from "@/lib/quiz";
 import { rub } from "@/lib/format";
 
 /** Ключ, по которому страница записи забирает результат подбора. */
 export const QUIZ_STORAGE_KEY = "freya-quiz-v1";
 
-export function QuizFlow({ products }: { products: ScorableProduct[] }) {
+const COMMENT_MAX = 500;
+
+export function QuizFlow({
+  products,
+  steps,
+  tagLabels,
+}: {
+  products: ScorableProduct[];
+  steps: QuizStep[];
+  tagLabels: Record<string, string>;
+}) {
+  /** Шаг с комментарием идёт после всех вопросов анкеты. */
+  const COMMENT_STEP = steps.length;
+  const TOTAL_STEPS = steps.length + 1;
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswers>({});
+  const [comment, setComment] = useState("");
   const [done, setDone] = useState(false);
 
-  const current = QUIZ_STEPS[step];
+  const onComment = step === COMMENT_STEP;
+  const current = steps[step];
   const chosen = answers[current?.id ?? ""];
-  const isLast = step === QUIZ_STEPS.length - 1;
 
-  const ritual = useMemo(() => (done ? buildRitual(products, answers) : []), [done, products, answers]);
+  const detailed = useMemo(
+    () => (done ? buildRitualDetailed(products, answers, comment, steps) : []),
+    [done, products, answers, comment, steps],
+  );
+  const ritual = detailed.map((d) => d.product);
   const total = ritual.reduce((s, p) => s + p.price, 0);
 
-  const finish = (finalAnswers: QuizAnswers) => {
+  const finish = () => {
     setDone(true);
     try {
-      const picked = buildRitual(products, finalAnswers);
+      const picked = buildRitualDetailed(products, answers, comment, steps);
       sessionStorage.setItem(
         QUIZ_STORAGE_KEY,
         JSON.stringify({
-          summary: describeAnswers(finalAnswers),
-          products: picked.map((p) => `${p.line} — ${p.nameEn || p.nameRu}`),
+          summary: describeAnswers(answers, comment, steps),
+          products: picked.map((d) => `${d.product.line} — ${d.product.nameEn || d.product.nameRu}`),
         }),
       );
     } catch {
@@ -39,14 +63,13 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
   };
 
   const choose = (value: string) => {
-    const next = { ...answers, [current.id]: value };
-    setAnswers(next);
-    if (isLast) finish(next);
-    else setStep((s) => s + 1);
+    setAnswers((a) => ({ ...a, [current.id]: value }));
+    setStep((s) => s + 1);
   };
 
   const restart = () => {
     setAnswers({});
+    setComment("");
     setStep(0);
     setDone(false);
   };
@@ -65,8 +88,15 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
             увидим волосы вживую.
           </p>
 
+          {detailed.some((d) => d.approximate) && (
+            <p className="mt-4 max-w-[56ch] text-[13px] leading-relaxed text-muted">
+              Где точного совпадения по ярлыкам нет, мы поставили ближайший по задаче продукт — он отмечен как
+              «близкий вариант».
+            </p>
+          )}
+
           <ul className="mt-10 space-y-3">
-            {ritual.map((p, i) => (
+            {detailed.map(({ product: p, matched, approximate, pinned }, i) => (
               <li key={p.id} className="card flex items-center gap-4 p-3 sm:gap-5 sm:p-4">
                 <span className="font-display w-6 shrink-0 text-center text-[20px] text-olive">{i + 1}</span>
                 <ProductImage
@@ -84,6 +114,20 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
                     </Link>
                   </p>
                   <p className="mt-0.5 truncate text-[13px] text-muted">{p.nameRu}</p>
+                  {(matched.length > 0 || approximate || pinned) && (
+                    <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Почему подходит">
+                      {pinned && <li className="tag !bg-navy !text-white">Выбор Кристины</li>}
+                      {approximate ? (
+                        <li className="tag !bg-sand !text-muted">Близкий вариант</li>
+                      ) : (
+                        matched.slice(0, pinned ? 2 : 3).map((key) => (
+                          <li key={key} className="tag">
+                            {tagLabels[key] ?? key}
+                          </li>
+                        ))
+                      )}
+                    </ul>
+                  )}
                 </div>
                 <p className="shrink-0 text-[15px] tabular-nums">{rub(p.price)}</p>
               </li>
@@ -126,7 +170,7 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
           <details className="mt-10 border-t border-line pt-6">
             <summary className="cursor-pointer text-[14px] text-ink-soft">Ваши ответы</summary>
             <ul className="mt-4 space-y-2 text-[14px] text-muted">
-              {describeAnswers(answers).map((line) => (
+              {describeAnswers(answers, comment, steps).map((line) => (
                 <li key={line}>{line}</li>
               ))}
             </ul>
@@ -140,23 +184,47 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
     <div className="shell section">
       <div className="mx-auto max-w-2xl">
         {/* Прогресс */}
-        <div className="flex items-center gap-2" role="group" aria-label={`Шаг ${step + 1} из ${QUIZ_STEPS.length}`}>
-          {QUIZ_STEPS.map((s, i) => (
+        <div className="flex items-center gap-2" role="group" aria-label={`Шаг ${step + 1} из ${TOTAL_STEPS}`}>
+          {Array.from({ length: TOTAL_STEPS }, (_, i) => (
             <span
-              key={s.id}
+              key={i}
               className={`h-[3px] flex-1 rounded-pill transition-colors ${i <= step ? "bg-navy" : "bg-line"}`}
             />
           ))}
         </div>
         <p className="mt-3 text-[12px] tracking-[0.06em] text-muted">
-          Шаг {step + 1} из {QUIZ_STEPS.length}
+          Шаг {step + 1} из {TOTAL_STEPS}
         </p>
 
-        <h2 className="display mt-8 text-[28px] md:text-[36px]">{current.question}</h2>
-        <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{current.caption}</p>
+        {onComment ? (
+          <>
+            <h2 className="display mt-8 text-[28px] md:text-[36px]">Расскажите о волосах своими словами</h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+              Необязательно. Например: «после осветления секутся кончики, пушатся от влажности». Комментарий учтём в
+              подборе и передадим Кристине вместе с ответами.
+            </p>
+            <label className="mt-8 block">
+              <span className="field-label">Комментарий о состоянии волос</span>
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value.slice(0, COMMENT_MAX))}
+                rows={5}
+                maxLength={COMMENT_MAX}
+                placeholder="Что беспокоит, чем пользуетесь сейчас, как часто окрашиваете…"
+                className="field resize-y"
+              />
+              <span className="mt-1.5 block text-right text-[12px] text-muted tabular-nums">
+                {comment.length} / {COMMENT_MAX}
+              </span>
+            </label>
+          </>
+        ) : (
+          <>
+            <h2 className="display mt-8 text-[28px] md:text-[36px]">{current.question}</h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{current.caption}</p>
 
-        <div className="mt-8 grid gap-3">
-          {current.options.map((opt) => (
+            <div className="mt-8 grid gap-3">
+              {current.options.map((opt) => (
             <button
               key={opt.value}
               type="button"
@@ -169,7 +237,9 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
               {opt.hint && <span className="mt-1 block text-[13px] leading-snug text-muted">{opt.hint}</span>}
             </button>
           ))}
-        </div>
+            </div>
+          </>
+        )}
 
         <div className="mt-8 flex items-center justify-between border-t border-line pt-6">
           <button
@@ -180,14 +250,16 @@ export function QuizFlow({ products }: { products: ScorableProduct[] }) {
           >
             ← Назад
           </button>
-          {chosen && (
-            <button
-              type="button"
-              onClick={() => (isLast ? finish(answers) : setStep((s) => s + 1))}
-              className="btn btn-primary btn-sm"
-            >
-              {isLast ? "Показать подбор" : "Далее →"}
+          {onComment ? (
+            <button type="button" onClick={finish} className="btn btn-primary btn-sm">
+              {comment.trim() ? "Показать подбор" : "Пропустить и показать подбор"}
             </button>
+          ) : (
+            chosen && (
+              <button type="button" onClick={() => setStep((s) => s + 1)} className="btn btn-primary btn-sm">
+                Далее →
+              </button>
+            )
           )}
         </div>
       </div>

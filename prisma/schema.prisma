@@ -22,9 +22,9 @@ model Product {
   description String   @default("")
   usage       String   @default("")
   image       String   @default("")
-  /// JSON-массив тегов задач для квиза: dryness, damage, volume, color, curls, frizz, scalp, shine
+  /// JSON-массив эффектов с davines.ru (ключи из src/data/catalog.json)
   concerns    String   @default("[]")
-  /// JSON-массив типов волос: normal, dry, oily, colored, curly, thin, damaged
+  /// JSON-массив типов волос с davines.ru (ключи из src/data/catalog.json)
   hairTypes   String   @default("[]")
   visible     Boolean  @default(true)
   featured    Boolean  @default(false)

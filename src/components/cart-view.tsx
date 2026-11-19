@@ -1,37 +1,91 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
 import { useCart } from "./cart";
 import { ProductImage } from "./product-image";
 import { Empty } from "./ui";
+import { FieldError, fieldProps } from "./field-error";
 import { submitOrder, type FormState } from "@/lib/forms";
 import { addLead } from "@/lib/leads-store";
 import { collectOrderPayload, formatOrderMessage, type OrderPayload } from "@/lib/orders";
+import {
+  PAYMENT_METHODS,
+  createPayment,
+  isOnlinePaymentEnabled,
+  newOrderId,
+  type PaymentMethod,
+} from "@/lib/payments";
 import { getSettings } from "@/lib/settings";
 import { buildTelegramUrl } from "@/lib/telegram";
+import { DELIVERY_OPTIONS, LIMITS, firstError, formatPhone, validateOrder, type FieldErrors } from "@/lib/validation";
 import { rub, plural } from "@/lib/format";
-
-const DELIVERY = ["Доставка по Перми", "СДЭК по России"] as const;
 
 export function CartView({ deliveryText }: { deliveryText: string }) {
   const { items, count, total, ready, setQty, remove, clear } = useCart();
+  const searchParams = useSearchParams();
+  const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<FormState>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
   const [pending, setPending] = useState(false);
   const [orderPayload, setOrderPayload] = useState<OrderPayload | null>(null);
+  const [orderId, setOrderId] = useState("");
+  const [payment, setPayment] = useState<PaymentMethod>("on-confirm");
   const settings = getSettings();
+  const telegramReady = /t\.me\/[^/?#]+/i.test(settings.telegram ?? "");
+  const onlinePayment = isOnlinePaymentEnabled();
+  const paymentReturn = searchParams.get("payment") === "return" ? searchParams.get("order") : null;
+
+  // Номер заказа создаём на клиенте после монтирования, чтобы не расходилась разметка сервера и клиента.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    setOrderId(newOrderId());
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (state?.ok) clear();
   }, [state?.ok, clear]);
 
+  function readForm(form: HTMLFormElement) {
+    const formData = new FormData(form);
+    const input = {
+      name: String(formData.get("name") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      delivery: String(formData.get("delivery") ?? ""),
+      address: String(formData.get("address") ?? ""),
+      comment: String(formData.get("comment") ?? ""),
+      items: items.map((i) => ({ slug: i.slug, qty: i.qty })),
+    };
+    return { formData, input, errors: validateOrder(input) };
+  }
+
+  /** Проверяет форму и показывает ошибки под полями. Возвращает данные, если всё в порядке. */
+  function validate() {
+    const form = formRef.current;
+    if (!form) return null;
+    const result = readForm(form);
+    setErrors(result.errors);
+    const message = firstError(result.errors);
+    if (message) {
+      setState({ ok: false, message: "Проверьте выделенные поля." });
+      const field = Object.keys(result.errors)[0];
+      form.querySelector<HTMLElement>(`[name="${field}"]`)?.focus();
+      return null;
+    }
+    setState(null);
+    return result;
+  }
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const checked = validate();
+    if (!checked) return;
     setPending(true);
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const payload = collectOrderPayload(formData, items);
-    const result = await submitOrder(formData);
+    const payload = collectOrderPayload(checked.formData, items);
+    const result = await submitOrder(checked.formData);
 
     if (result?.ok) {
       setOrderPayload(payload);
@@ -40,27 +94,65 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
         name: payload.name,
         phone: payload.phone,
         email: payload.email || undefined,
-        comment: payload.comment || undefined,
+        comment: [payload.address && `Адрес: ${payload.address}`, payload.payment && `Оплата: ${payload.payment}`, payload.comment]
+          .filter(Boolean)
+          .join("\n") || undefined,
         delivery: payload.delivery,
         total: payload.total,
         items: payload.items,
       });
+
+      if (payment === "yookassa" && onlinePayment) {
+        const paid = await createPayment(payload);
+        if (paid.ok) {
+          clear();
+          window.location.assign(paid.confirmationUrl);
+          return;
+        }
+        setState({
+          ok: true,
+          message: `${result.message} Онлайн-оплата сейчас недоступна (${paid.message}) — пришлём способ оплаты вместе с подтверждением.`,
+        });
+        setPending(false);
+        return;
+      }
     }
 
     setState(result);
     setPending(false);
   }
 
-  function openTelegram() {
-    if (!orderPayload) return;
-    const url = buildTelegramUrl(settings.telegram, formatOrderMessage(orderPayload));
+  function openTelegramWith(payload: OrderPayload) {
+    const url = buildTelegramUrl(settings.telegram, formatOrderMessage(payload));
     if (!url) return;
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
-  if (state?.ok) {
-  const telegramReady = /t\.me\/[^/?#]+/i.test(settings.telegram ?? "");
+  /** «Отправить в Telegram»: проверяем поля и открываем чат с готовым текстом заказа. */
+  function sendToTelegram() {
+    const checked = validate();
+    if (!checked) return;
+    openTelegramWith(collectOrderPayload(checked.formData, items));
+  }
 
+  if (paymentReturn) {
+    return (
+      <div className="shell section">
+        <div className="card mx-auto max-w-2xl p-8 text-center md:p-12">
+          <h2 className="display text-[26px]">Спасибо за заказ {paymentReturn}</h2>
+          <p className="mx-auto mt-3 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft">
+            Если оплата прошла, ЮKassa пришлёт чек на телефон или почту. Мы проверим платёж и свяжемся, чтобы
+            согласовать доставку.
+          </p>
+          <Link href="/shop" className="btn btn-soft mt-8">
+            Вернуться в каталог
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (state?.ok) {
     return (
       <div className="shell section">
         <div className="card mx-auto max-w-2xl p-8 text-center md:p-12">
@@ -72,9 +164,9 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
           <h2 className="display mt-6 text-[26px]">Заказ принят</h2>
           <p className="mx-auto mt-3 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft">{state.message}</p>
 
-          {telegramReady && (
-            <button type="button" onClick={openTelegram} className="btn btn-primary mt-8">
-              Оформить в Telegram
+          {telegramReady && orderPayload && (
+            <button type="button" onClick={() => openTelegramWith(orderPayload)} className="btn btn-primary mt-8">
+              Дублировать в Telegram
             </button>
           )}
 
@@ -112,6 +204,8 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
       </div>
     );
   }
+
+  const paymentLabel = PAYMENT_METHODS.find((m) => m.key === payment)?.label ?? "";
 
   return (
     <div className="shell section grid gap-10 lg:grid-cols-[1fr_400px] lg:gap-14">
@@ -159,7 +253,8 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
                     <button
                       type="button"
                       onClick={() => setQty(item.slug, item.qty + 1)}
-                      className="h-8 w-8 rounded-pill text-ink-soft transition-colors hover:text-ink"
+                      disabled={item.qty >= LIMITS.qty}
+                      className="h-8 w-8 rounded-pill text-ink-soft transition-colors hover:text-ink disabled:opacity-40"
                       aria-label={`Увеличить количество «${item.nameRu}»`}
                     >
                       +
@@ -179,11 +274,14 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
             </li>
           ))}
         </ul>
+        <FieldError id="items" message={errors.items} />
       </div>
 
       <aside className="lg:sticky lg:top-[92px] lg:self-start">
-        <form onSubmit={handleSubmit} className="card p-6">
+        <form ref={formRef} onSubmit={handleSubmit} noValidate className="card p-6">
           <input type="hidden" name="items" value={JSON.stringify(items.map((i) => ({ slug: i.slug, qty: i.qty })))} />
+          <input type="hidden" name="orderId" value={orderId} />
+          <input type="hidden" name="paymentLabel" value={paymentLabel} />
 
           <div className="flex items-baseline justify-between border-b border-line pb-5">
             <span className="text-[15px]">Итого</span>
@@ -193,18 +291,43 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
           <div className="mt-5 grid gap-4">
             <label>
               <span className="field-label">Как получить *</span>
-              <select name="delivery" required defaultValue={DELIVERY[0]} className="field">
-                {DELIVERY.map((d) => (
+              <select name="delivery" required defaultValue={DELIVERY_OPTIONS[0]} className="field" {...fieldProps("delivery", errors)}>
+                {DELIVERY_OPTIONS.map((d) => (
                   <option key={d} value={d}>
                     {d}
                   </option>
                 ))}
               </select>
+              <FieldError id="delivery" message={errors.delivery} />
+            </label>
+
+            <label>
+              <span className="field-label">Адрес доставки *</span>
+              <input
+                name="address"
+                required
+                maxLength={LIMITS.address}
+                placeholder="Пермь, ул. Ленина, 10, кв. 5"
+                className="field"
+                autoComplete="street-address"
+                {...fieldProps("address", errors)}
+              />
+              <FieldError id="address" message={errors.address} />
             </label>
 
             <label>
               <span className="field-label">Имя *</span>
-              <input name="name" required minLength={2} placeholder="Анна" className="field" autoComplete="name" />
+              <input
+                name="name"
+                required
+                minLength={2}
+                maxLength={LIMITS.name}
+                placeholder="Анна"
+                className="field"
+                autoComplete="name"
+                {...fieldProps("name", errors)}
+              />
+              <FieldError id="name" message={errors.name} />
             </label>
 
             <label>
@@ -213,21 +336,75 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
                 name="phone"
                 type="tel"
                 required
+                inputMode="tel"
                 placeholder="+7 (999) 123-45-67"
                 className="field"
                 autoComplete="tel"
+                onBlur={(e) => {
+                  e.currentTarget.value = formatPhone(e.currentTarget.value);
+                }}
+                {...fieldProps("phone", errors)}
               />
+              <FieldError id="phone" message={errors.phone} />
             </label>
 
             <label>
               <span className="field-label">E-mail</span>
-              <input name="email" type="email" placeholder="anna@example.com" className="field" autoComplete="email" />
+              <input
+                name="email"
+                type="email"
+                maxLength={LIMITS.email}
+                placeholder="anna@example.com — для чека"
+                className="field"
+                autoComplete="email"
+                {...fieldProps("email", errors)}
+              />
+              <FieldError id="email" message={errors.email} />
             </label>
 
             <label>
               <span className="field-label">Комментарий</span>
-              <textarea name="comment" rows={3} placeholder="Адрес доставки или удобное время" className="field resize-y" />
+              <textarea
+                name="comment"
+                rows={3}
+                maxLength={LIMITS.comment}
+                placeholder="Удобное время доставки, код домофона"
+                className="field resize-y"
+                {...fieldProps("comment", errors)}
+              />
+              <FieldError id="comment" message={errors.comment} />
             </label>
+
+            <fieldset>
+              <legend className="field-label">Оплата</legend>
+              <div className="grid gap-2">
+                {PAYMENT_METHODS.map((m) => {
+                  const disabled = m.key === "yookassa" && !onlinePayment;
+                  return (
+                    <label
+                      key={m.key}
+                      className={`card-flat flex items-start gap-3 p-3 ${disabled ? "opacity-55" : "cursor-pointer"}`}
+                    >
+                      <input
+                        type="radio"
+                        name="payment"
+                        value={m.key}
+                        checked={payment === m.key}
+                        disabled={disabled}
+                        onChange={() => setPayment(m.key)}
+                        className="mt-1 h-4 w-4 accent-[#1b2430]"
+                      />
+                      <span>
+                        <span className="block text-[14px]">{m.label}</span>
+                        <span className="mt-0.5 block text-[12px] leading-snug text-muted">
+                          {disabled ? "Скоро — подключаем ЮKassa" : m.hint}
+                        </span>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
           </div>
 
           {state && !state.ok && (
@@ -236,9 +413,21 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
             </p>
           )}
 
-          <button type="submit" disabled={pending} className="btn btn-primary btn-block mt-6">
-            {pending ? "Отправляю…" : "Оформить заказ"}
-          </button>
+          <div className="mt-6 flex flex-col gap-3">
+            <button type="submit" disabled={pending || !orderId} className="btn btn-primary btn-block">
+              {pending ? "Отправляю…" : payment === "yookassa" ? "Оформить и оплатить" : "Оформить заказ"}
+            </button>
+            {telegramReady && (
+              <button type="button" onClick={sendToTelegram} className="btn btn-outline btn-block">
+                Отправить в Telegram
+              </button>
+            )}
+          </div>
+          {telegramReady && (
+            <p className="mt-3 text-center text-[12px] leading-relaxed text-muted">
+              «Отправить в Telegram» открывает чат с Кристиной с уже заполненным текстом заказа.
+            </p>
+          )}
 
           <p className="mt-4 text-[12px] leading-relaxed text-muted">{deliveryText}</p>
           <ul className="mt-4 space-y-2 text-[12px] leading-relaxed text-muted">
@@ -247,7 +436,7 @@ export function CartView({ deliveryText }: { deliveryText: string }) {
             <li>· Доставка по Перми и СДЭК по России</li>
           </ul>
           <p className="mt-3 text-[12px] leading-relaxed text-muted">
-            Оплата не проводится на сайте: мы подтвердим наличие и пришлём способ оплаты.
+            Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
           </p>
         </form>
       </aside>

@@ -2,6 +2,7 @@
 import { settings as settingsData } from "./data";
 import type { SlotPreset } from "./booking-slots";
 import type { CatalogConfig } from "./catalog";
+import type { QuizConfig } from "./quiz";
 
 export const SETTING_DEFAULTS = {
   masterName: "Кристина",
@@ -41,6 +42,8 @@ export type Settings = Record<SettingKey, string> & {
   imageBgPresets?: string[];
   telegramMessagePreset?: string;
   catalog?: CatalogConfig;
+  /** Анкета подбора, настроенная мастером. Без неё — стандартная анкета из src/lib/quiz.ts. */
+  quiz?: QuizConfig;
 };
 
 export const SETTING_LABELS: Record<SettingKey, string> = {

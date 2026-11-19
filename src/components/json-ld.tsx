@@ -50,7 +50,8 @@ export function ProductJsonLd({ product }: { product: ProductView }) {
     "@type": "Product",
     name: product.nameEn || product.nameRu,
     description: product.description,
-    image: absoluteUrl(product.image),
+    image: (product.gallery?.length ? product.gallery : [product.image]).map((src) => absoluteUrl(src)),
+    ...(product.sku ? { sku: product.sku } : {}),
     brand: { "@type": "Brand", name: "Davines" },
     offers: {
       "@type": "Offer",

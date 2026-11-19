@@ -2,9 +2,32 @@ import productsJson from "@/data/products.json";
 import settingsJson from "@/data/settings.json";
 import type { ProductView } from "./products";
 import type { Settings } from "./settings";
+import { CATALOG_VERSION } from "./catalog";
 
 const PRODUCTS_KEY = "freya-master-products";
 const SETTINGS_KEY = "freya-master-settings";
+const CATALOG_VERSION_KEY = "freya-master-catalog-version";
+
+/**
+ * После нового импорта каталога с davines.ru локальные правки товаров и словаря
+ * относятся к старому ассортименту — сбрасываем их один раз. Остальные настройки сохраняются.
+ */
+function dropStaleCatalog() {
+  if (typeof window === "undefined") return;
+  try {
+    if (localStorage.getItem(CATALOG_VERSION_KEY) === CATALOG_VERSION) return;
+    localStorage.removeItem(PRODUCTS_KEY);
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    if (raw) {
+      const stored = JSON.parse(raw) as Record<string, unknown>;
+      delete stored.catalog;
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(stored));
+    }
+    localStorage.setItem(CATALOG_VERSION_KEY, CATALOG_VERSION);
+  } catch {
+    /* localStorage недоступен — работаем с данными сборки */
+  }
+}
 
 type ProductRow = ProductView & { sortOrder?: number };
 
@@ -16,6 +39,7 @@ const translit: Record<string, string> = {
 
 function readJson<T>(key: string): T | null {
   if (typeof window === "undefined") return null;
+  dropStaleCatalog();
   try {
     const raw = localStorage.getItem(key);
     return raw ? (JSON.parse(raw) as T) : null;
